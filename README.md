@@ -154,7 +154,7 @@ Contributions, issues and feature requests are welcome!<br />Feel free to check 
 
 ## Show your support
 
-Give a ⭐️
+Give us a ⭐️
 
 [![Stargazers repo roster for useform](https://reporoster.com/stars/jucian0/useform)](https://github.com/jucian0/useform/stargazers)
 

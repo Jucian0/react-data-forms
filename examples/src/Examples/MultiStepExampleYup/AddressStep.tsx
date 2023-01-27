@@ -2,6 +2,7 @@ import { Input } from '@chakra-ui/react';
 import { Button, Stack, Text, Box } from '@chakra-ui/react';
 import { usePersonForm } from './usePersonForm';
 import { useWizard } from 'react-use-wizard';
+import * as yup from 'yup';
 
 export function AddressStep() {
   const { previousStep } = useWizard();
@@ -11,7 +12,11 @@ export function AddressStep() {
   return (
     <Box p={10}>
       <Text fontWeight={'bold'}>Address</Text>
-      <Input mt={35} placeholder="Street" {...register('address.street')} />
+      <Input
+        mt={35}
+        placeholder="Street"
+        {...register({ name: 'address.street', validate: yup.string().max(2) })}
+      />
       <Text color="red.500">
         {touched.address?.street && errors.address?.street}
       </Text>

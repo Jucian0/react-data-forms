@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import { createStore } from './Store';
 import {
   CreateFormArgs,
@@ -6,7 +6,9 @@ import {
   EventChange,
   Field,
   HookArgs,
+  RegisterArgs,
   Touched,
+  ValidationError,
 } from './Types';
 import * as Dot from './ObjectUtils';
 import { extractRadioElements, isCheckbox, isRadio } from './FieldsUtils';
@@ -89,7 +91,7 @@ export function createForm<T extends CreateFormArgs<T['initialValues']>>(
      * This function will handle blur events
      * @param event the event that will be handled
      **/
-    async function onBlur(event: React.FocusEvent<HTMLInputElement>) {
+    async function onBlur(event: ChangeEvent<HTMLInputElement>) {
       const { name } = event.target;
       const state = $store.get();
 
@@ -98,7 +100,7 @@ export function createForm<T extends CreateFormArgs<T['initialValues']>>(
       }
 
       if (validationSchema) {
-        const validationResult = await handleValidate();
+        const validationResult = await handleValidate(validationSchema);
         const next = Dot.set(
           { ...state, ...validationResult },
           `touched.${name}`,
@@ -110,7 +112,7 @@ export function createForm<T extends CreateFormArgs<T['initialValues']>>(
       }
     }
 
-    async function handleValidate() {
+    async function handleValidate(validationSchema: any) {
       try {
         await validate($store.getPropertyValue('values'), validationSchema);
         return { errors: {}, isValid: true };
@@ -153,25 +155,42 @@ export function createForm<T extends CreateFormArgs<T['initialValues']>>(
       return next;
     }
 
-    function register(name: string) {
-      if (!name) {
-        throw new InvalidArgumentException('Input name is required');
+    function register(args: RegisterArgs) {
+      let props = {} as any;
+
+      if (typeof args === 'object') {
+        props = args;
+      } else {
+        props = {
+          name: args,
+        };
       }
-      const defaultValue = Dot.get(state.values, name);
+
+      const defaultValue = Dot.get(state.values, props?.name);
       const ref = React.useRef(null);
 
       React.useEffect(() => {
         if (ref.current) {
-          inputsRefs[name] = ref;
-          setFieldRefValue(name, defaultValue);
+          inputsRefs[props.name] = ref;
+          setFieldRefValue(props.name, defaultValue);
         }
       }, [ref]);
 
       return {
+        ...props,
         ref,
+        onBlur: async (e: ChangeEvent<HTMLInputElement>) => {
+          onBlur(e);
+          if (args.validate) {
+            try {
+              await validate(e.target.value, args.validate);
+              $store.patch(`errors.${props.name}`, undefined);
+            } catch (error: any) {
+              $store.patch(`errors.${props.name}`, error.message);
+            }
+          }
+        },
         onChange,
-        onBlur,
-        name,
       };
     }
 
@@ -194,7 +213,7 @@ export function createForm<T extends CreateFormArgs<T['initialValues']>>(
 
         if (validationSchema) {
           const touched = setAllFieldsState(true);
-          const validationResult = await handleValidate();
+          const validationResult = await handleValidate(validationSchema);
           const next: any = { ...state, touched, ...validationResult };
           $store.set(next).notify();
           submit(next.values, validationResult.isValid);

@@ -29,7 +29,7 @@ export async function validate<TValues extends {}>(
     })
     .catch((e: any) => {
       throw e.inner.reduce((acc: {}, key: any) => {
-        const path = makeDotNotation(key.path);
+        const path = makeDotNotation(key.path ?? 'message');
         return Dot.set(acc, path, key.message);
       }, {});
     });

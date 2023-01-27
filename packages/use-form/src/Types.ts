@@ -105,3 +105,7 @@ export type EventChange = React.ChangeEvent<Field> & CustomEvent<Field> & Event;
 export type StateChange<T> = T | ((state: T) => T);
 
 export type StateOfField = 'values' | 'touched' | 'errors';
+
+export type RegisterArgs = (React.InputHTMLAttributes<Field> | string) & {
+  validate?: any;
+};

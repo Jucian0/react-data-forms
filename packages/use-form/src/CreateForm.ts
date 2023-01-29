@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React from 'react';
 import { createStore } from './Store';
 import {
   CreateFormArgs,
@@ -8,7 +8,6 @@ import {
   HookArgs,
   RegisterArgs,
   Touched,
-  ValidationError,
 } from './Types';
 import * as Dot from './ObjectUtils';
 import { extractRadioElements, isCheckbox, isRadio } from './FieldsUtils';
@@ -68,7 +67,7 @@ export function createForm<T extends CreateFormArgs<T['initialValues']>>(
      * This function will handle change events of the form,
      * @param event the event that will be handled
      **/
-    async function onChange(event: EventChange) {
+    async function handleChange(event: EventChange) {
       const { name, value, checked } = event.target;
 
       const nextValue =
@@ -91,7 +90,7 @@ export function createForm<T extends CreateFormArgs<T['initialValues']>>(
      * This function will handle blur events
      * @param event the event that will be handled
      **/
-    async function onBlur(event: ChangeEvent<HTMLInputElement>) {
+    async function handleBlur(event: EventChange) {
       const { name } = event.target;
       const state = $store.get();
 
@@ -176,20 +175,26 @@ export function createForm<T extends CreateFormArgs<T['initialValues']>>(
         }
       }, [ref]);
 
+      async function onBlur(e: EventChange) {
+        handleBlur(e);
+        if (args.validate) {
+          try {
+            await validate(e.target.value, args.validate);
+            $store.patch(`errors.${props.name}`, undefined);
+          } catch (error: any) {
+            $store.patch(`errors.${props.name}`, error.message);
+          }
+        }
+      }
+
+      function onChange(e: EventChange) {
+        handleChange(e);
+      }
+
       return {
         ...props,
         ref,
-        onBlur: async (e: ChangeEvent<HTMLInputElement>) => {
-          onBlur(e);
-          if (args.validate) {
-            try {
-              await validate(e.target.value, args.validate);
-              $store.patch(`errors.${props.name}`, undefined);
-            } catch (error: any) {
-              $store.patch(`errors.${props.name}`, error.message);
-            }
-          }
-        },
+        onBlur,
         onChange,
       };
     }

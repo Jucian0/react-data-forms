@@ -15,7 +15,6 @@ import { validate } from './Validate';
 import { StateChange } from '.';
 import { InvalidArgumentException } from './Exception';
 import { debounce } from './Debounce';
-import { Value } from '@radix-ui/react-select';
 
 const defaultValues = {
   initialValues: {},

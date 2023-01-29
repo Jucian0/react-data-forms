@@ -15,6 +15,7 @@ import { validate } from './Validate';
 import { StateChange } from '.';
 import { InvalidArgumentException } from './Exception';
 import { debounce } from './Debounce';
+import { Value } from '@radix-ui/react-select';
 
 const defaultValues = {
   initialValues: {},
@@ -49,6 +50,7 @@ export function createForm<T extends CreateFormArgs<T['initialValues']>>(
     errors: initialErrors,
     touched: initialTouched,
     isValid: Dot.isEmpty(initialErrors),
+    isTouched: !Dot.isEmpty(initialTouched),
   });
 
   /**
@@ -154,6 +156,30 @@ export function createForm<T extends CreateFormArgs<T['initialValues']>>(
       return next;
     }
 
+    /**
+     * Registers a field and returns its properties.
+     * @function
+     * @param {RegisterArgs} args - The properties of the field to register.
+     * @returns {Object} An object with the properties for the field, including the `ref`, `onBlur` and `onChange` handlers.
+     *
+     * @example
+     *
+     * return (
+     *   <input
+     *     {...register({ name: 'username', type:'text', placeholder:'Enter your username' })}
+     *   />
+     * );
+     *
+     * or
+     *
+     * return (
+     *   <input
+     *     {...register('username')}
+     *     type="text"
+     *     placeholder="Enter your username"
+     *   />
+     * );
+     */
     function register(args: RegisterArgs) {
       let props = {} as any;
 
@@ -175,15 +201,25 @@ export function createForm<T extends CreateFormArgs<T['initialValues']>>(
         }
       }, [ref]);
 
-      async function onBlur(e: EventChange) {
+      React.useEffect(() => {
+        if (ref.current && args.validate) {
+          handleInlineValidation(defaultValue);
+        }
+      }, [ref]);
+
+      async function handleInlineValidation(value: any) {
+        try {
+          await validate(value, args.validate);
+          $store.patch(`errors.${props.name}`, undefined);
+        } catch (error: any) {
+          $store.patch(`errors.${props.name}`, error.message);
+        }
+      }
+
+      function onBlur(e: EventChange) {
         handleBlur(e);
         if (args.validate) {
-          try {
-            await validate(e.target.value, args.validate);
-            $store.patch(`errors.${props.name}`, undefined);
-          } catch (error: any) {
-            $store.patch(`errors.${props.name}`, error.message);
-          }
+          handleInlineValidation(e.target.value);
         }
       }
 
@@ -200,44 +236,54 @@ export function createForm<T extends CreateFormArgs<T['initialValues']>>(
     }
 
     /**
-     * This function will handle form submit
-     **/
+     * Handle form submit event.
+     * @template T
+     * @param {(values: T['initialValues'], isValid: boolean) => void} submit - * * * * Callback function to handle submit event
+     * @throws {Error} If submit parameter is not a function
+     * @returns {(event: React.FormEvent<HTMLFormElement>) => Promise<void>} An async * function that handles submit event
+     */
     function handleSubmit(
       submit: (values: T['initialValues'], isValid: boolean) => void
-    ) {
+    ): (event: React.FormEvent<HTMLFormElement>) => Promise<void> {
       if (typeof submit !== 'function') {
         throw Error('Submit function is required');
       }
       /**
-       * This function will handle submit event
-       * @param event the event that will be handled
-       **/
+       * Handle form submit event.
+       * @param {React.FormEvent<HTMLFormElement>} event - The form submit event
+       * @returns {Promise<void>}
+       */
       return async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const state = $store.get();
 
-        if (validationSchema) {
-          const touched = setAllFieldsState(true);
+        $store.patch('touched', setAllFieldsState(true));
+
+        if (!$store.get().isTouched && validationSchema) {
           const validationResult = await handleValidate(validationSchema);
-          const next: any = { ...state, touched, ...validationResult };
-          $store.set(next).notify();
-          submit(next.values, validationResult.isValid);
+          $store.set({ ...state, ...validationResult }).notify();
+          submit(state.values, validationResult.isValid);
         } else {
-          $store.set(state).notify();
+          const updatedState = $store.get();
+          $store.set(updatedState).notify();
           submit(state.values, state.isValid);
         }
       };
     }
 
     /**
-     * This function will handle form submit
-     **/
+     * Handle form reset event.
+     * @template T
+     * @param {(values: T['initialValues']) => void} reset - Callback function to handle reset event
+     * @throws {Error} If reset parameter is not a function
+     * @returns {(event: React.FormEvent<HTMLFormElement>) => void} A function that handles reset * * event
+     */
     function handleReset(reset: (values: T['initialValues']) => void) {
       if (typeof reset !== 'function') {
-        throw Error('Submit function is required');
+        throw Error('Reset function is required');
       }
       /**
-       * This function will handle submit event
+       * This function will handle reset event
        * @param event the event that will be handled
        **/
       return (event: React.FormEvent<HTMLFormElement>) => {
@@ -248,7 +294,8 @@ export function createForm<T extends CreateFormArgs<T['initialValues']>>(
             values: initialValues,
             errors: initialErrors,
             touched: initialTouched,
-            isValid: false,
+            isValid: Dot.isEmpty(initialErrors),
+            isTouched: Dot.isEmpty(!initialTouched),
           })
           .notify();
 
@@ -264,10 +311,10 @@ export function createForm<T extends CreateFormArgs<T['initialValues']>>(
     }
 
     /**
-     * This function will set the value into input ref,
-     * @param name the name of the input
-     * @param value the value of the input
-     **/
+     * Set the value of a specific field in the form.
+     * @param {string} name - Name of the field
+     * @param {any} value - Value to set the field to
+     */
     function setFieldValue(name: string, value: any) {
       try {
         setFieldRefValue(name, value);
@@ -278,9 +325,10 @@ export function createForm<T extends CreateFormArgs<T['initialValues']>>(
     }
 
     /**
-     * This function will set all inputs value into the input elements,
-     * @param values the values of the form
-     **/
+     * Set the values of multiple fields in the form.
+     * @template T
+     * @param {StateChange<T['initialValues']>} next - Object containing updated field values or a * function to produce updated field values
+     */
     function setFieldsValue(next: StateChange<T['initialValues']>) {
       //@ts-ignore
       const nextValues = typeof next === 'function' ? next(state.values) : next;
@@ -298,10 +346,10 @@ export function createForm<T extends CreateFormArgs<T['initialValues']>>(
     }
 
     /**
-     * This function will set the error into the state of the form,
-     * @param name the name of the input
-     * @param error the error of the input
-     **/
+     * Set error message for a specific field in the form.
+     * @param {string} name - Name of the field
+     * @param {string} message - Error message to set for the field
+     */
     function setFieldError(name: string, message: string) {
       try {
         $store.patch(`errors.${name}`, message).notify(shouldNotify);
@@ -311,9 +359,9 @@ export function createForm<T extends CreateFormArgs<T['initialValues']>>(
     }
 
     /**
-     * This function will set all inputs error into the state of the form,
-     * @param errors the errors of the form
-     **/
+     * Set error messages for multiple fields in the form.
+     * @param {StateChange<Errors<T['initialValues']>>} next - The updated error messages. Can be * * either an object or a function that returns an object.
+     */
     function setFieldsError(next: StateChange<Errors<T['initialValues']>>) {
       const nextErrors =
         typeof next === 'function' ? next($store.get().errors) : next;
@@ -325,9 +373,9 @@ export function createForm<T extends CreateFormArgs<T['initialValues']>>(
     }
 
     /**
-     * This function will set the touched into the state of the form,
-     * @param name the name of the input
-     * @param touched the touched of the input
+     * This function will set the touched value of a field.
+     * @param {string} name the name of the field to set
+     * @param {string} value the new value of the field, default is true
      **/
     function setFieldTouched(name: string, value = true) {
       try {
@@ -338,9 +386,10 @@ export function createForm<T extends CreateFormArgs<T['initialValues']>>(
     }
 
     /**
-     * This function will set all inputs touched into the state of the form,
-     * @param touched the touched of the form
-     **/
+     * Set the touched state of multiple fields in the form.
+     * @template T
+     * @param {StateChange<T['initialValues']>} next - Object containing updated field touched state or a * function to produce updated field touched states
+     */
     function setFieldsTouched(next: StateChange<Touched<T['initialValues']>>) {
       const nextTouched =
         typeof next === 'function' ? next($store.get().touched) : next;
@@ -352,15 +401,17 @@ export function createForm<T extends CreateFormArgs<T['initialValues']>>(
     }
 
     /**
-     * This function will reset the form as initial values,
-     **/
+     * Resets the values of fields to the initial values.
+     * @function
+     */
     function resetValues() {
       setFieldsValue(initialValues as T['initialValues']);
     }
 
     /**
-     * This function will reset the form as initial errors,
-     **/
+     * Resets the errors of fields to the initial errors.
+     * @function
+     */
     function resetErrors() {
       $store
         .patch('errors', initialErrors as Errors<T['initialErrors']>)
@@ -368,8 +419,9 @@ export function createForm<T extends CreateFormArgs<T['initialValues']>>(
     }
 
     /**
-     * This function will reset the form as initial touched,
-     **/
+     * Resets the touched status of fields to the initial status.
+     * @function
+     */
     function resetTouched() {
       $store
         .patch('touched', initialTouched as Touched<T['initialTouched']>)

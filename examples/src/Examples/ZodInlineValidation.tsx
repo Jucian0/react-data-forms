@@ -1,16 +1,16 @@
 import { createForm } from '@use-form/use-form';
 import { Button, Input, Stack, Text } from '@chakra-ui/react';
-import * as yup from 'yup';
+import { z } from 'zod';
 
 const useLoginForm = createForm({
   initialValues: {
     email: 'juciano',
     password: '12d',
   },
-  mode: 'onSubmit',
+  mode: 'onChange',
 });
 
-export function FormInlineValidation() {
+export function FormZodInlineValidation() {
   const { register, handleReset, handleSubmit, state } = useLoginForm();
   const { errors, touched } = state;
 
@@ -35,7 +35,7 @@ export function FormInlineValidation() {
           type="email"
           {...register({
             name: 'email',
-            validate: yup.string().email().required(),
+            validate: z.string().email(),
           })}
         />
         {touched.email && <Text color="red.500">{errors.email}</Text>}
@@ -44,7 +44,7 @@ export function FormInlineValidation() {
           type="password"
           {...register({
             name: 'password',
-            validate: yup.string().min(8).required(),
+            validate: z.string().min(8),
           })}
         />
         {touched.password && <Text color="red.500">{errors.password}</Text>}

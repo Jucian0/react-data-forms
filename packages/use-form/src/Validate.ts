@@ -16,7 +16,7 @@ export async function validate<TValues extends {}>(
       })
       .catch((e: any) => {
         throw JSON.parse(e).reduce((acc: {}, key: any) => {
-          const path = key.path.join('.');
+          const path = key.path.length > 0 ? key.path.join('.') : 'message';
           return Dot.set(acc, path, key.message);
         }, {});
       });

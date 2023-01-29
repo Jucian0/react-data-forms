@@ -12,11 +12,7 @@ export function AddressStep() {
   return (
     <Box p={10}>
       <Text fontWeight={'bold'}>Address</Text>
-      <Input
-        mt={35}
-        placeholder="Street"
-        {...register({ name: 'address.street', validate: yup.string().max(2) })}
-      />
+      <Input mt={35} placeholder="Street" {...register('address.street')} />
       <Text color="red.500">
         {touched.address?.street && errors.address?.street}
       </Text>

@@ -1,14 +1,12 @@
 import { ChakraProvider } from '@chakra-ui/react';
 import 'react-datepicker/dist/react-datepicker.css';
-import { FormExample } from './Examples/FormExample';
-import { PersonForm } from './Examples/MultiStepExampleYup/Form';
-import { RadioAndCheckboxExample } from './Examples/RadioAndCheckbox';
-//import { PersonForm } from './Examples/MultiStepExample/Form';
+import { FormYupValidation } from './Examples/YupValidation';
+import { FormZodValidation } from './Examples/ZodValidation';
 
 export function App() {
   return (
     <ChakraProvider>
-      <PersonForm />
+      <FormZodValidation />
     </ChakraProvider>
   );
 }

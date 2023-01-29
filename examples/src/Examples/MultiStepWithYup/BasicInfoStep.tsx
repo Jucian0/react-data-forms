@@ -12,10 +12,7 @@ export function BasicInfoStep() {
   return (
     <Box p={10}>
       <Text fontWeight={'bold'}>Basic Info</Text>
-      <Input
-        mt={25}
-        {...register({ name: 'firstName', placeholder: 'First name' })}
-      />
+      <Input mt={25} placeholder="First name" {...register('firstName')} />
       <Text color="red.500">{touched.firstName && errors.firstName}</Text>
       <Input mt={25} placeholder="Last name" {...register('lastName')} />
       <Text color="red.500">{touched.lastName && errors.lastName}</Text>

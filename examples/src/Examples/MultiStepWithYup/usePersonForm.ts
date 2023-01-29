@@ -36,6 +36,6 @@ export const usePersonForm = createForm({
       zipCode: '',
     },
   },
-  //validationSchema,
+  validationSchema,
   mode: 'onChange',
 });

@@ -3,7 +3,7 @@ import { Wizard } from 'react-use-wizard';
 import { BasicInfoStep } from './BasicInfoStep';
 import { AddressStep } from './AddressStep';
 
-export function PersonForm() {
+export function MultiForm() {
   const form = usePersonForm();
 
   function handleSubmit(e: Person) {

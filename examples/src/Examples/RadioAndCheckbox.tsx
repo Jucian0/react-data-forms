@@ -20,7 +20,7 @@ export function RadioAndCheckboxExample() {
   }
 
   function onReset(e: any) {
-    // console.log(e);
+    console.log(e);
   }
 
   return (
@@ -45,7 +45,7 @@ export function RadioAndCheckboxExample() {
           <Button type="reset">Reset</Button>
 
           <Button onClick={() => setFieldValue('gender', 'masc')}>
-            setFieldValue
+            set gender value
           </Button>
         </Stack>
       </form>

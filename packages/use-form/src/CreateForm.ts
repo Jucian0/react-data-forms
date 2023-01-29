@@ -257,6 +257,7 @@ export function createForm<T extends CreateFormArgs<T['initialValues']>>(
         const state = $store.get();
 
         $store.patch('touched', setAllFieldsState(true));
+        $store.patch('isTouched', true);
 
         if (!$store.get().isTouched && validationSchema) {
           const validationResult = await handleValidate(validationSchema);
@@ -264,8 +265,9 @@ export function createForm<T extends CreateFormArgs<T['initialValues']>>(
           submit(state.values, validationResult.isValid);
         } else {
           const updatedState = $store.get();
-          $store.set(updatedState).notify();
-          submit(state.values, state.isValid);
+          const isValid = Dot.isEmpty(updatedState.errors);
+          $store.set({ ...updatedState, isValid }).notify();
+          submit(state.values, isValid);
         }
       };
     }

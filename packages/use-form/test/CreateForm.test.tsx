@@ -2,17 +2,9 @@ import each from 'jest-each';
 import { faker } from '@faker-js/faker';
 import { createForm } from './../src/CreateForm';
 import { CreateFormArgs } from '../src/Types';
-import { changeInput } from './Utils';
+import { changeInput, makeMockedValues } from './Utils';
 import { waitFor, render, fireEvent, renderHook } from '@testing-library/react';
 import * as yup from 'yup';
-
-function makeMockedValues() {
-  return {
-    name: faker.name.firstName(),
-    email: faker.internet.email(),
-    password: faker.internet.password(),
-  };
-}
 
 function makeCreateFormSut(
   args: CreateFormArgs<any> = {},

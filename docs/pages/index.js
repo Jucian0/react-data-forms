@@ -213,30 +213,36 @@ export default function Index() {
         />
 
         <Grid.Container gap={2} css={{ zIndex: 1, maxW: '87rem', mb: '8rem' }}>
-          <Grid css={{ w: '50%' }}>
-            <Text
-              h1
-              css={{
-                lineHeight: '$xs',
-              }}
-            >
-              Less code{' '}
-            </Text>
-            <Text css={{ mb: '$14' }}>
-              {`Trust us, you will not find another better way to write forms in ReactJS, write less code, use it wherever you want. You don't need to add a function to handle all needed events in an input, you just need to use the `}
-              <code>register</code> {`function.`}
-              <Badge isSquared color="secondary" variant="flat">
-                <Link href="/docs/how-it-works/concept">Read more</Link>
-              </Badge>
-            </Text>
-            <Code className="javascript" boxShadow="$md">
-              {createForm}
-            </Code>
+          <Grid md={6} sm={12} direction="column">
+            <Grid sm={12} md={12} direction="column">
+              <Text
+                h1
+                css={{
+                  lineHeight: '$xs',
+                }}
+              >
+                Less code{' '}
+              </Text>
+              <Text css={{ mb: '$14' }}>
+                {`Trust us, you will not find another better way to write forms in ReactJS, write less code, use it wherever you want. You don't need to add a function to handle all needed events in an input, you just need to use the `}
+                <code>register</code> {`function.`}
+                <Badge isSquared color="secondary" variant="flat">
+                  <Link href="/docs/how-it-works/concept">Read more</Link>
+                </Badge>
+              </Text>
+            </Grid>
+            <Grid sm={12} md={12}>
+              <Code className="javascript" boxShadow="$md">
+                {createForm}
+              </Code>
+            </Grid>
           </Grid>
-          <Grid css={{ w: '50%' }}>
-            <Code className="javascript" boxShadow="$md">
-              {useform}
-            </Code>
+          <Grid md={6} sm={12}>
+            <Grid sm={12} md={12}>
+              <Code className="javascript" boxShadow="$md">
+                {useform}
+              </Code>
+            </Grid>
           </Grid>
         </Grid.Container>
       </Grid.Container>

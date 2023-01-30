@@ -60,7 +60,19 @@ const yourHookForm = createForm({
 
   - **form** - This property is an observable of the form, ti allow you to subscribe and watch every change that happens inside the form, or change the form state.
 
-  - **register** - register is a function that is used to register a input into the form. This function receives one parameter, witch is the field name, `register('name')`.
+  - **register** - register is a function that is used to register a input into the form. It is used to get the properties required to render a form field, such as the ref, `onBlur`, and `onChange` handlers. The function accepts either an object with properties of the field to be registered, or a string name of the field. The properties for the field can include the name, type, placeholder, and validation function. The function returns an object with the properties for the field that can be used to render the form field component.
+
+    ```jsx
+    return (
+      <input
+        {...register({
+          name: 'username',
+          type: 'text',
+          placeholder: 'Enter your username',
+        })}
+      />
+    );
+    ```
 
   - **setFieldValue** - This function is typically used in the context of a form. It allows you to set the value of a specific field in the form. This can be useful for pre-populating form fields with default values, or for programmatically setting the value of a field based on the user's input in other fields. For example, if you have a form with a field for the user's first and last name, example: `setFieldError("name","Jesse")`.
 
@@ -154,3 +166,5 @@ const yourHookForm = createForm({
     const { state } = yourHookForm();
     const { values, errors, touched } = state;
     ```
+
+  - **isValid** - it's a variable that determines if the for is valid ot not.

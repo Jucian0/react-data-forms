@@ -44,7 +44,7 @@ export default {
   footer: {
     text: (
       <>
-        UseForm 2022 Developed by:{' '}
+        UseForm 2023 Developed by:{' '}
         <a href={'https://github.com/Jucian0'}> Juciano</a> {' and '}
         <a href="https://engrafia.vercel.app/">Engrafia</a>
       </>

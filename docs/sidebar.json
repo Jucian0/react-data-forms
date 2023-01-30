@@ -41,17 +41,6 @@
                             "relativePath": "/docs/pages/docs/creating-a-form/custom-components.mdx"
                         },
                         {
-                            "path": "/home/barbosa/javascript/useform/docs/pages/docs/creating-a-form/form-validation.mdx",
-                            "name": "form-validation.mdx",
-                            "meta": {
-                                "title": "Form validation",
-                                "description": "Learn how to validate form values using use-form.",
-                                "tags": "react, form, useform, use-form, debounce, debounced, hook, yup, validation, form-error, error, zod"
-                            },
-                            "url": "/docs/creating-a-form/form-validation",
-                            "relativePath": "/docs/pages/docs/creating-a-form/form-validation.mdx"
-                        },
-                        {
                             "path": "/home/barbosa/javascript/useform/docs/pages/docs/creating-a-form/native-elements.mdx",
                             "name": "native-elements.mdx",
                             "meta": {
@@ -196,6 +185,36 @@
                     ],
                     "title": "Using your form",
                     "relativePath": "/docs/pages/docs/using-your-form"
+                },
+                {
+                    "path": "/home/barbosa/javascript/useform/docs/pages/docs/validation",
+                    "name": "validation",
+                    "children": [
+                        {
+                            "path": "/home/barbosa/javascript/useform/docs/pages/docs/validation/form-validation.mdx",
+                            "name": "form-validation.mdx",
+                            "meta": {
+                                "title": "Form validation",
+                                "description": "Learn how to validate form values using use-form.",
+                                "tags": "react, form, useform, use-form, debounce, debounced, hook, yup, validation, form-error, error, zod"
+                            },
+                            "url": "/docs/validation/form-validation",
+                            "relativePath": "/docs/pages/docs/validation/form-validation.mdx"
+                        },
+                        {
+                            "path": "/home/barbosa/javascript/useform/docs/pages/docs/validation/inline-validation.mdx",
+                            "name": "inline-validation.mdx",
+                            "meta": {
+                                "title": "Iinline validation",
+                                "description": "Learn how to validate form values using field by field.",
+                                "tags": "react, form, useform, use-form, debounce, debounced, hook, yup, validation, form-error, error, zod"
+                            },
+                            "url": "/docs/validation/inline-validation",
+                            "relativePath": "/docs/pages/docs/validation/inline-validation.mdx"
+                        }
+                    ],
+                    "title": "Validation",
+                    "relativePath": "/docs/pages/docs/validation"
                 }
             ],
             "title": "Docs",

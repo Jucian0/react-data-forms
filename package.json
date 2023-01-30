@@ -10,8 +10,12 @@
   "private": true,
   "devDependencies": {
     "@babel/preset-react": "^7.14.5",
+    "@chakra-ui/react": "latest",
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
+    "@emotion/react": "latest",
+    "@emotion/styled": "latest",
+    "@faker-js/faker": "7.4.0",
     "@jscutlery/semver": "^2.28.0",
     "@nrwl/cypress": "15.3.3",
     "@nrwl/eslint-plugin-nx": "15.3.3",
@@ -46,6 +50,7 @@
     "eslint-plugin-jsx-a11y": "6.6.1",
     "eslint-plugin-react": "7.31.11",
     "eslint-plugin-react-hooks": "4.6.0",
+    "framer-motion": "latest",
     "husky": "^8.0.0",
     "jest": "28.1.1",
     "jest-environment-jsdom": "28.1.1",
@@ -56,6 +61,7 @@
     "react-datepicker": "4.8.0",
     "react-select": "^5.6.1",
     "react-test-renderer": "18.2.0",
+    "react-use-wizard": "latest",
     "ts-jest": "28.0.5",
     "ts-node": "10.9.1",
     "typescript": "^4.9.3",
@@ -64,13 +70,7 @@
     "vite-tsconfig-paths": "^4.0.1",
     "vitest": "^0.25.1",
     "yup": "^0.27.0",
-    "zod": "^3.20.2",
-    "react-use-wizard": "latest",
-    "@chakra-ui/react": "latest",
-    "@emotion/react": "latest",
-    "@emotion/styled": "latest",
-    "framer-motion": "latest",
-    "@faker-js/faker": "7.4.0"
+    "zod": "^3.20.2"
   },
   "workspaces": [
     "packages/**",
@@ -90,6 +90,7 @@
     "parse-github-url": "^1.0.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-github-buttons": "^0.5.0",
     "react-iframe": "^1.8.5",
     "regenerator-runtime": "0.13.7",
     "tslib": "^2.3.0"

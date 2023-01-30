@@ -6,6 +6,7 @@ import { MdOutlineDashboardCustomize } from 'react-icons/md';
 import { useTranslation, Code } from 'engrafia';
 import { Demo } from '../demo';
 import Link from 'next/link';
+import { Fork, Star } from 'react-github-buttons';
 
 const createForm = `const useForm = createForm({
   initialValues: {
@@ -92,13 +93,18 @@ export default function Index() {
               h: '40px',
               w: 'auto',
               shadow: '$sm',
-              border: '1px solid $border',
               backdropFilter: 'saturate(180%) blur(10px)',
               background: '$backgroundAlpha',
             }}
           >
             yarn add @use-form/use-form
           </Card>
+          <Grid>
+            <Star owner="jucian0" repo="useform" />
+          </Grid>
+          <Grid>
+            <Fork owner="jucian0" repo="useform" />
+          </Grid>
         </Grid.Container>
         <Grid.Container
           justify="center"

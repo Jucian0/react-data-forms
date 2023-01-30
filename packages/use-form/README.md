@@ -100,5 +100,5 @@ Give a ⭐️ if this project helped you!
 
 ## 📝 License
 
-Copyright © 2022 [jucian0](https://github.com/jucian0).<br />
+Copyright © 2023 [jucian0](https://github.com/jucian0).<br />
 This project is [MIT](https://github.com/jucian0/use-form/blob/53debd6986650f76561795f2069d6eebc5db6c65/LICENSE) licensed.

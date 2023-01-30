@@ -15,12 +15,12 @@ function App({ Component, pageProps }) {
       }}
     >
       <Head>
+        <script async defer src="https://buttons.github.io/buttons.js"></script>
         <link href="https://css.gg/link.css" rel="stylesheet" />
         <title>{`UseForm | ${meta?.title}`}</title>
         <meta name="description" content={meta?.description} />
         <meta name="robots" content="index,follow" />
         <link rel="canonical" href="https://react-useform.vercel.app" />
-
         {/* <!-- Facebook Meta Tags --> */}
         <meta property="og:url" content="https://react-useform.vercel.app" />
         <meta property="og:type" content="website" />
@@ -30,7 +30,6 @@ function App({ Component, pageProps }) {
           name="og:image"
           content="https://react-useform.vercel.app/imgs/lib_logo.png"
         />
-
         {/* <!-- Twitter Meta Tags --> */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="twitter:domain" content="react-useform.vercel.app" />
@@ -44,7 +43,6 @@ function App({ Component, pageProps }) {
           name="twitter:image"
           content="https://react-useform.vercel.app/imgs/lib_logo.png"
         />
-
         <link rel="sitemap" href="/sitemap.xml" />
         <meta name="keywords" content={meta?.tags} />
         <link rel="shortcut icon" href="/favicon/favicon.ico" />

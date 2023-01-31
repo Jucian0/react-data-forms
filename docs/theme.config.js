@@ -17,7 +17,7 @@ export default {
     links: [
       {
         title: 'Docs',
-        href: '/docs/introduction',
+        href: '/docs/introduction/quick-start',
       },
     ],
     iconsLinks: [

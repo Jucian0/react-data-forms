@@ -260,7 +260,7 @@ export default function Index() {
                 {`Trust us, you will not find another better way to write forms in ReactJS, write less code, use it wherever you want. You don't need to add a function to handle all needed events in an input, you just need to use the `}
                 <code>register</code> {`function.`}
                 <Badge isSquared color="secondary" variant="flat">
-                  <Link href="/docs/how-it-works/concept">Read more</Link>
+                  <Link href="/docs/how-it-works/concepts">Read more</Link>
                 </Badge>
               </Text>
             </Grid>

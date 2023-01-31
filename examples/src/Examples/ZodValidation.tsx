@@ -1,4 +1,4 @@
-import { createForm } from '@use-form/use-form';
+import { createForm } from '@createform/react';
 import { Button, Input, Stack, Text } from '@chakra-ui/react';
 import { z } from 'zod';
 

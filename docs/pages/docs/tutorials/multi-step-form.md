@@ -68,7 +68,7 @@ In this example, let's develop a form that submits information about a person. T
 To do that, we are going to create a file named `usePersonForm.ts` inside `PersonForm` directory:
 
 ```tsx
-import { createForm } from '@use-form/use-form';
+import { createForm } from '@createform/react';
 
 export const usePersonForm = createForm({
   initialValues: {

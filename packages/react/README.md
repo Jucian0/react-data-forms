@@ -2,12 +2,9 @@
 
 <h1 align="center">Createform 👋</h1>
 
-[![GitHub license](https://img.shields.io/badge/License-mit-green)](https://github.com/Jucian0/useform/blob/master/LICENSE)
-[![GitHub coverage](https://img.shields.io/badge/coverage-96.8%25-brightgreen)](https://github.com/use-form/use-form/tree/master/test)
-[![Size](https://badgen.net/badge/miniziped%20size/3.3/blue)](https://bundlephobia.com/package/useform@2.0.2)
-[![Size](https://badgen.net/badge/minifield%20size/9.7/blue)](https://bundlephobia.com/package/useform@2.0.2)
-[![npm version](https://badgen.net/badge/npm/v3.0/pink)](https://www.npmjs.com/package/useform)
-[![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=React+hook+for+forms+and+validations&url=https://github.com/use-form/use-form&hashtags=reactjs,hook,javascript,forms)
+[![GitHub license](https://img.shields.io/badge/License-mit-green)](https://github.com/Jucian0/useformcreateform/blob/master/LICENSE)
+[![GitHub coverage](https://img.shields.io/badge/coverage-96.8%25-brightgreen)](https://github.com/jucian0/createform/tree/master/test)
+[![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=React+hook+for+forms+and+validations&url=https://github.com/jucian0/createform&hashtags=reactjs,hook,javascript,forms)
 
 Createform is an open source project that allows you to create forms easily, different from the others options, this package guides you to create custom hooks to manage your forms, you can use the same form in different components without context API.
 
@@ -107,7 +104,7 @@ yarn add @createform/react
 The first step is to create your form with the `createForm` function, this function returns a hook that you can use to manage your form, wherever you want to use.
 
 ```javascript
-import { createForm } from '@use-form/use-form';
+import { createForm } from '@createform/react';
 
 export const useLoginForm = createForm({
   initialValues: {

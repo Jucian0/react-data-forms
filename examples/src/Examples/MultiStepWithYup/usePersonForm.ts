@@ -1,4 +1,4 @@
-import { createForm } from '@use-form/use-form';
+import { createForm } from '@createform/react';
 import * as yup from 'yup';
 
 export type Person = {

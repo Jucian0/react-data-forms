@@ -35,7 +35,7 @@ The most important thing is that there are three ways to use it:
 
 "The debounce() function forces a function to wait a certain amount of time before running again. The function is built to limit the number of times a function is called."
 
-If you are interested in this library,please leave a star: https://github.com/use-form/use-form
+If you are interested in this library,please leave a star: https://github.com/react/react
 
 ## Show me the code
 
@@ -44,7 +44,7 @@ If you are interested in this library,please leave a star: https://github.com/us
 In this first example I will show you how you can build a simple form and how you can define a controlled, uncontrolled or debounce form.
 
 ```jsx
-import { createForm } from "@use-form/use-form";
+import { createForm } from "@createform/react";
 
 const useAuthForm = createForm({
   initialValues:{
@@ -70,7 +70,7 @@ By default, Createform uses the uncontrolled approach.
 When working with real application validations forms are very common because this is the way you can verify if the input's value is correct or not. There are several validations solutions available, but when using Createform the default solution is Yup. With yup the process of validation is simple and powerful.
 
 ```jsx
-import { createForm } from '@use-form/use-form';
+import { createForm } from '@createform/react';
 import * as yup from 'yup';
 
 const validationSchema = yup.object().shape({

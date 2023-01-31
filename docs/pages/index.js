@@ -290,7 +290,7 @@ export default function Index() {
               Inline validation{' '}
             </Text>
             <Text css={{ mb: '$14' }}>
-              {`When passing an object as argument, you can provide a property named "validate". The "validate" property in the register function is used to specify the validation criteria for a particular field in the form. `}
+              {`When passing an object as argument, you can provide a property named "validate". The "validate" property in the register function is used to specify the validation criteria for a particular field in the form.`}
               <code>register</code> {`function.`}
               <Badge isSquared color="secondary" variant="flat">
                 <Link href="/docs/how-it-works/concept">Read more</Link>

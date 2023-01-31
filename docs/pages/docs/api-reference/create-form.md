@@ -31,7 +31,7 @@ Now, form state will contain the initial values for each of the form fields that
 - **initialErrors** - This property represents a errors object that has all properties of a form values.
 
 ```jsx
-import { createForm } from '@use-form/use-form';
+import { createForm } from '@createform/react';
 
 const yourHookForm = createForm({
   initialErrors: {
@@ -45,7 +45,7 @@ const yourHookForm = createForm({
 - **initialTouched** - This property represents a touched object that has all properties of a form values.
 
 ```jsx
-import { createForm } from '@use-form/use-form';
+import { createForm } from '@createform/react';
 
 const yourHookForm = createForm({
   initialTouched: {

@@ -56,7 +56,7 @@ Usually you wannt to show the error message just when a field is touched, you ca
 Validation is performed whenever the state is changed. By default, Createform uses the uncontrolled inputs option, this means that the values ​​are accessible when the onSubmit event is dispatched.
 
 ```jsx
-import { createForm } from '@use-form/use-form';
+import { createForm } from '@createform/react';
 import * as yup from 'yup';
 
 const validationSchema = yup.object().shape({
@@ -118,4 +118,4 @@ function Form() {
 
 ## Demo
 
-<Demo url="https://codesandbox.io/s/use-form-validation-form-jmv9e" />
+<Demo url="https://codesandbox.io/s/react-validation-form-jmv9e" />

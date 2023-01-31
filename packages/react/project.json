@@ -1,7 +1,7 @@
 {
-  "name": "use-form",
+  "name": "react",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/use-form/src",
+  "sourceRoot": "packages/react/src",
   "projectType": "library",
   "tags": [],
   "targets": {
@@ -15,10 +15,10 @@
           "cjs",
           "esm"
         ],
-        "outputPath": "dist/packages/use-form",
-        "tsConfig": "packages/use-form/tsconfig.lib.json",
-        "project": "packages/use-form/package.json",
-        "entryFile": "packages/use-form/src/index.ts",
+        "outputPath": "dist/packages/react",
+        "tsConfig": "packages/react/tsconfig.lib.json",
+        "project": "packages/react/package.json",
+        "entryFile": "packages/react/src/index.ts",
         "external": [
           "react/jsx-runtime"
         ],
@@ -26,7 +26,7 @@
         "compiler": "babel",
         "assets": [
           {
-            "glob": "packages/use-form/README.md",
+            "glob": "packages/react/README.md",
             "input": ".",
             "output": "."
           }
@@ -40,7 +40,7 @@
       ],
       "options": {
         "lintFilePatterns": [
-          "packages/use-form/**/*.{ts,tsx,js,jsx}"
+          "packages/react/**/*.{ts,tsx,js,jsx}"
         ]
       }
     },
@@ -50,7 +50,7 @@
         "{workspaceRoot}/coverage/{projectRoot}"
       ],
       "options": {
-        "jestConfig": "packages/use-form/jest.config.ts",
+        "jestConfig": "packages/react/jest.config.ts",
         "passWithNoTests": true
       }
     },
@@ -63,7 +63,7 @@
         "tagPrefix": "v",
         "baseBranch": "main",
         "postTargets": [
-          "use-form:deploy"
+          "react:deploy"
         ]
       }
     },

@@ -33,7 +33,7 @@ To use custom components with Createform, you need to use `setFieldValue` functi
 When we are creating the form doesn't matter if we are using native HTML elements or not, it's just a function that creates a store and returns a function to manage the form. So we don't need to worry about it for now. We just need to create the form store, also we can provide the initial values, initial errors, initial touched, and the validation schema, but for now, we will just provide the initial values.
 
 ```javascript
-import { createForm } from '@use-form/core';
+import { createForm } from '@createform/core';
 
 const useUserForm = createForm({
   initialValues: {
@@ -43,7 +43,7 @@ const useUserForm = createForm({
 ```
 
 ```jsx
-import { Wrapper } from '@use-form/use-form'
+import { Wrapper } from '@createform/react'
 import Select from 'select-component'
 
 funtion UserForm(){

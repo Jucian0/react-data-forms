@@ -2,6 +2,7 @@
  * Returns a debounced version of the passed function that will only be executed after `wait` milliseconds
  * have elapsed since the last time the debounced function was invoked.
  *
+ *
  * @template TThis The type of `this` to be used for the function.
  * @template TFn The type of function to debounce.
  * @param this The `this` context for the function.

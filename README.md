@@ -148,7 +148,7 @@ Contributions, issues and feature requests are welcome!<br />Feel free to check 
 
 ## Show your support
 
-Give a ⭐️ if this project helped you!
+Give us a ⭐️
 
 [![Stargazers repo roster for createform](https://reporoster.com/stars/jucian0/createform)](https://github.com/jucian0/createform/stargazers)
 

@@ -60,15 +60,15 @@
                     "name": "how-it-works",
                     "children": [
                         {
-                            "path": "/home/barbosa/javascript/useform/docs/pages/docs/how-it-works/concept.mdx",
-                            "name": "concept.mdx",
+                            "path": "/home/barbosa/javascript/useform/docs/pages/docs/how-it-works/concepts.mdx",
+                            "name": "concepts.mdx",
                             "meta": {
-                                "title": "Concept",
+                                "title": "Concepts",
                                 "description": "How Createform works, and why we decided to do it this way.",
                                 "tags": "react, form, useform, createform, use-form, debounce, debounced, hook"
                             },
-                            "url": "/docs/how-it-works/concept",
-                            "relativePath": "/docs/pages/docs/how-it-works/concept.mdx"
+                            "url": "/docs/how-it-works/concepts",
+                            "relativePath": "/docs/pages/docs/how-it-works/concepts.mdx"
                         }
                     ],
                     "title": "How it works",

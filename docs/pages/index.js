@@ -3,11 +3,10 @@ import { useRouter } from 'next/router';
 import { CgPerformance } from 'react-icons/cg';
 import { IoRocketOutline } from 'react-icons/io5';
 import { MdOutlineDashboardCustomize } from 'react-icons/md';
-import { useTranslation, Code } from 'engrafia';
+import { Code } from 'engrafia';
 import { Demo } from '../demo';
 import Link from 'next/link';
 import { Fork, Star } from 'react-github-buttons';
-import Image from 'next/image';
 
 const createForm = `const useForm = createForm({
   initialValues: {
@@ -26,13 +25,21 @@ const example = `const Controlled: React.FC = () => {
   return (
     <form>
       <input
-        className="form-control"
         autoComplete="off"
         {...register("name")}
       />
     </form>
   )
 }`;
+
+const inlineValidation = `
+<form>
+  <input
+    autoComplete="off"
+    {...register({name: "password", validate: z.string().min(8)})}
+  />
+</form>
+`;
 
 export const getStaticProps = async () => {
   return {
@@ -52,7 +59,12 @@ export default function Index() {
 
   return (
     <Grid.Container justify="center">
-      <Grid.Container justify="center" direction="column" alignItems="center">
+      <Grid.Container
+        justify="center"
+        direction="column"
+        alignItems="center"
+        css={{ h: '30rem' }}
+      >
         <Grid.Container
           justify="center"
           direction="column"
@@ -74,11 +86,11 @@ export default function Index() {
             Createform provides you with a simple way to create forms with React
           </Text>
         </Grid.Container>
-        <img
+        {/* <img
           style={{ position: 'absolute', right: 20, top: 20 }}
-          src="/imgs/createform-flow-site.png"
+          src="/imgs/createform-flow.png"
           width={600}
-        />
+        /> */}
         <Grid.Container
           gap={2}
           justify="center"
@@ -105,12 +117,12 @@ export default function Index() {
           >
             yarn add @createform/react
           </Card>
-          <Grid>
+          {/* <Grid>
             <Star owner="jucian0" repo="createform" />
           </Grid>
           <Grid>
             <Fork owner="jucian0" repo="createform" />
-          </Grid>
+          </Grid> */}
         </Grid.Container>
         <Grid.Container
           justify="center"
@@ -121,7 +133,16 @@ export default function Index() {
           <Demo url="https://codesandbox.io/embed/useform-forked-oojuq?fontsize=14&hidenavigation=1&theme=dark" />
         </Grid.Container>
       </Grid.Container>
-
+      <Grid.Container justify="center">
+        <Grid.Container
+          justify="center"
+          direction="column"
+          alignItems="center"
+          css={{ maxW: '87rem' }}
+        >
+          <Demo url="https://codesandbox.io/embed/useform-forked-oojuq?fontsize=14&hidenavigation=1&theme=dark" />
+        </Grid.Container>
+      </Grid.Container>
       <Grid.Container
         gap={2}
         justify="center"
@@ -255,6 +276,32 @@ export default function Index() {
                 {example}
               </Code>
             </Grid>
+          </Grid>
+        </Grid.Container>
+
+        <Grid.Container gap={2} css={{ zIndex: 1, maxW: '87rem', mb: '8rem' }}>
+          <Grid sm={12} md={6} direction="column">
+            <Text
+              h1
+              css={{
+                lineHeight: '$xs',
+              }}
+            >
+              Inline validation{' '}
+            </Text>
+            <Text css={{ mb: '$14' }}>
+              {`When passing an object as argument, you can provide a property named "validate". The "validate" property in the register function is used to specify the validation criteria for a particular field in the form. `}
+              <code>register</code> {`function.`}
+              <Badge isSquared color="secondary" variant="flat">
+                <Link href="/docs/how-it-works/concept">Read more</Link>
+              </Badge>
+            </Text>
+          </Grid>
+
+          <Grid sm={12} md={6}>
+            <Code className="javascript" boxShadow="$md">
+              {inlineValidation}
+            </Code>
           </Grid>
         </Grid.Container>
       </Grid.Container>

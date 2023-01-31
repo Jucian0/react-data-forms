@@ -1,10 +1,10 @@
 ---
-title: Concept
+title: Concepts
 description: How Createform works, and why we decided to do it this way.
 tags: react, form, useform, createform, use-form, debounce, debounced, hook
 ---
 
-# Concept
+# Concepts
 
 When you are working on a project, you might want to use a form in different places, or maybe you have a form with a couple of steps in different components, how could you handle this?
 
@@ -30,6 +30,8 @@ This function creates a form and returns a function that can be used as a hook, 
 In other words, the `createForm` function creates a form and returns a function that has all resources to manage the form, if you use it ten times, it will be the same form and the same store being managed in different places.
 
 For that reason, we can use the same form in different components without providers or React Context API.
+
+![createform-flow](/imgs/createform-flow.png)
 
 ## Initial State
 

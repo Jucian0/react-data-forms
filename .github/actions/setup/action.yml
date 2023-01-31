@@ -28,4 +28,4 @@ runs:
 
     - name: yarn install
       shell: bash
-      run: yarn install --immutable --immutable-cache
+      run: yarn

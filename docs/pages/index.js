@@ -7,6 +7,7 @@ import { useTranslation, Code } from 'engrafia';
 import { Demo } from '../demo';
 import Link from 'next/link';
 import { Fork, Star } from 'react-github-buttons';
+import Image from 'next/image';
 
 const createForm = `const useForm = createForm({
   initialValues: {
@@ -48,7 +49,7 @@ export const getStaticProps = async () => {
 
 export default function Index() {
   const router = useRouter();
-  const t = useTranslation();
+
   return (
     <Grid.Container justify="center">
       <Grid.Container justify="center" direction="column" alignItems="center">
@@ -73,6 +74,11 @@ export default function Index() {
             Createform provides you with a simple way to create forms with React
           </Text>
         </Grid.Container>
+        <img
+          style={{ position: 'absolute', right: 20, top: 20 }}
+          src="/imgs/createform-flow-site.png"
+          width={600}
+        />
         <Grid.Container
           gap={2}
           justify="center"

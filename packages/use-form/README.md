@@ -28,7 +28,18 @@ Overall, forms are an essential element of most websites and play a crucial role
 When we think about forms, react hooks are a game-changer, because they simplify the process of creating forms and don't require libraries.  
 However, if you want to build forms with nested fields and validations, it is better to use a library, and you can find a lot of libraries on internet, so, why another one?
 
-### Reasons to use Createform
+## How it works
+
+Createform uses an external store to keep the form state, but it's not enough, we need to share the state with other components without React Context. For this reason, we have a function called `createForm`;
+This function creates a form and returns a function that can be used as a hook, this hook is connected to the store, so whenever the store changes, the hook will be notified and the form will be updated.
+
+In other words, the `createForm` function creates a form and returns a function that has all resources to manage the form, if you use it ten times, it will be the same form and the same store being managed in different places.
+
+For that reason, we can use the same form in different components without providers or React Context API.
+
+![createform-flow](../../img/createform-flow.png)
+
+## Reasons to use Createform
 
 There are several motivations for using a custom form hook created by `createForm` in a React application. Some of these motivations include:
 
@@ -40,7 +51,7 @@ There are several motivations for using a custom form hook created by `createFor
 
 - **Separation of concerns**: A custom form hook created by `createForm` allows you to separate the concerns of form handling and data management from the rest of your application. This can make it easier to test and maintain your code, as well as improve the overall organization and structure of your application.
 
-### So, why Createform?
+## So, why Createform?
 
 There are some reasons why you face problems when you want to create forms, and with Createform, you can solve these problems.
 

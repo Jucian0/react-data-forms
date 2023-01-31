@@ -1,6 +1,6 @@
-![Logo-useform-react](img/logo3.png)
+![createform-logo](img/logo.svg)
 
-<h1 align="center">Welcome to useForm 👋</h1>
+<h1 align="center">Createform 👋</h1>
 
 [![GitHub license](https://img.shields.io/badge/License-mit-green)](https://github.com/Jucian0/useform/blob/master/LICENSE)
 [![GitHub coverage](https://img.shields.io/badge/coverage-96.8%25-brightgreen)](https://github.com/use-form/use-form/tree/master/test)
@@ -9,19 +9,7 @@
 [![npm version](https://badgen.net/badge/npm/v3.0/pink)](https://www.npmjs.com/package/useform)
 [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=React+hook+for+forms+and+validations&url=https://github.com/use-form/use-form&hashtags=reactjs,hook,javascript,forms)
 
-> useForm provides a way to create complex forms easily.
-
-### 🏠 [Homepage](https://react-useform.vercel.app)
-
-### ✨ [Demo](https://codesandbox.io/s/useform-2u2ju)
-
-### 🫶 [Fork this project ](https://github.com/Jucian0/useform/fork)
-
-# UseForm
-
-> Create hooks to manage your forms.
-
-UseForm is an open source project that allows you to create forms easily, different from the others options, this package guides you to create custom hooks to manage your forms, you can use the same form in different components without context API.
+Createform is an open source project that allows you to create forms easily, different from the others options, this package guides you to create custom hooks to manage your forms, you can use the same form in different components without context API.
 
 - As other packages, you can also use yup validation to validate your form.
 - You can also use different approaches to handle your form, like `onSubmit | onChange | debounce`.
@@ -40,7 +28,7 @@ Overall, forms are an essential element of most websites and play a crucial role
 When we think about forms, react hooks are a game-changer, because they simplify the process of creating forms and don't require libraries.  
 However, if you want to build forms with nested fields and validations, it is better to use a library, and you can find a lot of libraries on internet, so, why another one?
 
-### Reasons to use useForm
+### Reasons to use Createform
 
 There are several motivations for using a custom form hook created by `createForm` in a React application. Some of these motivations include:
 
@@ -52,9 +40,9 @@ There are several motivations for using a custom form hook created by `createFor
 
 - **Separation of concerns**: A custom form hook created by `createForm` allows you to separate the concerns of form handling and data management from the rest of your application. This can make it easier to test and maintain your code, as well as improve the overall organization and structure of your application.
 
-### So, why UseForm?
+### So, why Createform?
 
-There are some reasons why you face problems when you want to create forms, and with useForm, you can solve these problems.
+There are some reasons why you face problems when you want to create forms, and with Createform, you can solve these problems.
 
 - **State management** - A couple of years ago, you could think that Redux or
   MobX was a the best solution to manage form state in react, and they were, but not anymore. Today
@@ -79,7 +67,7 @@ There are some reasons why you face problems when you want to create forms, and 
   manage the submit event, it's convenient when you have an already solution to do
   that.
 
-UseForm provides a way to create complex forms easily, this hook returns an object
+Createform provides a way to create complex forms easily, this hook returns an object
 of values ​​in the same shape that it receives, this is possible using dot notation.
 Therefore, it does not matter if the object is complex or has many properties or
 an array, the result is the same. This process turns very easy to create forms from
@@ -87,20 +75,20 @@ nested objects, the same layers and properties are replicated in the final objec
 this approach prevents you to type more code to convert an object from form to backend
 object type. The same process is realized with errors objects and touched objects.
 
-## What to expect with useForm
+## What to expect with Createform
 
-- **Performer forms** - useForm provides a way to complete a form and submit it without any rerender, by default useForm creates uncontrolled forms.
-- **Easy to write** - useForm has an easy way to write forms with less code. register function return necessary input's properties and it is all we need to manage all events in a native HTML `input`. Writhe forms without form tag.
-- **Easy validation** - By default useForm uses yup validation, we can write complex validation without effort.
+- **Performer forms** - Createform provides a way to complete a form and submit it without any rerender, by default Createform creates uncontrolled forms.
+- **Easy to write** - Createform has an easy way to write forms with less code. register function return necessary input's properties and it is all we need to manage all events in a native HTML `input`. Writhe forms without form tag.
+- **Easy validation** - By default Createform uses yup validation, we can write complex validation without effort.
 
 ## Installation
 
 ```bash
-npm install --save @use-form/use-form
+npm install --save @createform/react
 ```
 
 ```bash
-yarn add @use-form/use-form
+yarn add @createform/react
 ```
 
 ## First step
@@ -146,19 +134,17 @@ const LoginForm = () => {
 
 ## Read the full documentation [here](https://useform.org/docs/).
 
-### [Post](https://dev.to/jucian0/building-forms-with-useform-1cna)
-
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/jucian0/useform/issues). You can also take a look at the [contributing guide](https://github.com/Jucian0/useform/blob/main/CONTRIBUTING.md).
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/jucian0/createform/issues). You can also take a look at the [contributing guide](https://github.com/Jucian0/createform/blob/main/CONTRIBUTING.md).
 
 ## Show your support
 
 Give a ⭐️ if this project helped you!
 
-[![Stargazers repo roster for useform](https://reporoster.com/stars/jucian0/useform)](https://github.com/jucian0/useform/stargazers)
+[![Stargazers repo roster for createform](https://reporoster.com/stars/jucian0/createform)](https://github.com/jucian0/createform/stargazers)
 
 ## 📝 License
 
 Copyright © 2023 [jucian0](https://github.com/jucian0).<br />
-This project is [MIT](https://github.com/jucian0/use-form/blob/53debd6986650f76561795f2069d6eebc5db6c65/LICENSE) licensed.
+This project is [MIT](https://github.com/jucian0/createform/blob/53debd6986650f76561795f2069d6eebc5db6c65/LICENSE) licensed.

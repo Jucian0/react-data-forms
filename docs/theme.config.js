@@ -31,14 +31,13 @@ export default {
   },
   footer: {
     text: (
-      <>
+      <span>
         Createform 2023 Developed by:{' '}
         <a href={'https://github.com/jucian0'}> Juciano</a> {' and '}
         <a href="https://engrafia.vercel.app/">Engrafia</a>
-      </>
+      </span>
     ),
     logo,
-    textLogo: '',
   },
   sidebar: {
     order: [

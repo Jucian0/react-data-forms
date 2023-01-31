@@ -1,10 +1,10 @@
 ---
-title: onSubmit mode
+title: OnSubmit mode
 description: Uncontrolled forms are the most performant way to create react forms. With uncontrolled input values, there is no updating or changing of any states. What you submit is what you get.
-tags: react, form, useform, use-form, debounce, debounced, hook, onsubmit
+tags: react, form, useform, use-form, createform, debounce, debounced, hook, onsubmit
 ---
 
-# onSubmit mode
+# OnSubmit mode
 
 ## Description
 
@@ -22,14 +22,14 @@ If you want to use uncontrolled form with custom inputs and native inputs the un
 
 [React Docs](https://reactjs.org/docs/forms.html)
 
-By default, `useForm` use uncontrolled form, isn't necessary to pass any value to useForm hook if you want to use this kind.
+By default, Createform use uncontrolled form, isn't necessary to pass any value to Createform if you want to use this kind.
 But when you use this kind of form, it is necessary to realize that values and events validation are available only when onSubmit event is dispatched.
 
 With this approach, it's possible to complete a form without any extra renders.
 
 ## Usage
 
-`useForm` provides a `register` function, this function returns all properties to manager a field.
+Createform provides a `register` function, this function returns all properties to manager a field.
 
 ```jsx
 import { createForm } from '@use-form/use-form';

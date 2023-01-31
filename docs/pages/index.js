@@ -17,7 +17,7 @@ const createForm = `const useForm = createForm({
   mode: "onChange",
 });`;
 
-const useform = `const Controlled: React.FC = () => {
+const example = `const Controlled: React.FC = () => {
   const { register } = useForm({
     onChange: (e) => console.log(e)
   });
@@ -40,7 +40,7 @@ export const getStaticProps = async () => {
         title: 'React form library',
         description:
           'Use Form provides you a simple way to create forms with React.',
-        tags: 'reactjs, forms, use-form, useform, form',
+        tags: 'reactjs, forms, use-form, useform, form, createform',
       },
     },
   };
@@ -66,11 +66,11 @@ export default function Index() {
             weight="bold"
             size="5rem"
           >
-            UseForm
+            CREATEFORM
           </Text>
 
           <Text as="h2" css={{ zIndex: '$1' }}>
-            Use Form provides you with a simple way to create forms with React
+            Createform provides you with a simple way to create forms with React
           </Text>
         </Grid.Container>
         <Grid.Container
@@ -97,13 +97,13 @@ export default function Index() {
               background: '$backgroundAlpha',
             }}
           >
-            yarn add @use-form/use-form
+            yarn add @createform/react
           </Card>
           <Grid>
-            <Star owner="jucian0" repo="useform" />
+            <Star owner="jucian0" repo="createform" />
           </Grid>
           <Grid>
-            <Fork owner="jucian0" repo="useform" />
+            <Fork owner="jucian0" repo="createform" />
           </Grid>
         </Grid.Container>
         <Grid.Container
@@ -146,7 +146,7 @@ export default function Index() {
             <Card.Body css={{ py: '$2' }}>
               <Text>
                 {
-                  'Looking to create a form that can handle onSubmit, onChange, or debounced events? With UseForm, you have the power to create forms with custom fields and validation rules. UseForm lets you create forms that can be used in either controlled or uncontrolled mode, giving you the flexibility to design the form that best fits your needs. So why wait? Start creating powerful forms with UseForm today!'
+                  'Looking to create a form that can handle onSubmit, onChange, or debounced events? With Createform, you have the power to create forms with custom fields and validation rules. Createform lets you create forms that can be used in either controlled or uncontrolled mode, giving you the flexibility to design the form that best fits your needs. So why wait? Start creating powerful forms with Createform today!'
                 }
               </Text>
             </Card.Body>
@@ -177,7 +177,7 @@ export default function Index() {
             <Card.Body css={{ py: '$2' }}>
               <Text>
                 {
-                  "Less code. UseForm is the easiest way to create forms with React. Create a form and use it wherever you want, don't worry with React Context, or Redux. You can share your form with other components just by using the hook created by createForm function."
+                  "Less code. Createform is the easiest way to create forms with React. Create a form and use it wherever you want, don't worry with React Context, or Redux. You can share your form with other components just by using the hook created by createForm function."
                 }
               </Text>
             </Card.Body>
@@ -207,7 +207,7 @@ export default function Index() {
             <Card.Body css={{ py: '$2' }}>
               <Text>
                 {
-                  'Just one render. There are many form libraries, most of which are heavy, and allow you to create just one kind of form, but with UseForm you can fulfill and submit a form with just one render.'
+                  'Just one render. There are many form libraries, most of which are heavy, and allow you to create just one kind of form, but with Createform you can fulfill and submit a form with just one render.'
                 }
               </Text>
             </Card.Body>
@@ -246,7 +246,7 @@ export default function Index() {
           <Grid md={6} sm={12}>
             <Grid sm={12} md={12}>
               <Code className="javascript" boxShadow="$md">
-                {useform}
+                {example}
               </Code>
             </Grid>
           </Grid>

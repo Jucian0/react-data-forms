@@ -15,33 +15,26 @@ function App({ Component, pageProps }) {
       }}
     >
       <Head>
-        <script async defer src="https://buttons.github.io/buttons.js"></script>
         <link href="https://css.gg/link.css" rel="stylesheet" />
-        <title>{`UseForm | ${meta?.title}`}</title>
+        <title>{`Createform | ${meta?.title}`}</title>
         <meta name="description" content={meta?.description} />
         <meta name="robots" content="index,follow" />
-        <link rel="canonical" href="https://react-useform.vercel.app" />
+        <link rel="canonical" href="https://useform.org" />
         {/* <!-- Facebook Meta Tags --> */}
-        <meta property="og:url" content="https://react-useform.vercel.app" />
+        <meta property="og:url" content="https://useform.org" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content={`UseForm | ${meta?.title}`} />
+        <meta property="og:title" content={`Createform | ${meta?.title}`} />
         <meta property="og:description" content={meta?.description} />
-        <meta
-          name="og:image"
-          content="https://react-useform.vercel.app/imgs/lib_logo.png"
-        />
+        <meta name="og:image" content="https://useform.org/imgs/lib_logo.png" />
         {/* <!-- Twitter Meta Tags --> */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="twitter:domain" content="react-useform.vercel.app" />
-        <meta
-          property="twitter:url"
-          content="https://react-useform.vercel.app/"
-        />
-        <meta name="twitter:title" content={`UseForm | ${meta?.title}`} />
+        <meta property="twitter:url" content="https://useform.org/" />
+        <meta name="twitter:title" content={`Createform | ${meta?.title}`} />
         <meta name="twitter:description" content={meta?.description} />
         <meta
           name="twitter:image"
-          content="https://react-useform.vercel.app/imgs/lib_logo.png"
+          content="https://useform.org/imgs/lib_logo.png"
         />
         <link rel="sitemap" href="/sitemap.xml" />
         <meta name="keywords" content={meta?.tags} />

@@ -1,17 +1,17 @@
 ---
 title: Creating forms
-description: This tutorial will show you how to create forms easily with useform.
+description: This tutorial will show you how to create forms easily with Createform.
 tags: react, form, useform, use-form, debounce, debounced, hook, create, creating-a-form, html
 ---
 
-![useform, reactjs](https://res.cloudinary.com/practicaldev/image/fetch/s--SOHJ-nn6--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/a0qtwoo6xz02au5p958w.png)
+![createform, reactjs, useform](https://res.cloudinary.com/practicaldev/image/fetch/s--SOHJ-nn6--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/a0qtwoo6xz02au5p958w.png)
 
-# Create forms easily with useform
+# Create forms easily with Createform
 
 One of the most important steps when you are developing web applications is how to write and maintain smart forms with little effort.
 When you think about ReactJS you can find many form library options and I must to admit that there are a lot of good form libraries, so you may think why one more?
 
-UseForm was born because I found great difficulty when I wanted to build complex forms with different steps or levels and with many fields.
+Createform was born because I found great difficulty when I wanted to build complex forms with different steps or levels and with many fields.
 
 When we need to build complex forms we can encounter issues like:
 
@@ -23,7 +23,7 @@ When we need to build complex forms we can encounter issues like:
 
 - Share state - You should share the form state with many other components like a step form and a form library should provide it.
 
-## How useForm works
+## How Createform works
 
 The most important thing is that there are three ways to use it:
 
@@ -61,13 +61,13 @@ const { register, state: { values }} = useAuthForm({mode: 'onChange'});
 <Button onClick={() => console.log(values)}>Submit</Button>
 ```
 
-`useForm` can have many properties and some of these properties are: `isDebounced` and `isControlled`.
+Createform can have many properties and some of these properties are: `isDebounced` and `isControlled`.
 
-By default, `useForm` uses the uncontrolled approach.
+By default, Createform uses the uncontrolled approach.
 
 ### Adding validation with yup
 
-When working with real application validations forms are very common because this is the way you can verify if the input's value is correct or not. There are several validations solutions available, but when using useForm the default solution is Yup. With yup the process of validation is simple and powerful.
+When working with real application validations forms are very common because this is the way you can verify if the input's value is correct or not. There are several validations solutions available, but when using Createform the default solution is Yup. With yup the process of validation is simple and powerful.
 
 ```jsx
 import { createForm } from '@use-form/use-form';
@@ -134,6 +134,6 @@ function StepForm() {
 
 ## Conclusion
 
-I hope you have enjoyed this post and have found it helpful, `useForm` is a new library to build forms and has some documentation in English. If you want to start with open source, this repository can be your first step.
+I hope you have enjoyed this post and have found it helpful, Createform is a new library to build forms and has some documentation in English. If you want to start with open source, this repository can be your first step.
 
-https://github.com/use-form/use-form
+https://github.com/jucian0/createform

@@ -1,7 +1,7 @@
 ---
 title: Quick Start
 description: Your first step to creating forms.
-tags: react, form, useform, use-form, hook
+tags: react, form, useform, createform, use-form, hook
 ---
 
 # Quick Start
@@ -23,7 +23,7 @@ Overall, forms are an essential element of most websites and play a crucial role
 When we think about forms, react hooks are a game-changer, because they simplify the process of creating forms and don't require libraries.  
 However, if you want to build forms with nested fields and validations, it is better to use a library, and you can find a lot of libraries on internet, so, why another one?
 
-### Reasons to use useForm
+### Reasons to use Createform
 
 There are several motivations for using a custom form hook created by `createForm` in a React application. Some of these motivations include:
 
@@ -35,9 +35,9 @@ There are several motivations for using a custom form hook created by `createFor
 
 - **Separation of concerns**: A custom form hook created by `createForm` allows you to separate the concerns of form handling and data management from the rest of your application. This can make it easier to test and maintain your code, as well as improve the overall organization and structure of your application.
 
-### So, why UseForm?
+### So, why Createform?
 
-There are some reasons why you face problems when you want to create forms, and with useForm, you can solve these problems.
+There are some reasons why you face problems when you want to create forms, and with Createform, you can solve these problems.
 
 - **State management** - A couple of years ago, you could think that Redux or
   MobX was a the best solution to manage form state in react, and they were, but not anymore. Today
@@ -62,7 +62,7 @@ There are some reasons why you face problems when you want to create forms, and 
   manage the submit event, it's convenient when you have an already solution to do
   that.
 
-UseForm provides a way to create complex forms easily, this hook returns an object
+Createform provides a way to create complex forms easily, this hook returns an object
 of values ​​in the same shape that it receives, this is possible using dot notation.
 Therefore, it does not matter if the object is complex or has many properties or
 an array, the result is the same. This process turns very easy to create forms from
@@ -70,24 +70,24 @@ nested objects, the same layers and properties are replicated in the final objec
 this approach prevents you to type more code to convert an object from form to backend
 object type. The same process is realized with errors objects and touched objects.
 
-## What to expect with useForm
+## What to expect with Createform
 
-- **Performer forms** - useForm provides a way to complete a form and submit it without any rerender, by default useForm creates uncontrolled forms.
-- **Easy to write** - useForm has an easy way to write forms with less code. register function return necessary input's properties and it is all we need to manage all events in a native HTML `input`. Writhe forms without form tag.
-- **Easy validation** - By default useForm uses yup validation, we can write complex validation without effort.
+- **Performer forms** - Createform provides a way to complete a form and submit it without any rerender, by default Createform creates uncontrolled forms.
+- **Easy to write** - Createform has an easy way to write forms with less code. register function return necessary input's properties and it is all we need to manage all events in a native HTML `input`. Writhe forms without form tag.
+- **Easy validation** - By default Createform uses yup validation, we can write complex validation without effort.
 
 ## Installation
 
 ```bash
-npm install --save @use-form/use-form
+npm install --save @createform/react
 ```
 
 ```bash
-yarn add @use-form/use-form
+yarn add @createform/react
 ```
 
 ## Usage
 
-With `createForm` you can create a hook form and use it wherever you want,
+With Createform you can create a hook form and use it wherever you want,
 
 <Demo url="https://codesandbox.io/embed/useform-quick-start-ypoxu?fontsize=14&hidenavigation=1&theme=dark" />

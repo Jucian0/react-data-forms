@@ -1,29 +1,29 @@
 ---
 title: Multi-step form
-description: In this tutorial I want to show you how easily you can build a multi-step form using useForm.
-tags: react, form, useform, use-form, debounce, debounced, hook, create, creating-a-form, html, multi-step, multistep
+description: In this tutorial I want to show you how easily you can build a multi-step form using Createform.
+tags: react, form, useform, createform, use-form, debounce, debounced, hook, create, creating-a-form, html, multi-step, multistep
 ---
 
-![multi-ste-form, react, useForm](https://res.cloudinary.com/practicaldev/image/fetch/s--27IJ_JTj--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/cpeo18octaiy3cixn5u7.png)
+![multi-ste-form, react, useForm, create-form](https://res.cloudinary.com/practicaldev/image/fetch/s--27IJ_JTj--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/cpeo18octaiy3cixn5u7.png)
 
-# Multi-step form using useForm library
+# Multi-step form using Createform library
 
-Hi folks, in this tutorial I want to show you how easily you can build a multi-step form using [`@use-form/use-form`](https://github.com/Jucian0/useform) library, and `react-use-wizard`. These forms are super useful when you want to save complicated forms or forms with many fields, so let's do that.
+Hi folks, in this tutorial I want to show you how easily you can build a multi-step form using [Createform](https://github.com/jucian0/createform) library, and `react-use-wizard`. These forms are super useful when you want to save complicated forms or forms with many fields, so let's do that.
 
 ## Introduction
 
 One of the challenges of building multi-step forms is how to manage the entire form across many step components that should keep parts of the same form, with the same validation schema, same submit button, and same state. By using another library's forms, you should use React's Context API, and the `useContext` hook.
 
-By contrast, when you use the [`@use-form/use-form`](https://github.com/Jucian0/useform), you do not need anything like this. You need to create one form and use it across all steps. Let's get started and figure out how it is possible.
+By contrast, when you use the [Createform](https://github.com/Jucian0/createform), you do not need anything like this. You need to create one form and use it across all steps. Let's get started and figure out how it is possible.
 
 ## Setting up the Application
 
 Our first task is to prepare an application to develop your example of a multi-step form. This can be done with React + Vite, and with [Codesandbox](https://codesandbox.io) it will be easier since there are templates for React + Vite on Codesandbox.
 
-Next, we need to install some dependencies in order to develop your example, so we will install [`@use-form/use-form`](https://github.com/Jucian0/useform), `react-use-wizard`, and to save some time and have a beautiful result, we can add `chakra-ui`. Feel free to use another library or CSS library.
+Next, we need to install some dependencies in order to develop your example, so we will install [Createform](https://github.com/jucian0/createform), `react-use-wizard`, and to save some time and have a beautiful result, we can add `chakra-ui`. Feel free to use another library or CSS library.
 
 ```bash
-    yarn add @use-form/use-form react-use-wizard
+    yarn add @createform/react react-use-wizard
 ```
 
 ```bash
@@ -199,6 +199,6 @@ This is the final file structure of the example:
 
 ## Conclusion
 
-Building a multi-step form can be easy if you use the right tools to build it. In this tutorial, I showed you how [`@use-form/use-form`](https://github.com/Jucian0/useform) can do that easily. Using [`@use-form/use-form`](https://github.com/Jucian0/useform) you can continue on, and create more complex forms, whether they are multi-step or not.
+Building a multi-step form can be easy if you use the right tools to build it. In this tutorial, I showed you how [Createform](https://github.com/jucian0/createform) can do that easily. Using [Createform](https://github.com/jucian0/createform) you can continue on, and create more complex forms, whether they are multi-step or not.
 
 In the next post I'm going to show you, how to add some validation in this form.

@@ -16,7 +16,7 @@
                             "meta": {
                                 "title": "createForm",
                                 "description": "This guide describes all resources of createForm function.",
-                                "tags": "react, form, useform, use-form, debounce, debounced, hook, yup, validation, form-error, error"
+                                "tags": "react, form, useform, createform, use-form, debounce, debounced, hook, yup, validation, form-error, error"
                             },
                             "url": "/docs/api-reference/create-form",
                             "relativePath": "/docs/pages/docs/api-reference/create-form.md"
@@ -34,8 +34,8 @@
                             "name": "custom-components.mdx",
                             "meta": {
                                 "title": "Custom components",
-                                "description": "Learn how to use useForm to work with custom components.",
-                                "tags": "react, form, useform, use-form, debounce, debounced, hook, react-select, select"
+                                "description": "Learn how to use Createform to work with custom components.",
+                                "tags": "react, form, useform,createform, use-form, debounce, debounced, hook, react-select, select"
                             },
                             "url": "/docs/creating-a-form/custom-components",
                             "relativePath": "/docs/pages/docs/creating-a-form/custom-components.mdx"
@@ -46,7 +46,7 @@
                             "meta": {
                                 "title": "Native HTML elements",
                                 "description": "Learn how to use native HTML elements in order to create better forms.",
-                                "tags": "react, form, useform, use-form, debounce, debounced, hook, native-forms, html, input, select, radio, checkbox"
+                                "tags": "react, form, useform, createform, use-form, debounce, debounced, hook, native-forms, html, input, select, radio, checkbox"
                             },
                             "url": "/docs/creating-a-form/native-elements",
                             "relativePath": "/docs/pages/docs/creating-a-form/native-elements.mdx"
@@ -64,8 +64,8 @@
                             "name": "concept.mdx",
                             "meta": {
                                 "title": "Concept",
-                                "description": "How UseForm works, and why we decided to do it this way.",
-                                "tags": "react, form, useform, use-form, debounce, debounced, hook"
+                                "description": "How Createform works, and why we decided to do it this way.",
+                                "tags": "react, form, useform, createform, use-form, debounce, debounced, hook"
                             },
                             "url": "/docs/how-it-works/concept",
                             "relativePath": "/docs/pages/docs/how-it-works/concept.mdx"
@@ -79,23 +79,12 @@
                     "name": "introduction",
                     "children": [
                         {
-                            "path": "/home/barbosa/javascript/useform/docs/pages/docs/introduction/index.mdx",
-                            "name": "index.mdx",
-                            "meta": {
-                                "title": "Readme",
-                                "description": "Your fist step to create form easily without effort.",
-                                "tags": "react, form, useform, use-form, debounce, debounced, hook"
-                            },
-                            "url": "/docs/introduction/",
-                            "relativePath": "/docs/pages/docs/introduction/index.mdx"
-                        },
-                        {
                             "path": "/home/barbosa/javascript/useform/docs/pages/docs/introduction/quick-start.mdx",
                             "name": "quick-start.mdx",
                             "meta": {
                                 "title": "Quick Start",
                                 "description": "Your first step to creating forms.",
-                                "tags": "react, form, useform, use-form, hook"
+                                "tags": "react, form, useform, createform, use-form, hook"
                             },
                             "url": "/docs/introduction/quick-start",
                             "relativePath": "/docs/pages/docs/introduction/quick-start.mdx"
@@ -113,7 +102,7 @@
                             "name": "creating-forms.mdx",
                             "meta": {
                                 "title": "Creating forms",
-                                "description": "This tutorial will show you how to create forms easily with useform.",
+                                "description": "This tutorial will show you how to create forms easily with Createform.",
                                 "tags": "react, form, useform, use-form, debounce, debounced, hook, create, creating-a-form, html"
                             },
                             "url": "/docs/tutorials/creating-forms",
@@ -124,8 +113,8 @@
                             "name": "multi-step-form.md",
                             "meta": {
                                 "title": "Multi-step form",
-                                "description": "In this tutorial I want to show you how easily you can build a multi-step form using useForm.",
-                                "tags": "react, form, useform, use-form, debounce, debounced, hook, create, creating-a-form, html, multi-step, multistep"
+                                "description": "In this tutorial I want to show you how easily you can build a multi-step form using Createform.",
+                                "tags": "react, form, useform, createform, use-form, debounce, debounced, hook, create, creating-a-form, html, multi-step, multistep"
                             },
                             "url": "/docs/tutorials/multi-step-form",
                             "relativePath": "/docs/pages/docs/tutorials/multi-step-form.md"
@@ -153,9 +142,9 @@
                             "path": "/home/barbosa/javascript/useform/docs/pages/docs/using-your-form/debounced-form.mdx",
                             "name": "debounced-form.mdx",
                             "meta": {
-                                "title": "debounced mode",
+                                "title": "Debounced mode",
                                 "description": "When you use debounced form the debounce parameter delays the updating of the state until the user has stopped changing inputs for a predetermined amount of time.",
-                                "tags": "react, form, useform, use-form, debounce, debounced, hook, reactjs"
+                                "tags": "react, form, useform,createform, use-form, debounce, debounced, hook, reactjs"
                             },
                             "url": "/docs/using-your-form/debounced-form",
                             "relativePath": "/docs/pages/docs/using-your-form/debounced-form.mdx"
@@ -164,7 +153,7 @@
                             "path": "/home/barbosa/javascript/useform/docs/pages/docs/using-your-form/onchange-form.mdx",
                             "name": "onchange-form.mdx",
                             "meta": {
-                                "title": "onChange mode",
+                                "title": "OnChange mode",
                                 "description": "When using controlled forms, the input value is set to state values and then updated via React events. React form controlled is the most popular aproach in reactjs.",
                                 "tags": "react, form, useform, use-form, hook, controlled-form, controlled"
                             },
@@ -175,9 +164,9 @@
                             "path": "/home/barbosa/javascript/useform/docs/pages/docs/using-your-form/onsubmit-form.mdx",
                             "name": "onsubmit-form.mdx",
                             "meta": {
-                                "title": "onSubmit mode",
+                                "title": "OnSubmit mode",
                                 "description": "Uncontrolled forms are the most performant way to create react forms. With uncontrolled input values, there is no updating or changing of any states. What you submit is what you get.",
-                                "tags": "react, form, useform, use-form, debounce, debounced, hook, onsubmit"
+                                "tags": "react, form, useform, use-form, createform, debounce, debounced, hook, onsubmit"
                             },
                             "url": "/docs/using-your-form/onsubmit-form",
                             "relativePath": "/docs/pages/docs/using-your-form/onsubmit-form.mdx"
@@ -196,7 +185,7 @@
                             "meta": {
                                 "title": "Form validation",
                                 "description": "Learn how to validate form values using use-form.",
-                                "tags": "react, form, useform, use-form, debounce, debounced, hook, yup, validation, form-error, error, zod"
+                                "tags": "react, form, useform, createform, use-form, debounce, debounced, hook, yup, validation, form-error, error, zod"
                             },
                             "url": "/docs/validation/form-validation",
                             "relativePath": "/docs/pages/docs/validation/form-validation.mdx"
@@ -207,7 +196,7 @@
                             "meta": {
                                 "title": "Iinline validation",
                                 "description": "Learn how to validate form values using field by field.",
-                                "tags": "react, form, useform, use-form, debounce, debounced, hook, yup, validation, form-error, error, zod"
+                                "tags": "react, form, useform, createform, use-form, debounce, debounced, hook, yup, validation, form-error, error, zod"
                             },
                             "url": "/docs/validation/inline-validation",
                             "relativePath": "/docs/pages/docs/validation/inline-validation.mdx"

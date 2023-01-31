@@ -1,7 +1,7 @@
 ---
 title: Custom components
-description: Learn how to use useForm to work with custom components.
-tags: react, form, useform, use-form, debounce, debounced, hook, react-select, select
+description: Learn how to use Createform to work with custom components.
+tags: react, form, useform,createform, use-form, debounce, debounced, hook, react-select, select
 ---
 
 # Custom components
@@ -24,19 +24,9 @@ Also, custom components have an internal state controlled by state management, w
 - Selects, multi-selects components - are a component that allows you to select single or multiple values.
 - Drag and drop components - are a component that allows you to drag and drop items.
 
-## How to use custom components with useForm
+## How to use custom components with Createform
 
-To use custom components with useForm, you need to use the `<Wrapper>` component and pass the component as a prop. Another important thing is that the custom component should have those props: `value`, `onChange`, `onBlur`. The `value` prop is the value of the component, the `onChange` prop is the function that will be called when the value changes and the `onBlur` prop is the function that will be called when the component loses focus.
-
-### Why do we need to use the `<Wrapper>` component?
-
-The `register` function is the only way to connect a field to the form, and the `register` function returns a reference to the component, then we need to use the `<Wrapper>` component to get the reference.
-Usually, custom components don't work with reference, in consequence, we need to use a wrapper to connect the custom component with a reference and finally connect to the form. And then you can use the `register` function to register the custom component.
-
-<br />
-
-- The `<Wrapper>` component is a wrapper that will be used to wrap the custom component, it will be used to add the `onChange` and `onBlur` props to the native event handlers.
-- The `<Wrapper>` component is also used to add the `value` prop to the custom component.
+To use custom components with Createform, you need to use `setFieldValue` function to set the field value, and `setFieldTouched` on blur event.
 
 ## How to use custom components with useField
 
@@ -52,16 +42,12 @@ const useUserForm = createForm({
 });
 ```
 
-So, now we are going to create the form component that will be used to manage the form, and we will use the `<Wrapper>` component to wrap the custom component. All the props that the custom component will receive will be the props that the `<Wrapper>` component will receive.
-
-To register the custom component, we will use the `register` function, and we will pass it to `<Wrapper>` component by the `ref` prop.
-
 ```jsx
 import { Wrapper } from '@use-form/use-form'
 import Select from 'select-component'
 
 funtion UserForm(){
-  const { register, handleSubmit } = useUserForm()
+  const { register, handleSubmit,setFieldValue } = useUserForm()
 
   const onSubmit = (data) => {
     console.log(data)
@@ -69,7 +55,7 @@ funtion UserForm(){
 
   return (
   <form onSubmit={handleSubmit(onSubmit)}>
-    <Wrapper component={Select} {...register("names")} />
+    <Select onChange={e=>setFieldValue('select',e.value)} />
       options={[
         { value: "John", label: "John" },
         { value: "Jane", label: "Jane" },
@@ -80,5 +66,3 @@ funtion UserForm(){
   )
 }
 ```
-
-> The wrapper component will look at the custom component props, and if the component doesn't have the following properties, `onChange`, `onBlur`, and `value` it will throw an error. In this case, you should build your own Wrapper component, or you can customize the component to add the `onChange` and `onBlur` props.

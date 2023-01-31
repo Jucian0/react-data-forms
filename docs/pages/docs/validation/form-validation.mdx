@@ -1,7 +1,7 @@
 ---
 title: Form validation
 description: Learn how to validate form values using use-form.
-tags: react, form, useform, use-form, debounce, debounced, hook, yup, validation, form-error, error, zod
+tags: react, form, useform, createform, use-form, debounce, debounced, hook, yup, validation, form-error, error, zod
 ---
 
 # Forms validations
@@ -35,7 +35,7 @@ Server-side validations are the last part of the validation, which means, even i
 
 > We are excited to announce that our form now supports Zod validation! Zod is a powerful and lightweight library for validating and handling data in TypeScript. With Zod, you can easily create complex, type-safe schemas for your form data and automatically validate user input. This will help ensure that your form is always receiving accurate and reliable data. Give it a try and let us know what you think!
 
-There are several validations solutions available, but when using `useForm` the default solution is Yup. **Yup** is a JavaScript library that provides a powerful and easy-to-use validation schema. To use Yup for form validation, you can create a validation schema that defines the rules for each field in the form, and then use that schema to validate the form values.
+There are several validations solutions available, but when using Createform the default solution is Yup. **Yup** is a JavaScript library that provides a powerful and easy-to-use validation schema. To use Yup for form validation, you can create a validation schema that defines the rules for each field in the form, and then use that schema to validate the form values.
 
 ```jsx
 const formSchema = yup.object().shape({
@@ -47,13 +47,13 @@ const formSchema = yup.object().shape({
 });
 ```
 
-The `useForm` returns an error object, that has all errors, and this object is updated whenever the input state is changed or when the form is submitted if your form has validation.
+The Createform produces a hook that returns an error object, that has all errors, and this object is updated whenever the input state is changed or when the form is submitted if your form has validation.
 
 Usually you wannt to show the error message just when a field is touched, you can do that by using the `touched` object. Thouched object is an object that has all the fields that are touched, and the value of the field is true if the field is touched.
 
 ## Usage
 
-Validation is performed whenever the state is changed. By default, `useForm` uses the uncontrolled inputs option, this means that the values ​​are accessible when the onSubmit event is dispatched.
+Validation is performed whenever the state is changed. By default, Createform uses the uncontrolled inputs option, this means that the values ​​are accessible when the onSubmit event is dispatched.
 
 ```jsx
 import { createForm } from '@use-form/use-form';

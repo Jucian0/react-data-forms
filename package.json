@@ -77,10 +77,10 @@
     "examples/**"
   ],
   "dependencies": {
-    "@nextui-org/react": "^1.0.0-beta.10",
+    "@nextui-org/react": "1.0.0-beta.10",
     "@radix-ui/react-select": "^1.1.1",
     "core-js": "^3.6.5",
-    "engrafia": "latest",
+    "engrafia": "^0.3.1",
     "fix-esm": "^1.0.1",
     "next": "^13.0.4",
     "next-images": "^1.8.4",

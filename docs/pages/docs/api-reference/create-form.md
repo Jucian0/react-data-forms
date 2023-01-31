@@ -1,18 +1,18 @@
 ---
 title: createForm
 description: This guide describes all resources of createForm function.
-tags: react, form, useform, use-form, debounce, debounced, hook, yup, validation, form-error, error
+tags: react, form, useform, createform, use-form, debounce, debounced, hook, yup, validation, form-error, error
 ---
 
 # createForm
 
-Useform does not have a huge API, in fact it's a tiny API, witch means you don't have a lot of things to learn, but that does not means that **UseForm**, is not powerful, this library provides you all resources you need to deal with forms in React applications.
+Createform does not have a huge API, in fact it's a tiny API, witch means you don't have a lot of things to learn, but that does not means that **Createform**, is not powerful, this library provides you all resources you need to deal with forms in React applications.
 
-This function is the main resource of **useForm** library, it return hook function, as others React hooks, this function should be executed inside a component.
+This function is the main resource of **Createform** library, it return hook function, as others React hooks, this function should be executed inside a component.
 
 ### createForm params
 
-- **initialValues** - The initial values of the createForm function depend on the initial values of the form fields that you want to manage with the hook. For example, if you want to manage a form with three fields - name, email, and password - the initial values of the useForm hook would look something like this:
+- **initialValues** - The initial values of the `createForm` function depend on the initial values of the form fields that you want to manage with the hook. For example, if you want to manage a form with three fields - name, email, and password - the initial values of the Createform hook would look something like this:
 
 ```js
 const yourHookForm = createForm({
@@ -24,9 +24,9 @@ const yourHookForm = createForm({
 });
 ```
 
-Now, form state will contain the initial values for each of the form fields that you are managing with the createForm function. You can then use the function to update the form state whenever the user enters new values into the form fields.
+Now, form state will contain the initial values for each of the form fields that you are managing with the `createForm` function. You can then use the function to update the form state whenever the user enters new values into the form fields.
 
-> It's important to note that the initial values of the createForm function are not required - you can initialize the hook without specifying any initial values. But, we recommend to add initialValues.
+> It's important to note that the initial values of the `createForm` function are not required - you can initialize the hook without specifying any initial values. But, we recommend to add initialValues.
 
 - **initialErrors** - This property represents a errors object that has all properties of a form values.
 

@@ -77,12 +77,12 @@ export default function Index() {
               textGradient: '45deg, #0b132b -20%, #6fffe9 50%',
             }}
             weight="bold"
-            size="5rem"
+            size="$6xl"
           >
             CREATEFORM
           </Text>
 
-          <Text as="h2" css={{ zIndex: '$1' }}>
+          <Text as="h2" css={{ p: 10 }}>
             Createform provides you with a simple way to create forms with React
           </Text>
         </Grid.Container>
@@ -130,7 +130,7 @@ export default function Index() {
           alignItems="center"
           css={{ maxW: '87rem' }}
         >
-          <Demo url="https://codesandbox.io/embed/useform-forked-oojuq?fontsize=14&hidenavigation=1&theme=dark" />
+          {/* <Demo url="https://codesandbox.io/embed/useform-forked-oojuq?fontsize=14&hidenavigation=1&theme=dark" /> */}
         </Grid.Container>
       </Grid.Container>
       <Grid.Container justify="center">

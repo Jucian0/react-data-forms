@@ -5,6 +5,9 @@
 [![GitHub license](https://img.shields.io/badge/License-mit-green)](https://github.com/Jucian0/useformcreateform/blob/master/LICENSE)
 [![GitHub coverage](https://img.shields.io/badge/coverage-96.8%25-brightgreen)](https://github.com/jucian0/createform/tree/master/test)
 [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=React+hook+for+forms+and+validations&url=https://github.com/jucian0/createform&hashtags=reactjs,hook,javascript,forms)
+[![npm-version](https://img.shields.io/npm/v/@createform/react)](https://www.npmjs.com/package/@createform/react)
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/@createform/react?color=ff)
+![GitHub Repo stars](https://img.shields.io/github/stars/jucian0/createform?style=social)
 
 Createform is an open source project that allows you to create forms easily, different from the others options, this package guides you to create custom hooks to manage your forms, you can use the same form in different components without context API.
 

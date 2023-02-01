@@ -1,6 +1,6 @@
 ![createform-logo](img/logo.svg)
 
-<h1 align="center">Createform 👋</h1>
+<h1 align="center">Createform</h1>
 
 [![GitHub license](https://img.shields.io/badge/License-mit-green)](https://github.com/Jucian0/useformcreateform/blob/master/LICENSE)
 [![GitHub coverage](https://img.shields.io/badge/coverage-96.8%25-brightgreen)](https://github.com/jucian0/createform/tree/master/test)

@@ -26,7 +26,8 @@ const defaultValues = {
  * createForm function create a form Store and return a hook that can be used to manage the form state.
  * @param args CreateFormArgs type that contains the initial values of form, initial errors of form, initial touched of form,
  * @returns {function(*): *} a function that returns a hook that can be used to manage the form state.
- **/
+ *
+**/
 export function createForm<T extends CreateFormArgs<T['initialValues']>>(
   args: T
 ) {

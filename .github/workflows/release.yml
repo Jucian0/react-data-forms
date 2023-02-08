@@ -3,21 +3,42 @@ name: Release
 on:
   push:
     branches:
-      - "main"
+      - turbo-repo
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   release:
+    name: Release
     runs-on: ubuntu-latest
-
-    if: github.ref == 'refs/heads/main'
-
     steps:
-      - uses: actions/checkout@v3
-      - name: Setup
-        uses: ./.github/actions/setup
+      - name: Checkout Repo
+        uses: actions/checkout@v2
 
-      - name: Release
-        uses: ./.github/actions/release
+      - name: Setup pnpm 7
+        uses: pnpm/action-setup@v2
         with:
-          github_token: ${{ secrets.GH_TOKEN }}
-          npm_token: ${{ secrets.NPM_TOKEN }}
+          version: 7
+
+      - name: Setup Node.js 16.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+
+      - name: Install Dependencies
+        run: pnpm i
+
+      - name: Create Release Pull Request or Publish to npm
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          # This expects you to have a script called release which does a build for your packages and calls changeset publish
+          publish: pnpm release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Send a Slack notification if a publish happens
+        if: steps.changesets.outputs.published == 'true'
+        # You can do something when a publish happens.
+        run: my-slack-bot send-notification --message "A new version of ${GITHUB_REPOSITORY} was published!"

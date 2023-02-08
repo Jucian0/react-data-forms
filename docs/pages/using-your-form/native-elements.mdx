@@ -1,0 +1,68 @@
+---
+title: Native HTML elements
+description: Learn how to use native HTML elements in order to create better forms.
+tags: react, form, useform, createform, use-form, debounce, debounced, hook, native-forms, html, input, select, radio, checkbox
+---
+
+# Native HTML elements
+
+## What is a native HTML element?
+
+Native HTML elements are elements that are built into the browser, like `<input>`, `<button>`, `<select>`, etc. These elements are different from custom elements, which are elements that are created by developers. Native HTML elements are powerful and easy to use since Createform uses a reference to register the fields, native elements are easy to register, trigger and listen to events. All that we need to do is to use the `ref` property to register the element.
+
+```jsx copy
+<input {...register("fieldName")} />
+```
+
+import Callout from "../../components/Callout";
+
+### Let's create a full form example
+
+When we are creating the form doesn't matter if we are using native HTML elements or not, it's just a function that creates a store and returns a function to manage the form. So we don't need to worry about it for now. We just need to create the form store, also we can provide the initial values, initial errors, initial touched, and the validation schema, but for now, we will just provide the initial values.
+
+```javascript
+import { createForm } from "@createform/react";
+
+const useUserForm = createForm({
+  initialValues: {
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  },
+});
+```
+
+In order to have a full form example, we need to create a form component and use the `useUserForm` hook. In this step we need to register the fields, we can do that using the `register` function.
+
+<Callout type="info">
+  The `register` function is a function that receives the name of the field and
+  returns a reference to the element. The reference is used to register the
+  element, trigger, and listen to events. If you are using a library like
+  Material UI or something similar, make sure that the input component use
+  `React.forwardRef`, otherwise you will need to use a Wrapper to register the
+  element.
+</Callout>
+
+```jsx copy
+funtion UserForm(){
+  const { register, handleSubmit } = useUserForm()
+
+const onSubmit = (data) => {
+console.log(data)
+}
+
+return (
+<form onSubmit={handleSubmit(onSubmit)}>
+<input {...register("name")} />
+<input {...register("email")} />
+<input {...register("password")} />
+<input {...register("confirmPassword")} />
+<button type="submit">Submit</button>
+</form>
+)
+}
+
+```
+
+The last thing we need to know is about `handleSubmit`, it's a function that receives another function as a parameter, this function is called when the form is submitted. The function receives the data of the form as a parameter and the second parameter is the answer of the validation (if the form is valid or not, it depends on the validation schema).

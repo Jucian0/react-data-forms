@@ -1,6 +1,7 @@
 {
+
   "name": "@createform/react",
-  "version": "3.3.1",
+  "version": "3.2.6",
   "description": "UseFom provides a way to create complex forms easily.",
   "keywords": [
     "react",
@@ -12,15 +13,42 @@
     "typescript",
     "react-hooks"
   ],
+
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "license": "MIT",
+  "files": [
+    "dist/**",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts --external react",
+    "dev": "tsup src/index.ts --format esm,cjs --watch --dts --external react",
+    "lint": "TIMING=1 eslint \"src/**/*.ts*\"",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+  },
+  "devDependencies": {
+    "@createform/tsconfig": "workspace:*",
+    "eslint": "^7.32.0",
+    "eslint-config": "workspace:*",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "tsup": "^5.10.1",
+    "typescript": "^4.5.3",
+    "@types/node": "^14.0.3"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "Jucian0 <juciano@outlook.com.br>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jucian0/useform",
+    "url": "https://github.com/jucian0/createform",
     "homepage": "https://useform.org/"
-  },
-  "license": "MIT",
-  "dependencies": {},
-  "peerDependencies": {
-    "react": ">=16.8.0"
   }
 }

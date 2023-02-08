@@ -1,9 +1,0 @@
-# *
-User-agent: *
-Allow: /
-
-# Host
-Host: https://react-useform.vercel.app
-
-# Sitemaps
-Sitemap: https://react-useform.vercel.app/sitemap.xml

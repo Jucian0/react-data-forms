@@ -1,0 +1,38 @@
+{
+  "name": "@createform/docs",
+  "version": "0.0.1",
+  "description": "Create form docs",
+  "scripts": {
+    "build": "next build",
+    "start": "next start ",
+    "dev": "next dev -p 3000",
+    "lint": "TIMING=1 next lint",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf .next"
+  },
+
+  "author": "Shu Ding <g@shud.in>",
+  "license": "MIT",
+
+  "dependencies": {
+    "@createform/react": "workspace:*",
+    "@heroicons/react": "v1",
+    "@react-aria/ssr": "^3.4.1",
+    "@vercel/analytics": "^0.1.8",
+    "classnames": "^2.3.2",
+    "next": "^13.0.6",
+    "nextra": "2.0.1",
+    "nextra-theme-docs": "2.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "swr": "^2.0.3",
+    "yup": "^0.32.11",
+    "react-json-pretty":"^2.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "18.11.10",
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.4",
+    "typescript": "^4.9.3"
+  }
+}

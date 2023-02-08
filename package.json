@@ -10,14 +10,10 @@
   "private": true,
   "devDependencies": {
     "@babel/preset-react": "^7.14.5",
-    "@chakra-ui/react": "latest",
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
-    "@emotion/react": "latest",
-    "@emotion/styled": "latest",
     "@faker-js/faker": "7.4.0",
     "@jscutlery/semver": "^2.29.3",
-    "@nrwl/cypress": "15.6.2",
     "@nrwl/eslint-plugin-nx": "15.6.2",
     "@nrwl/jest": "15.6.2",
     "@nrwl/linter": "15.6.2",
@@ -30,18 +26,11 @@
     "@types/jest": "28.1.1",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
-    "@types/react-datepicker": "^4.8.0",
     "@types/react-dom": "18.0.9",
-    "@types/yup": "^0.29.13",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
-    "@vitejs/plugin-react": "3.0.1",
-    "@vitest/coverage-c8": "0.25.8",
-    "@vitest/ui": "0.25.8",
     "babel-jest": "28.1.1",
     "commitizen": "^4.2.4",
-    "compose-function": "^3.0.3",
-    "cypress": "^11.0.0",
     "cz-conventional-changelog": "3.3.0",
     "eslint": "~8.15.0",
     "eslint-config-next": "13.1.1",
@@ -51,7 +40,6 @@
     "eslint-plugin-jsx-a11y": "6.6.1",
     "eslint-plugin-react": "7.31.11",
     "eslint-plugin-react-hooks": "4.6.0",
-    "framer-motion": "latest",
     "husky": "^8.0.0",
     "jest": "28.1.1",
     "jest-environment-jsdom": "28.1.1",
@@ -59,40 +47,14 @@
     "ngx-deploy-npm": "^4.3.10",
     "nx": "15.6.2",
     "prettier": "^2.6.2",
-    "react-datepicker": "4.8.0",
-    "react-select": "^5.6.1",
-    "react-test-renderer": "18.2.0",
-    "react-use-wizard": "latest",
     "ts-jest": "28.0.5",
     "ts-node": "10.9.1",
-    "typescript": "^4.9.3",
-    "vite": "4.0.4",
-    "vite-plugin-eslint": "1.8.1",
-    "vite-tsconfig-paths": "4.0.5",
-    "vitest": "0.25.8",
-    "yup": "^0.27.0",
-    "zod": "^3.20.2"
+    "typescript": "^4.9.3"
   },
-  "workspaces": [
-    "packages/**",
-    "examples/**"
-  ],
   "dependencies": {
-    "@nextui-org/react": "1.0.0-beta.10",
-    "@radix-ui/react-select": "^1.1.1",
     "core-js": "^3.6.5",
-    "engrafia": "^0.3.1",
-    "fix-esm": "^1.0.1",
-    "next": "13.1.1",
-    "next-images": "^1.8.4",
-    "next-seo": "^5.14.1",
-    "next-sitemap": "^3.1.32",
-    "next-themes": "^0.2.1",
-    "parse-github-url": "^1.0.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-github-buttons": "^0.5.0",
-    "react-iframe": "^1.8.5",
     "regenerator-runtime": "0.13.7",
     "tslib": "^2.3.0"
   },
@@ -100,6 +62,5 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "type": "module"
+  }
 }

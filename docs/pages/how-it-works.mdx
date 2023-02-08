@@ -1,0 +1,68 @@
+---
+title: Concepts
+description: How Createform works, and why we decided to do it this way.
+tags: react, form, useform, createform, use-form, debounce, debounced, hook
+---
+
+import Callout from "./../components/Callout";
+
+# Concepts
+
+When you are working on a project, you might want to use a form in different places, or maybe you have a form with a couple of steps in different components, how could you handle this?
+
+The most common answer is to use React Context API, or if you are using a form library like `react-hook-form`, you can use the `useFormContext` hook, formik has a similar API. These APIS are based on React Context API, so you can use them in the same way.
+
+But for me this is not the best way to do that, the idea to have a provider whenever you want to share something is weird and not very useful. Besides declaring a provider you should pass the value to the provider, it's really strange for me, because we can do that without a provider, by storing the state in s external store as Zustand do, the Createform use an external store, for this reason, we don't need to use a React Context API or something similar to store our form state.
+
+<br />
+
+## How a store works
+
+The store concept becomes very popular in React community by the way of Redux and MobX works, a store is a place where you could keep your state, in the store you can trust, it means that the store is the source of truth, and every change in the state is always a change in the store.
+
+To deliver every change we need to use a pattern called `Observable`, so whenever a change happens in the state, the observable can notify the subscribers that the state has changed.
+
+Now that we know the main concept of the store and the observable, we can go on and understand how Createform uses it.
+
+## How Createform works
+
+Createform uses an external store to keep the form state, but it's not enough, we need to share the state with other components without React Context. For this reason, we have a function called `createForm`;
+This function creates a form and returns a function that can be used as a hook, this hook is connected to the store, so whenever the store changes, the hook will be notified and the form will be updated.
+
+In other words, the `createForm` function creates a form and returns a function that has all resources to manage the form, if you use it ten times, it will be the same form and the same store being managed in different places.
+
+For that reason, we can use the same form in different components without providers or React Context API.
+
+![createform-flow](/imgs/createform-flow.png)
+
+## Initial State
+
+As the first step, we need to define the initial state of the form, this is the state that will be used when the form is created, we have `initialValues` and `initialErrors` properties, `initialTouched`, all of them are optional.
+
+## Form Validation
+
+The validation process can be done in three ways:
+
+- The first and most common is to use a **validationSchema**, this is an object that contains all the validation rules, the `validationSchema` should have the same shape from the `initialValues` object, so if you have a form with a `name` field, you should have a `name` field in the validationSchema, this rule is applied to nested fields, we recommend to use `Yup` library for this. The first way is the recommended way to use validation, because it's the most simple and easy to use, and you have a powerful validation library. If you decide to use this way, you should create and use the `validationSchema` when you create the form.
+- The second way is to use a `validate` function, this function will be called every time then the form is updated, and it will receive the form values and the form errors, and it should return an object with the new form errors.
+- The thrid way is the **inline validation**, this approach allow you to pass a validation schema in the register function.
+
+<Callout type="info">
+  More about inline validations [here](/docs/validation/inline-validation)
+</Callout>
+
+## Native elements vs Custom elements
+
+In web development we can find native elements like `<input>` and `<select>` and custom elements like `<Selectbox/>` and `<DatePicker/>`,
+there are some differences between them, native elements are HTML elements that are created by the browser, and custom elements are created by the developer,
+the developer can use native elements to build custom elements.
+
+## Controlled vs Uncontrolled vs Debounced forms
+
+By default, Createform creates an agnostic form, which means that the form can be used as you wish, as controlled, uncontrolled or debounced. This configuration should be provided when you are going to use it.
+
+- Debounced forms are forms that are updated only when the user stops typing, this is useful when you have a form with a lot of fields, and you don't want to update the form every time the user types, but only when the user stops typing.
+- Controlled forms are forms that are updated whenever the user types, this is useful if you want to give quick feedback to the user, like a form with a `name` field, you can use a controlled form to show the user the error when the field is empty before to submit the form.
+- Uncontrolled forms are forms that are updated just when the form is submitted, which means that the form can be fulfilled with the values of the form and submitted without rerendering the form.
+
+You can learn more about this in the pages for `controlled`, `uncontrolled`, and `debounced` forms.

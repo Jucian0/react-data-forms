@@ -1,0 +1,89 @@
+---
+title: OnSubmit mode
+description: Uncontrolled forms are the most performant way to create react forms. With uncontrolled input values, there is no updating or changing of any states. What you submit is what you get.
+tags: react, form, useform, use-form, createform, debounce, debounced, hook, onsubmit
+---
+
+import Callout from "../../components/Callout";
+
+# OnSubmit mode
+
+## Description
+
+There are two types of form input in React. We have the uncontrolled input and the controlled input. Uncontrolled inputs are like traditional HTML form inputs:
+
+```html
+<input type="text" />
+```
+
+With uncontrolled input, there is no updating or changing of any states. When we use uncontrolled input is necessary to set a reference in input for manipulating and receives events, but with userForm it isn't necessary because userForm makes this for us.
+Uncontrolled inputs are useful when performance is essential. But if the forms turn very complex debounce forms are the best option.
+
+Ps \* You can use uncontrolled form with custom inputs but custom inputs use state in your internal logic.
+If you want to use uncontrolled form with custom inputs and native inputs the uncontrolled approach is applied only native inputs.
+
+[React Docs](https://reactjs.org/docs/forms.html)
+
+By default, Createform use uncontrolled form, isn't necessary to pass any value to Createform if you want to use this kind.
+But when you use this kind of form, it is necessary to realize that values and events validation are available only when onSubmit event is dispatched.
+
+With this approach, it's possible to complete a form without any extra renders.
+
+## Usage
+
+Createform provides a `register` function, this function returns all properties to manager a field.
+
+```jsx copy
+import { createForm } from "@createform/react";
+
+const useForm = createForm({
+  initialValues: {
+    name: "Anna",
+    address: [
+      {
+        street: "123 Main St",
+        city: "Anytown",
+      },
+    ],
+  },
+});
+```
+
+Use dot notation to create advanced objects or to map object values. Type an entry name and type or an entry property object.
+
+<Callout type="info">
+
+- Dot notation is used to access nested objects. For example, if you have an object with a nested object, you can access the nested object using dot notation; `info.name`.
+- Use dot notation to access nested arrays. For example, if you
+- have an object with a nested array, you can access the nested array using dot notation; `info.array[2]`.
+
+</Callout>
+
+```jsx copy
+import { Wrapper } from '@createform/react'
+import Select from 'select-component'
+
+funtion UserForm(){
+  const { register, handleSubmit } = useUserForm()
+
+  const onSubmit = (data) => {
+    console.log(data)
+  }
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Wrapper component={Select} {...register("names")} />
+        options={[
+          { value: "John", label: "John" },
+          { value: "Jane", label: "Jane" },
+          { value: "Jack", label: "Jack" },
+        ]}
+      />
+    </form>
+  )
+}
+```
+
+## Demo
+
+{/* <Demo url="https://codesandbox.io/embed/useform-onsubmit-jvz1z?fontsize=14&hidenavigation=1&theme=dark" /> */}

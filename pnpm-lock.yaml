@@ -5,14 +5,14 @@ importers:
   .:
     specifiers:
       '@changesets/cli': ^2.22.0
+      '@createform/eslint-config': workspace:*
       eslint: ^7.32.0
-      eslint-config: workspace:*
       prettier: ^2.5.1
       turbo: latest
     devDependencies:
       '@changesets/cli': 2.25.2
+      '@createform/eslint-config': link:packages/eslint-config
       eslint: 7.32.0
-      eslint-config: link:packages/eslint-config
       prettier: 2.8.0
       turbo: 1.7.4
 
@@ -71,24 +71,24 @@ importers:
 
   packages/react:
     specifiers:
+      '@createform/eslint-config': workspace:*
       '@createform/tsconfig': workspace:*
       '@types/node': ^14.0.3
       '@types/react': ^18.0.27
       '@types/react-dom': ^18.0.10
       eslint: ^7.32.0
-      eslint-config: workspace:*
       react: '>=18'
       tsup: ^5.10.1
       typescript: ^4.5.3
     dependencies:
       react: 18.2.0
     devDependencies:
+      '@createform/eslint-config': link:../eslint-config
       '@createform/tsconfig': link:../tsconfig
       '@types/node': 14.18.36
       '@types/react': 18.0.27
       '@types/react-dom': 18.0.10
       eslint: 7.32.0
-      eslint-config: link:../eslint-config
       tsup: 5.12.9_typescript@4.9.3
       typescript: 4.9.3
 

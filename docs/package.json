@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/shuding/nextra-docs-template#readme",
   "dependencies": {
-    "@createform/react": "*",
+    "@createform/react": "workspace:*",
     "@heroicons/react": "v1",
     "@react-aria/ssr": "^3.4.1",
     "@vercel/analytics": "^0.1.8",

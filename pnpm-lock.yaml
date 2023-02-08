@@ -101,7 +101,7 @@ importers:
 
   docs:
     specifiers:
-      '@createform/react': '*'
+      '@createform/react': workspace:*
       '@heroicons/react': v1
       '@react-aria/ssr': ^3.4.1
       '@types/node': 18.11.10

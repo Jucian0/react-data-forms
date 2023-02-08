@@ -6,5 +6,5 @@
   "linked": [],
   "access": "public",
   "updateInternalDependencies": "patch",
-  "ignore": ["@createform/docs","eslint-config","@createform/tslint"]
+  "ignore": ["@createform/docs"]
 }

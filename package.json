@@ -8,7 +8,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "turbo run build --filter=react^... && changeset publish"
+    "release": "turbo run build --filter=react^... && changeset publish --ignore eslint-config"
   },
   "devDependencies": {
     "@changesets/cli": "^2.22.0",

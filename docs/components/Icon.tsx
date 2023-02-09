@@ -1,12 +1,13 @@
-import { useTheme } from "nextra-theme-docs";
+import { useTheme } from 'nextra-theme-docs';
 
 export const CreateformIcon = () => {
   const theme = useTheme();
 
-  const dark = theme.theme === "dark";
+  const dark = theme.theme === 'dark';
 
   return (
     <svg
+      className="animate-none"
       width="151"
       height="246"
       viewBox="0 0 581 676"

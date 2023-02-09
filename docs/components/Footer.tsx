@@ -1,9 +1,8 @@
-import Link from "next/link";
-import { ReactElement } from "react";
-import { Logo } from "./Logo";
-import { Discord, Github } from "./Social";
-import cn from "classnames";
-import HeaderLogo from "./HeaderLogo";
+import Link from 'next/link';
+import { ReactElement } from 'react';
+import { Discord, Github } from './Social';
+import cn from 'classnames';
+import HeaderLogo from './HeaderLogo';
 
 export function Footer({ menu }: { menu?: boolean }): ReactElement {
   console.log(menu);
@@ -15,8 +14,8 @@ export function Footer({ menu }: { menu?: boolean }): ReactElement {
 
       <div
         className={cn(
-          "mx-auto max-w-[90rem] py-6 flex justify-center md:justify-center text-black dark:text-white",
-          "pl-[max(env(safe-area-inset-left),1.5rem)] pr-[max(env(safe-area-inset-right),1.5rem)]"
+          'mx-auto max-w-[90rem] py-6 flex justify-center md:justify-center text-black dark:text-white',
+          'pl-[max(env(safe-area-inset-left),1.5rem)] pr-[max(env(safe-area-inset-right),1.5rem)]'
         )}
       >
         <div className="w-full md:flex md:justify-between">
@@ -58,7 +57,7 @@ export function Footer({ menu }: { menu?: boolean }): ReactElement {
         </div>
       </div>
       <span className="block text-sm text-gray-500 sm:text-center dark:text-gray-400 pb-5">
-        ©{" "}
+        ©{' '}
         <a href="https://useform.org" className="hover:underline">
           Createform
         </a>

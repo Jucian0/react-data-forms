@@ -1,4 +1,4 @@
-import HeroPulse from 'docs/components/HeroPulse/Pulse';
+import HeroPulse from '../../HeroPulse/Pulse';
 import Link from 'next/link';
 import { useTheme } from 'nextra-theme-docs';
 import { CreateformIcon } from '../../Icon';

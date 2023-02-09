@@ -1,10 +1,4 @@
-import { useTheme } from 'nextra-theme-docs';
-
 export const CreateformIcon = () => {
-  const theme = useTheme();
-
-  const dark = theme.theme === 'dark';
-
   return (
     <svg
       className="animate-none"

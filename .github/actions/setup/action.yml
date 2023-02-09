@@ -20,12 +20,17 @@ runs:
       shell: bash
       run: git config user.email "-" && git config user.name "🤖 createform bot"
 
-    - name: Use Node.js
+    - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
         node-version: ${{ inputs.node_version }}
         registry-url: https://registry.npmjs.org
 
-    - name: yarn install
+    - name: Setup pnpm 7
+      uses: pnpm/action-setup@v2
+      with:
+        version: 7
+
+    - name: Install dependencies
       shell: bash
-      run: yarn
+      run: pnpm install

@@ -1,11 +1,12 @@
-import Link from "next/link";
-import { CreateformIcon } from "../../Icon";
+import HeroPulse from 'docs/components/HeroPulse';
+import Link from 'next/link';
+import { CreateformIcon } from '../../Icon';
 
 export default function HeroContent() {
-
   return (
     <div className="isolate my-20">
-      <div className="px-6 pt-6 lg:px-8 justify-center flex">
+      <div className="px-6 pt-6 lg:px-8 justify-center flex relative">
+        <HeroPulse />
         <CreateformIcon />
       </div>
       <main>

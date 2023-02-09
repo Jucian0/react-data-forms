@@ -1,0 +1,8 @@
+.box {
+    width: 150px;
+    height: 150px;
+    background: transparent;
+    border: 2px solid #2ec4b6;
+    border-radius: 50%;
+    z-index: 1;
+  }

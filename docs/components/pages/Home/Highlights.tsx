@@ -1,4 +1,3 @@
-import { CreateformIcon } from "../../Icon";
 
 const highlights = [
   {
@@ -82,7 +81,7 @@ export default function Highlights() {
       <div className="flex container justify-center flex-wrap gap-y-2 gap-x-2 mt-16">
 {
   highlights.map(item=>(
-        <div className="px-3 lg:px-3 py-3 justify-center flex">
+        <div key={item.title} className="px-3 lg:px-3 py-3 justify-center flex">
           <div className="max-w-sm p-6 border border-gray-200 rounded-lg shadow dark:border-gray-700">
           {item.img}
               <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">

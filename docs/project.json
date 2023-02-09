@@ -5,20 +5,13 @@
   "projectType": "application",
   "targets": {
     "build": {
-      "executor": "@nrwl/next:build",
-      "outputs": [
-        "{options.outputPath}"
-      ],
-      "defaultConfiguration": "production",
+      "executor": "nx:run-commands",
       "options": {
-        "root": "docs",
-        "outputPath": "dist/docs"
-      },
-      "configurations": {
-        "development": {
-          "outputPath": "docs"
-        },
-        "production": {}
+        "commands": [
+          {
+            "command": "cd docs && pnpm build"
+          }
+        ]
       }
     },
     "serve": {

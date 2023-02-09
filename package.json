@@ -56,7 +56,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "regenerator-runtime": "^0.13.7",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "next": "^13.1.6"
   },
   "config": {
     "commitizen": {

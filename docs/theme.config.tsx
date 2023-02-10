@@ -67,7 +67,9 @@ const theme = {
     const fullUrl =
       router.asPath === '/' ? SITE_ROOT : `${SITE_ROOT}${router.asPath}`;
 
-    let ogUrl = `${SITE_ROOT}${frontMatter.ogImage}`;
+    let ogUrl = frontMatter.ogImage
+      ? `${SITE_ROOT}${frontMatter.ogImage}`
+      : `${SITE_ROOT}/media.png`;
     let keywords = frontMatter.tags;
 
     return (

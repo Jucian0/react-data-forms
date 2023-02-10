@@ -22,12 +22,12 @@ export function Footer({ menu }: { menu?: boolean }): ReactElement {
           <HeaderLogo />
           <ul className="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
             <li>
-              <Link href="#" className="mr-4 hover:underline md:mr-6 ">
+              <Link href="/" className="mr-4 hover:underline md:mr-6 ">
                 Home
               </Link>
             </li>
             <li>
-              <Link href="#" className="mr-4 hover:underline md:mr-6 ">
+              <Link href="/about" className="mr-4 hover:underline md:mr-6 ">
                 About
               </Link>
             </li>

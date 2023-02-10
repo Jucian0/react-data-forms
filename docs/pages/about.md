@@ -1,3 +1,9 @@
+---
+title: About
+description: CreateForm is an open-source JavaScript library for building user-friendly and responsive forms.
+tags: react, form, useform, createform, use-form, hook
+---
+
 # About CreateForm Library
 
 CreateForm is an open-source JavaScript library for building user-friendly and responsive forms. With a simple and intuitive API, CreateForm makes it easy to create complex forms with dynamic elements and validation in just a few lines of code.

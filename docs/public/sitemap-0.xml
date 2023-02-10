@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url><loc>https://useform.org</loc><lastmod>2023-02-10T11:09:59.503Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://useform.org/about</loc><lastmod>2023-02-10T11:09:59.503Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://useform.org/api-reference/create-form</loc><lastmod>2023-02-10T11:09:59.503Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://useform.org/creating-forms/debounced-form</loc><lastmod>2023-02-10T11:09:59.503Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://useform.org/creating-forms/onchange-form</loc><lastmod>2023-02-10T11:09:59.503Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://useform.org/creating-forms/onsubmit-form</loc><lastmod>2023-02-10T11:09:59.503Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://useform.org/how-it-works</loc><lastmod>2023-02-10T11:09:59.503Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://useform.org/quick-start</loc><lastmod>2023-02-10T11:09:59.503Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://useform.org/tutorials/creating-forms</loc><lastmod>2023-02-10T11:09:59.503Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://useform.org/tutorials/multi-step-form</loc><lastmod>2023-02-10T11:09:59.503Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://useform.org/tutorials/reactjs-building-forms</loc><lastmod>2023-02-10T11:09:59.503Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://useform.org/using-your-form/custom-components</loc><lastmod>2023-02-10T11:09:59.503Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://useform.org/using-your-form/native-elements</loc><lastmod>2023-02-10T11:09:59.503Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://useform.org/validation/form-validation</loc><lastmod>2023-02-10T11:09:59.503Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://useform.org/validation/inline-validation</loc><lastmod>2023-02-10T11:09:59.503Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+</urlset>

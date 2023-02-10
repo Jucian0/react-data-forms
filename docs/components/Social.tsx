@@ -1,9 +1,9 @@
-import { DiscordIcon, GitHubIcon } from "nextra/icons";
+import { DiscordIcon, GitHubIcon } from 'nextra/icons';
 
 function Github() {
   return (
     <a
-      href="https://github.com/juciano/createform"
+      href="https://github.com/jucian0/createform"
       className="hidden p-2 text-current sm:flex hover:opacity-75"
       title="Createform GitHub repo"
       target="_blank"

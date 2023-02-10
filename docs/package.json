@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "next start"
   },
   "repository": {
@@ -29,7 +30,8 @@
     "swr": "^2.0.3",
     "tailwindcss": "^3.2.6",
     "framer-motion": "^9.0.2",
-    "react-iframe": "^1.8.5"
+    "react-iframe": "^1.8.5",
+    "next-sitemap": "^3.1.52"
   },
   "devDependencies": {
     "@types/node": "18.11.10",

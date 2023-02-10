@@ -4,7 +4,8 @@ description: When using controlled forms, the input value is set to state values
 tags: react, form, useform, use-form, hook, controlled-form, controlled
 ---
 
-import Callout from "../../components/Callout";
+import Callout from '../../components/Callout';
+import Demo from '../../components/Demo';
 
 # OnChange mode
 
@@ -21,24 +22,24 @@ Controlled inputs are the most popular in the react ecosystem, are easier to wri
 Createform provides a `register` function, this function returns all properties to manager a field.
 
 ```jsx copy
-import { createForm } from "@createform/react";
+import { createForm } from '@createform/react';
 
 const useForm = createForm({
   initialValues: {
-    name: "Anna",
+    name: 'Anna',
     address: [
       {
-        street: "123 Main St",
-        city: "Anytown",
+        street: '123 Main St',
+        city: 'Anytown',
       },
     ],
   },
-  mode: "onChange",
+  mode: 'onChange',
 });
 ```
 
 ```javascript
-const test = "";
+const test = '';
 ```
 
 Use dot notation to create advanced objects or to map object values. Type an entry name and type or an entry property object.
@@ -57,9 +58,9 @@ function Form() {
 
   return (
     <form>
-      <input {...register("name")} />
-      <input {...register("address.street")} />
-      <input {...register("address.city")} />
+      <input {...register('name')} />
+      <input {...register('address.street')} />
+      <input {...register('address.city')} />
     </form>
   );
 }
@@ -67,4 +68,4 @@ function Form() {
 
 ## Demo
 
-{/* <Demo url="https://codesandbox.io/embed/useform-quick-start-ypoxu?fontsize=14&hidenavigation=1&theme=dark" /> */}
+<Demo url="https://codesandbox.io/embed/useform-quick-start-ypoxu?fontsize=14&hidenavigation=1&theme=dark" />

@@ -4,7 +4,8 @@ description: Uncontrolled forms are the most performant way to create react form
 tags: react, form, useform, use-form, createform, debounce, debounced, hook, onsubmit
 ---
 
-import Callout from "../../components/Callout";
+import Callout from '../../components/Callout';
+import Demo from '../../components/Demo';
 
 # OnSubmit mode
 
@@ -34,15 +35,15 @@ With this approach, it's possible to complete a form without any extra renders.
 Createform provides a `register` function, this function returns all properties to manager a field.
 
 ```jsx copy
-import { createForm } from "@createform/react";
+import { createForm } from '@createform/react';
 
 const useForm = createForm({
   initialValues: {
-    name: "Anna",
+    name: 'Anna',
     address: [
       {
-        street: "123 Main St",
-        city: "Anytown",
+        street: '123 Main St',
+        city: 'Anytown',
       },
     ],
   },
@@ -86,4 +87,4 @@ funtion UserForm(){
 
 ## Demo
 
-{/* <Demo url="https://codesandbox.io/embed/useform-onsubmit-jvz1z?fontsize=14&hidenavigation=1&theme=dark" /> */}
+<Demo url="https://codesandbox.io/embed/useform-onsubmit-jvz1z?fontsize=14&hidenavigation=1&theme=dark" />

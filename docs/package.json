@@ -28,7 +28,8 @@
     "nextra-theme-docs": "2.2.14",
     "swr": "^2.0.3",
     "tailwindcss": "^3.2.6",
-    "framer-motion": "^9.0.2"
+    "framer-motion": "^9.0.2",
+    "react-iframe": "^1.8.5"
   },
   "devDependencies": {
     "@types/node": "18.11.10",

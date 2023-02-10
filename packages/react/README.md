@@ -143,7 +143,7 @@ const LoginForm = () => {
 
 # It's All.
 
-## Read the full documentation [here](https://useform.org/docs/).
+## Read the full documentation [here](https://useform.org/quick-start).
 
 ## 🤝 Contributing
 

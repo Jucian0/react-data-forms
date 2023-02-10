@@ -4,7 +4,8 @@ description: When you use debounced form the debounce parameter delays the updat
 tags: react, form, useform,createform, use-form, debounce, debounced, hook, reactjs
 ---
 
-import Callout from "../../components/Callout";
+import Callout from '../../components/Callout';
+import Demo from '../../components/Demo';
 
 # Debounced mode
 
@@ -30,19 +31,19 @@ See more in Controlled Inputs with validation.
 Createform provides a `register` function, this function returns all properties to manager a field.
 
 ```jsx copy
-import { createForm } from "@createform/react";
+import { createForm } from '@createform/react';
 
 const useForm = createForm({
   initialValues: {
-    name: "Anna",
+    name: 'Anna',
     address: [
       {
-        street: "123 Main St",
-        city: "Anytown",
+        street: '123 Main St',
+        city: 'Anytown',
       },
     ],
   },
-  mode: "debounced",
+  mode: 'debounced',
 });
 ```
 
@@ -61,9 +62,9 @@ function Form() {
 
   return (
     <form>
-      <input {...register("name")} />
-      <input {...register("address.street")} />
-      <input {...register("address.city")} />
+      <input {...register('name')} />
+      <input {...register('address.street')} />
+      <input {...register('address.city')} />
     </form>
   );
 }
@@ -71,8 +72,4 @@ function Form() {
 
 ## Demo
 
-{/* <Demo url="https://codesandbox.io/embed/useform-debounced-sdokv?fontsize=14&hidenavigation=1&theme=dark" /> */}
-
-```
-
-```
+<Demo url="https://codesandbox.io/embed/useform-debounced-sdokv?fontsize=14&hidenavigation=1&theme=dark" />

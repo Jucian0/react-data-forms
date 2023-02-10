@@ -4,7 +4,8 @@ description: Learn how to validate form values using use-form.
 tags: react, form, useform, createform, use-form, debounce, debounced, hook, yup, validation, form-error, error, zod
 ---
 
-import Callout from "../../components/Callout";
+import Callout from '../../components/Callout';
+import Demo from '../../components/Demo';
 
 # Forms validations
 
@@ -44,14 +45,13 @@ Server-side validations are the last part of the validation, which means, even i
 
 There are several validations solutions available, and with Createform it's possible to use **Yup**, or **Zod**.
 
-
 ```jsx copy
 const formSchema = yup.object().shape({
-  email: yup.string().email("Invalid email").required("Email is required"),
+  email: yup.string().email('Invalid email').required('Email is required'),
   password: yup
     .string()
-    .min(8, "Password must be at least 8 characters")
-    .required("Password is required"),
+    .min(8, 'Password must be at least 8 characters')
+    .required('Password is required'),
 });
 ```
 
@@ -64,27 +64,27 @@ Usually you wannt to show the error message just when a field is touched, you ca
 Validation is performed whenever the state is changed. By default, Createform uses the uncontrolled inputs option, this means that the values ​​are accessible when the onSubmit event is dispatched.
 
 ```jsx copy
-import { createForm } from "@createform/react";
-import * as yup from "yup";
+import { createForm } from '@createform/react';
+import * as yup from 'yup';
 
 const validationSchema = yup.object().shape({
-  name: yup.string().required("This field is required"),
+  name: yup.string().required('This field is required'),
   email: yup
     .string()
-    .email("This field must be a valid e-mail")
-    .required("This field is required"),
-  pets: yup.array(yup.string().required("This field is required")),
-  accept: yup.bool().oneOf([true], "Field must be checked"),
+    .email('This field must be a valid e-mail')
+    .required('This field is required'),
+  pets: yup.array(yup.string().required('This field is required')),
+  accept: yup.bool().oneOf([true], 'Field must be checked'),
 });
 
 const useForm = createForm({
   initialValues: {
-    name: "Jesse",
-    email: "jesse@jesse.com",
-    pets: ["felix"],
+    name: 'Jesse',
+    email: 'jesse@jesse.com',
+    pets: ['felix'],
     accept: false,
   },
-  mode: "onChange",
+  mode: 'onChange',
   validationSchema,
 });
 
@@ -100,20 +100,20 @@ function Form() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <fieldset>
-        <input {...register("name")} />
+        <input {...register('name')} />
         <span>{touched.name && errors.name}</span>
       </fieldset>
       <fieldset>
-        <input {...register("email")} />
+        <input {...register('email')} />
         <span>{touched.email && errors.email}</span>
       </fieldset>
       <fieldset>
-        <input {...register("pets")} />
+        <input {...register('pets')} />
         <span>{touched.pets && errors.pets}</span>
       </fieldset>
-      <input {...register("pets.0")} />
+      <input {...register('pets.0')} />
       <fieldset>
-        <input {...register("accept")} />
+        <input {...register('accept')} />
         <span>{touched.accept && errors.accept}</span>
       </fieldset>
       <button type="submit">Submit</button>
@@ -128,4 +128,5 @@ function Form() {
 </Callout>
 ## Demo
 
-{/* <Demo url="https://codesandbox.io/s/react-validation-form-jmv9e" /> */}
+{' '}
+<Demo url="https://codesandbox.io/s/react-validation-form-jmv9e" />{' '}

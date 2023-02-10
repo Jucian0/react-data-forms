@@ -41,6 +41,9 @@ module.exports = {
         lg: '1024px',
         betterhover: { raw: '(hover: hover)' },
       },
+      spacing: {
+        128: '36rem',
+      },
     },
   },
   darkMode: 'class',

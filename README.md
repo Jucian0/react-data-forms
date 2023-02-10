@@ -2,7 +2,7 @@
 
 <h1 align="center">Createform</h1>
 
-[![GitHub license](https://img.shields.io/badge/License-mit-green)](https://github.com/Jucian0/useformcreateform/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/badge/License-mit-green)](https://github.com/jucian0/createform/blob/master/LICENSE)
 [![GitHub coverage](https://img.shields.io/badge/coverage-96.8%25-brightgreen)](https://github.com/jucian0/createform/tree/master/test)
 [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=React+hook+for+forms+and+validations&url=https://github.com/jucian0/createform&hashtags=reactjs,hook,javascript,forms)
 [![npm-version](https://img.shields.io/npm/v/@createform/react)](https://www.npmjs.com/package/@createform/react)

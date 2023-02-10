@@ -69,7 +69,8 @@ const theme = {
 
     let ogUrl = frontMatter.ogImage
       ? `${SITE_ROOT}${frontMatter.ogImage}`
-      : `${SITE_ROOT}/media.png`;
+      : `${SITE_ROOT}/images/media.png`;
+
     let keywords = frontMatter.tags;
 
     return (

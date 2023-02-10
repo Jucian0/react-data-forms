@@ -61,6 +61,7 @@ export function createForm<T extends CreateFormArgs<T['initialValues']>>(
   return (hookArgs?: HookArgs<T['initialValues']>) => {
     const state = React.useSyncExternalStore(
       (fn) => $store.subscribe(debounce(fn, debouncedTime)),
+      $store.get,
       $store.get
     );
 

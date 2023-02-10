@@ -112,6 +112,7 @@ importers:
       classnames: ^2.3.2
       framer-motion: ^9.0.2
       next: ^13.1.6
+      next-sitemap: ^3.1.52
       nextra: 2.2.14
       nextra-theme-docs: 2.2.14
       postcss: ^8.4.21
@@ -127,6 +128,7 @@ importers:
       classnames: 2.3.2
       framer-motion: 9.0.2
       next: 13.1.6
+      next-sitemap: 3.1.52_next@13.1.6
       nextra: 2.2.14_next@13.1.6
       nextra-theme-docs: 2.2.14_next@13.1.6+nextra@2.2.14
       react-iframe: 1.8.5
@@ -2879,6 +2881,10 @@ packages:
     dependencies:
       chalk: 4.1.2
     dev: true
+
+  /@corex/deepmerge/4.0.37:
+    resolution: {integrity: sha512-PX90bEnrLdxd5e6rSFWsghExMuSw0Uov3fWJuuaoFuUQIS/446diu/4seExK5b+43L+SOBbd2uBGwYUkG1JfCw==}
+    dev: false
 
   /@cspotcode/source-map-support/0.8.1:
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
@@ -11641,6 +11647,19 @@ packages:
       react: '>=16.0.0'
       react-dom: '>=16.0.0'
     dependencies:
+      next: 13.1.6
+    dev: false
+
+  /next-sitemap/3.1.52_next@13.1.6:
+    resolution: {integrity: sha512-tY469i4QRV1PwM9BoL+HdKYBCJ83IQl3PmUNapG/Hxp0MIYIw1hINU8E+Edf5Kr8vHXfVzPqDoul/Abu2P0vkw==}
+    engines: {node: '>=14.18'}
+    hasBin: true
+    peerDependencies:
+      '@next/env': '*'
+      next: '*'
+    dependencies:
+      '@corex/deepmerge': 4.0.37
+      minimist: 1.2.7
       next: 13.1.6
     dev: false
 

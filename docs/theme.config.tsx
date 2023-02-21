@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { useConfig, DocsThemeConfig, ThemeSwitch } from 'nextra-theme-docs';
+import { useConfig, ThemeSwitch } from 'nextra-theme-docs';
 
 import { Discord, Github } from './components/Social';
 import { Footer } from './components/Footer';

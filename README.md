@@ -1,6 +1,7 @@
 ![createform-logo](img/logo.svg)
 
 <h1 align="center">Createform</h1>
+<h2 align="center">The ReactJS library form!</h2>
 
 [![GitHub license](https://img.shields.io/badge/License-mit-green)](https://github.com/jucian0/createform/blob/master/LICENSE)
 [![GitHub coverage](https://img.shields.io/badge/coverage-96.8%25-brightgreen)](https://github.com/jucian0/createform/tree/master/test)

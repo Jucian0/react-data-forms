@@ -1,7 +1,7 @@
 {
   "name": "@createform/react",
   "version": "3.3.1",
-  "description": "UseFom provides a way to create complex forms easily.",
+  "description": "The ReactJS form library.",
   "keywords": [
     "react",
     "hooks",

@@ -23,7 +23,7 @@ export default function HeroContent() {
           <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-16">
             <div className="text-center">
               <h1 className="text-4xl font-bold tracking-tight  sm:text-6xl">
-                The ReactJS library form!
+                The ReactJS form library
               </h1>
               <p className="mt-6 text-lg leading-8 text-gray-600">
                 Createform provides you an intuitive way to create, and manage

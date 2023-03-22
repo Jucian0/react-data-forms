@@ -58,7 +58,7 @@ There are some reasons why you face problems when you want to create forms, and 
 
 - **State management** - A couple of years ago, you could think that Redux or
   MobX was a the best solution to manage form state in react, and they were, but not anymore. Today
-  you can use hooks to manage the form state, hooks like `useStatew` and
+  you can use hooks to manage the form state, hooks like `useState` and
   `useReducer` are a good solution to manage the state. But managing values,
   touched fields and errors could be a problem if you don't have a standard way to
   manage them. Usually, real applications use nested objects as request payloads,

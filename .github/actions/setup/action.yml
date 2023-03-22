@@ -18,7 +18,7 @@ runs:
 
     - name: Setup git user to "🤖 createform bot"
       shell: bash
-      run: git config user.email "-" && git config user.name "🤖 createform bot"
+      run: git config --global user.email 'github-actions[bot]@users.noreply.github.com' && git config --global user.name 'github-actions[bot]'
 
     - name: Setup Node.js
       uses: actions/setup-node@v3

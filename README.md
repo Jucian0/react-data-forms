@@ -58,7 +58,7 @@ There are some reasons why you face problems when you want to create forms, and 
 
 - **State management** - A couple of years ago, you could think that Redux or
   MobX was a the best solution to manage form state in react, and they were, but not anymore. Today
-  you can use hooks to manage the form state, hooks like `useStatew` and
+  you can use hooks to manage the form state, hooks like `useState` and
   `useReducer` are a good solution to manage the state. But managing values,
   touched fields and errors could be a problem if you don't have a standard way to
   manage them. Usually, real applications use nested objects as request payloads,
@@ -90,7 +90,7 @@ object type. The same process is realized with errors objects and touched object
 ## What to expect with Createform
 
 - **Performer forms** - Createform provides a way to complete a form and submit it without any rerender, by default Createform creates uncontrolled forms.
-- **Easy to write** - Createform has an easy way to write forms with less code. register function return necessary input's properties and it is all we need to manage all events in a native HTML `input`. Writhe forms without form tag.
+- **Easy to write** - Createform has an easy way to write forms with less code. register function return necessary input's properties and it is all we need to manage all events in a native HTML `input`. Write forms without form tag.
 - **Easy validation** - By default Createform uses yup validation, we can write complex validation without effort.
 
 ## Installation

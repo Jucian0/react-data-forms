@@ -85,7 +85,7 @@ export const usePersonForm = createForm({
 });
 ```
 
-## Codding the Form component
+## Coding the Form component
 
 The `Form` component should keep all the steps and handle the `submit` and `reset` events. We will import the `Wizard` component from `react-use-wizard` and our step components, `BasicInfoStep` and `AddressStep`, which will handle the logic for each step of the form.
 
@@ -118,11 +118,11 @@ export function PersonForm() {
 }
 ```
 
-## Codding steps
+## Coding steps
 
 The components of the steps should contain the form fields, and manage them.
 
-### Codding BasicInfoStep
+### Coding BasicInfoStep
 
 - The first thing we need to do is import, and use the `useWizard` hook. This hook manages the Wizard step position. It could be more convenient if we could manage it from `Form`, as it could save some lines of code. Unfortunately `react-use-wizard` doesn't allow it.
 
@@ -137,7 +137,8 @@ import { Button, Stack } from '@chakra-ui/react';
 import { useWizard } from 'react-use-wizard';
 
 export function BasicInfoStep() {
-  const { previousStep, nextStep } = useWizard();
+// removed previousStep from here because 'previousStep' was declared but its value was never read.
+  const { nextStep } = useWizard();
   const { register } = usePersonForm();
 
   return (
@@ -156,7 +157,7 @@ export function BasicInfoStep() {
 }
 ```
 
-### Codding AddressStep
+### Coding AddressStep
 
 - Again, in the first, we need to import and use the `useWizard` hook, which manages the Wizard step position.
 

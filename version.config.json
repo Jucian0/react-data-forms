@@ -4,9 +4,5 @@
     "preset": "angular",
     "baseBranch": "main",
     "synced": true,
-    "updateInternalDependencies": "patch",
-    "appendScripts": [
-        "release",
-        "git-push"
-    ]
+    "updateInternalDependencies": "patch"
 }

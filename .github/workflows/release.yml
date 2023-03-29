@@ -49,7 +49,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: pnpm turbo-release --s=@createform/docs
+        run: pnpm turbo-release --s @createform/docs
 
       - name: Push tags, and commits
         shell: bash

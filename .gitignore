@@ -13,3 +13,4 @@ public/dist
 storybook-static/
 .npmrc
 .netrc
+pnpm-lock.yaml

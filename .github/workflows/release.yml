@@ -33,10 +33,7 @@ jobs:
 
       - name: Build
         shell: bash
-        run: pnpm build
-
-      - name: Install turbo-version
-        run: pnpm i
+        run: pnpm --filter=react...  build
 
       ##  We are going to replace it by a specif command to configure git environments
       - name: Temporally git user

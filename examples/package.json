@@ -8,6 +8,9 @@
     "url": "https://github.com/jucian0/createform",
     "homepage": "https://useform.org/"
   },
+  "scripts": {
+    "dev":"vite"
+  },
   "license": "MIT",
   "dependencies": {
     "@emotion/react": "latest",
@@ -23,12 +26,14 @@
     "yup": "^0.27.0",
     "zod": "^3.20.2",
     "@chakra-ui/react": "latest",
-    "framer-motion": "latest"
+    "framer-motion": "latest",
+    "@createform/react":"workspace:*",
+    "react":"18.2.0",
+    "react-dom":"18.2.0"
   },
   "devDependencies": {
     "@types/react-datepicker": "^4.8.0",
     "@types/yup": "^0.29.13",
     "@vitejs/plugin-react": "3.0.1"
-
   }
 }

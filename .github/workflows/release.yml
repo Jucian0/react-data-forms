@@ -3,21 +3,57 @@ name: Release
 on:
   push:
     branches:
-      - "main"
+      - main
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   release:
+    name: Release
     runs-on: ubuntu-latest
-
-    if: github.ref == 'refs/heads/main'
-
     steps:
-      - uses: actions/checkout@v3
-      - name: Setup
-        uses: ./.github/actions/setup
-
-      - name: Release
-        uses: ./.github/actions/release
+      - name: Checkout Repo
+        uses: actions/checkout@v3
         with:
-          github_token: ${{ secrets.GH_TOKEN }}
-          npm_token: ${{ secrets.NPM_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup pnpm 7
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7
+
+      - name: Setup Node.js 16.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+
+      - name: Install Dependencies
+        shell: bash
+        run: pnpm i
+
+      - name: Build
+        shell: bash
+        run: pnpm build
+
+      - name: Install turbo-version
+        run: pnpm i
+
+      ##  We are going to replace it by a specif command to configure git environments
+      - name: Temporally git user
+        shell: bash
+        run: git config --global user.name 'github-actions[bot]' && git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Turbo Version
+        shell: bash
+        run: pnpm turbo-version
+
+      - name: Turbo Release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: pnpm turbo-release
+
+      - name: Push tags, and commits
+        shell: bash
+        run: git push --tags && git push

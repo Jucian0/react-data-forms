@@ -1,26 +1,5 @@
 {
-  "extends": "../tsconfig.base.json",
-  "compilerOptions": {
-    "jsx": "preserve",
-    "allowJs": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": false,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "incremental": true,
-    "types": ["jest", "node"]
-  },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.js",
-    "**/*.jsx",
-    "next-env.d.ts",
-    "next.config.js",
-    "next-sitemap.config.mjs"
-  ],
-  "exclude": ["node_modules", "jest.config.ts"]
+  "extends": "@createform/tsconfig/next.json",
+  "include": ["."],
+  "exclude": ["dist", "build", "node_modules"]
 }

@@ -19,6 +19,7 @@
   },
   "homepage": "https://useform.org",
   "dependencies": {
+    "@next/env":"13.1.6",
     "@createform/react": "workspace:*",
     "@heroicons/react": "v1",
     "@react-aria/ssr": "^3.4.1",
@@ -31,12 +32,15 @@
     "tailwindcss": "^3.2.6",
     "framer-motion": "^9.0.2",
     "react-iframe": "^1.8.5",
-    "next-sitemap": "^3.1.52"
+    "next-sitemap": "^3.1.52",
+    "react":"18.2.0",
+    "react-dom":"18.2.0"
   },
   "devDependencies": {
     "@types/node": "18.11.10",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.21",
-    "typescript": "^4.9.3"
+    "typescript": "^4.9.3",
+    "@createform/tsconfig":"workspace:*"
   }
 }

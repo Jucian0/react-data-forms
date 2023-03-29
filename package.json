@@ -1,67 +1,32 @@
 {
-  "name": "createform",
-  "version": "0.0.0",
-  "license": "MIT",
+  "private": true,
   "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev --no-cache --continue",
+    "lint": "turbo run lint",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "prepare": "husky install",
-    "format": "yarn nx format --all",
+    "test":"turbo run test",
     "commit": "git-cz"
   },
-  "private": true,
   "devDependencies": {
-    "@babel/preset-react": "^7.14.5",
+    "eslint": "^8.29.0",
+    "eslint-config-createform": "workspace:*",
+    "prettier": "^2.8.0",
+    "turbo": "latest",
+    "@turbo-version/version": "latest",
+    "@turbo-version/release": "latest",
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
-    "@faker-js/faker": "^7.4.0",
-    "@jscutlery/semver": "^2.30.0",
-    "@nrwl/eslint-plugin-nx": "^15.6.3",
-    "@nrwl/jest": "^15.6.3",
-    "@nrwl/linter": "^15.6.3",
-    "@nrwl/next": "^15.6.3",
-    "@nrwl/nx-cloud": "^15.0.3",
-    "@nrwl/react": "^15.6.3",
-    "@nrwl/vite": "^15.6.3",
-    "@nrwl/web": "^15.6.3",
-    "@testing-library/react": "^13.4.0",
-    "@types/jest": "^28.1.1",
-    "@types/node": "^18.11.9",
-    "@types/react": "^18.0.25",
-    "@types/react-dom": "^18.0.9",
-    "@typescript-eslint/eslint-plugin": "^5.36.1",
-    "@typescript-eslint/parser": "^5.36.1",
-    "babel-jest": "^28.1.1",
     "commitizen": "^4.2.4",
-    "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^8.15.0",
-    "eslint-config-next": "^13.1.1",
-    "eslint-config-prettier": "^8.1.0",
-    "eslint-plugin-cypress": "^2.10.3",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-jsx-a11y": "^6.6.1",
-    "eslint-plugin-react": "^7.31.11",
-    "eslint-plugin-react-hooks": "^4.6.0",
     "husky": "^8.0.0",
-    "jest": "^28.1.1",
-    "jest-environment-jsdom": "^28.1.1",
-    "jsdom": "~20.0.3",
-    "ngx-deploy-npm": "^5.0.0",
-    "nx": "^15.6.3",
-    "prettier": "^2.6.2",
-    "ts-jest": "^28.0.5",
-    "ts-node": "^10.9.1",
-    "typescript": "^4.9.3"
-  },
-  "dependencies": {
-    "core-js": "^3.6.5",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "regenerator-runtime": "^0.13.7",
-    "tslib": "^2.3.0",
-    "next": "^13.1.6"
+    "cz-conventional-changelog": "^3.3.0"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "packageManager": "pnpm@7.15.0"
 }

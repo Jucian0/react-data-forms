@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-#exec < /dev/tty && npx cz --hook || true
+exec < /dev/tty && npx cz --hook || true
 
 #unfortunally this hook can't work with semver library

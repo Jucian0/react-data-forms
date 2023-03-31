@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 /**
  * state is one of properties that is returned by useForm hook, this object contains the current state of form when the form is controlled or debounced.
@@ -48,7 +48,7 @@ export type CreateFormArgs<T> = {
   /** validation schema provided by yup */
   readonly validationSchema?: any; //YupSchema<T>
 
-  readonly mode?: 'debounce' | 'onChange' | 'onSubmit';
+  readonly mode?: "debounce" | "onChange" | "onSubmit";
 };
 
 /**
@@ -91,7 +91,7 @@ export type Field = Checkbox &
   TextArea &
   PrimitiveEvent;
 
-export type Mode = 'onChange' | 'onSubmit' | 'debounce';
+export type Mode = "onChange" | "onSubmit" | "debounce";
 
 export type HookArgs<T> = {
   onChange?: (state: T) => T | void;
@@ -104,7 +104,7 @@ export type EventChange = React.ChangeEvent<Field> & CustomEvent<Field> & Event;
 
 export type StateChange<T> = T | ((state: T) => T);
 
-export type StateOfField = 'values' | 'touched' | 'errors';
+export type StateOfField = "values" | "touched" | "errors";
 
 export type RegisterArgs = (React.InputHTMLAttributes<Field> | string) & {
   validate?: any;

@@ -1,4 +1,4 @@
-import { DiscordIcon, GitHubIcon } from 'nextra/icons';
+import { DiscordIcon, GitHubIcon } from "nextra/icons";
 
 function Github() {
   return (

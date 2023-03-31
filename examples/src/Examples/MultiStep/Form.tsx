@@ -1,7 +1,7 @@
-import { Person, usePersonForm } from './usePersonForm';
-import { Wizard } from 'react-use-wizard';
-import { BasicInfoStep } from './BasicInfoStep';
-import { AddressStep } from './AddressStep';
+import { Person, usePersonForm } from "./usePersonForm";
+import { Wizard } from "react-use-wizard";
+import { BasicInfoStep } from "./BasicInfoStep";
+import { AddressStep } from "./AddressStep";
 
 export function MultiForm() {
   const form = usePersonForm();

@@ -1,5 +1,5 @@
-import { createForm } from '@createform/react';
-import * as yup from 'yup';
+import { createForm } from "@createform/react";
+import * as yup from "yup";
 
 export type Person = {
   firstName: string;
@@ -27,15 +27,15 @@ const validationSchema = yup.object({
 
 export const usePersonForm = createForm({
   initialValues: {
-    firstName: '',
-    lastName: '',
+    firstName: "",
+    lastName: "",
     age: null,
     address: {
-      street: '',
-      city: '',
-      zipCode: '',
+      street: "",
+      city: "",
+      zipCode: "",
     },
   },
   validationSchema,
-  mode: 'onChange',
+  mode: "onChange",
 });

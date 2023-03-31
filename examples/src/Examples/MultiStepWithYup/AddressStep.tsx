@@ -1,8 +1,8 @@
-import { Input } from '@chakra-ui/react';
-import { Button, Stack, Text, Box } from '@chakra-ui/react';
-import { usePersonForm } from './usePersonForm';
-import { useWizard } from 'react-use-wizard';
-import * as yup from 'yup';
+import { Input } from "@chakra-ui/react";
+import { Button, Stack, Text, Box } from "@chakra-ui/react";
+import { usePersonForm } from "./usePersonForm";
+import { useWizard } from "react-use-wizard";
+import * as yup from "yup";
 
 export function AddressStep() {
   const { previousStep } = useWizard();
@@ -11,16 +11,16 @@ export function AddressStep() {
 
   return (
     <Box p={10}>
-      <Text fontWeight={'bold'}>Address</Text>
-      <Input mt={35} placeholder="Street" {...register('address.street')} />
+      <Text fontWeight={"bold"}>Address</Text>
+      <Input mt={35} placeholder="Street" {...register("address.street")} />
       <Text color="red.500">
         {touched.address?.street && errors.address?.street}
       </Text>
-      <Input mt={35} placeholder="City" {...register('address.city')} />
+      <Input mt={35} placeholder="City" {...register("address.city")} />
       <Text color="red.500">
         {touched.address?.city && errors.address?.city}
       </Text>
-      <Input mt={35} placeholder="Zip Code" {...register('address.zipCode')} />
+      <Input mt={35} placeholder="Zip Code" {...register("address.zipCode")} />
       <Text color="red.500">
         {touched.address?.zipCode && errors.address?.zipCode}
       </Text>

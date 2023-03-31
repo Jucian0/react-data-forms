@@ -5,7 +5,7 @@
  * @returns {string[]} An array of path elements.
  */
 function propToPath(prop: any) {
-  return prop.replace(/["|']|\]/g, '').split(/\.|\[/);
+  return prop.replace(/["|']|\]/g, "").split(/\.|\[/);
 }
 
 /**
@@ -64,7 +64,7 @@ export function get<T extends { [k: string]: any }>(
     if (paths.length === index + 1) {
       if (Array.isArray(clone[paths[index]])) {
         return clone[paths[index]].slice();
-      } else if (typeof clone[paths[index]] === 'object') {
+      } else if (typeof clone[paths[index]] === "object") {
         if (clone[paths[index]] === null) {
           return null;
         }

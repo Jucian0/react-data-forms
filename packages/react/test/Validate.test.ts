@@ -1,9 +1,9 @@
-import each from 'jest-each';
-import { validate } from '../src/Validate';
-import { z } from 'zod';
-import * as yup from 'yup';
-import { makeMockedValues } from './Utils';
-import { faker } from '@faker-js/faker';
+import each from "jest-each";
+import { validate } from "../src/Validate";
+import { z } from "zod";
+import * as yup from "yup";
+import { makeMockedValues } from "./Utils";
+import { faker } from "@faker-js/faker";
 
 async function makeSut(state = {}, validationSchema: any) {
   const sut = await validate(state, validationSchema);
@@ -13,7 +13,7 @@ async function makeSut(state = {}, validationSchema: any) {
   };
 }
 
-describe('Oject validation', () => {
+describe("Oject validation", () => {
   const validations = {
     zod: z.object({
       name: z.string(),
@@ -26,49 +26,49 @@ describe('Oject validation', () => {
       password: yup.string().required(),
     }),
   };
-  each(['zod', 'yup']).it(
-    'Should return an promise with errors - [%s] mode',
+  each(["zod", "yup"]).it(
+    "Should return an promise with errors - [%s] mode",
     async (mode: keyof typeof validations) => {
       const initialState = {};
 
       await makeSut(initialState, validations[mode]).catch((err) => {
-        expect(err).toHaveProperty('name');
+        expect(err).toHaveProperty("name");
       });
     }
   );
 
-  each(['zod', 'yup']).it(
-    'Should return an promise with empty object - [%s] mode',
+  each(["zod", "yup"]).it(
+    "Should return an promise with empty object - [%s] mode",
     async (mode: keyof typeof validations) => {
       const initialState = makeMockedValues();
 
       await makeSut(initialState, validations[mode]).catch((err) => {
-        expect(err).not.toHaveProperty('name');
+        expect(err).not.toHaveProperty("name");
       });
     }
   );
 });
 
-describe('Value validation', () => {
+describe("Value validation", () => {
   const validations = {
     zod: z.string().min(2),
     yup: yup.string().required(),
   };
 
-  each(['zod', 'yup']).it(
-    'Should return an promise with an error - [%s] mode',
+  each(["zod", "yup"]).it(
+    "Should return an promise with an error - [%s] mode",
     async (mode: keyof typeof validations) => {
-      await makeSut('', validations[mode]).catch((err) => {
-        expect(err).toHaveProperty('message');
+      await makeSut("message", validations[mode]).catch((err) => {
+        expect(err).toHaveProperty("message");
       });
     }
   );
 
-  each(['zod', 'yup']).it(
-    'Should return an promise with empty undefined - [%s] mode',
+  each(["zod", "yup"]).it(
+    "Should return an promise with empty undefined - [%s] mode",
     async (mode: keyof typeof validations) => {
       await makeSut(faker.datatype.string(), validations[mode]).catch((err) => {
-        expect(err).not.toHaveProperty('message');
+        expect(err).not.toHaveProperty("message");
       });
     }
   );

@@ -1,18 +1,18 @@
-import HeroPulse from '../../HeroPulse/Pulse';
-import Link from 'next/link';
-import { useTheme } from 'nextra-theme-docs';
-import { CreateformIcon } from '../../Icon';
+import HeroPulse from "../../HeroPulse/Pulse";
+import Link from "next/link";
+import { useTheme } from "nextra-theme-docs";
+import { CreateformIcon } from "../../Icon";
 
 export default function HeroContent() {
   const { theme } = useTheme();
-  const isDark = theme === 'dark';
+  const isDark = theme === "dark";
   return (
     <div className="isolate my-20">
       <div className="px-6 pt-6 lg:px-8 justify-center flex relative">
         <HeroPulse />
         <div
           className={`w-60 h-60 rounded-full animate-pulse ${
-            isDark ? 'bg-brandDark' : 'bg-brandLight'
+            isDark ? "bg-brandDark" : "bg-brandLight"
           } flex justify-center`}
         >
           <CreateformIcon />

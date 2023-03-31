@@ -36,8 +36,8 @@ The first step is to organize the `App.tsx` file. We are about to add a title, a
 In order to save time, we are already importing and add the `PersonForm`, this the component form that we are going to write in the next step.
 
 ```tsx
-import { ChakraProvider, Text, Box } from '@chakra-ui/react';
-import { PersonForm } from './PersonForm/Form';
+import { ChakraProvider, Text, Box } from "@chakra-ui/react";
+import { PersonForm } from "./PersonForm/Form";
 
 function App() {
   return (
@@ -68,17 +68,17 @@ In this example, let's develop a form that submits information about a person. T
 To do that, we are going to create a file named `usePersonForm.ts` inside `PersonForm` directory:
 
 ```tsx
-import { createForm } from '@createform/react';
+import { createForm } from "@createform/react";
 
 export const usePersonForm = createForm({
   initialValues: {
-    firstName: '',
-    lastName: '',
+    firstName: "",
+    lastName: "",
     age: null,
     address: {
-      street: '',
-      city: '',
-      zipCode: '',
+      street: "",
+      city: "",
+      zipCode: "",
     },
   },
   ///mode: "onChange",
@@ -90,10 +90,10 @@ export const usePersonForm = createForm({
 The `Form` component should keep all the steps and handle the `submit` and `reset` events. We will import the `Wizard` component from `react-use-wizard` and our step components, `BasicInfoStep` and `AddressStep`, which will handle the logic for each step of the form.
 
 ```tsx
-import { usePersonForm } from './usePersonForm';
-import { Wizard } from 'react-use-wizard';
-import { BasicInfoStep } from './BasicInfoStep';
-import { AddressStep } from './AddressStep';
+import { usePersonForm } from "./usePersonForm";
+import { Wizard } from "react-use-wizard";
+import { BasicInfoStep } from "./BasicInfoStep";
+import { AddressStep } from "./AddressStep";
 
 export function PersonForm() {
   const form = usePersonForm();
@@ -131,22 +131,22 @@ The components of the steps should contain the form fields, and manage them.
 - The last step is to add some buttons to navigate to the next form step and reset the form value.
 
 ```tsx
-import { Input, Text } from '@chakra-ui/react';
-import { usePersonForm } from './usePersonForm';
-import { Button, Stack } from '@chakra-ui/react';
-import { useWizard } from 'react-use-wizard';
+import { Input, Text } from "@chakra-ui/react";
+import { usePersonForm } from "./usePersonForm";
+import { Button, Stack } from "@chakra-ui/react";
+import { useWizard } from "react-use-wizard";
 
 export function BasicInfoStep() {
-// removed previousStep from here because 'previousStep' was declared but its value was never read.
+  // removed previousStep from here because 'previousStep' was declared but its value was never read.
   const { nextStep } = useWizard();
   const { register } = usePersonForm();
 
   return (
     <Stack p={10}>
-      <Text fontWeight={'bold'}>Basic Info</Text>
-      <Input mt={5} placeholder="First name" {...register('firstName')} />
-      <Input mt={5} placeholder="Last name" {...register('lastName')} />
-      <Input mt={5} placeholder="Age" type="number" {...register('age')} />
+      <Text fontWeight={"bold"}>Basic Info</Text>
+      <Input mt={5} placeholder="First name" {...register("firstName")} />
+      <Input mt={5} placeholder="Last name" {...register("lastName")} />
+      <Input mt={5} placeholder="Age" type="number" {...register("age")} />
 
       <Stack direction="row" spacing={4} justify="center" mt={5}>
         <Button type="reset">Reset</Button>
@@ -166,10 +166,10 @@ export function BasicInfoStep() {
 - The last step is to add some buttons for submitting the form, resetting the form's value, and for navigating to the previous form step.
 
 ```tsx
-import { Input } from '@chakra-ui/react';
-import { Button, Stack, Text } from '@chakra-ui/react';
-import { usePersonForm } from './usePersonForm';
-import { useWizard } from 'react-use-wizard';
+import { Input } from "@chakra-ui/react";
+import { Button, Stack, Text } from "@chakra-ui/react";
+import { usePersonForm } from "./usePersonForm";
+import { useWizard } from "react-use-wizard";
 
 export function AddressStep() {
   const { previousStep } = useWizard();
@@ -177,10 +177,10 @@ export function AddressStep() {
 
   return (
     <Stack p={10}>
-      <Text fontWeight={'bold'}>Address</Text>
-      <Input mt={5} placeholder="Street" {...register('address.street')} />
-      <Input mt={5} placeholder="City" {...register('address.city')} />
-      <Input mt={5} placeholder="Zip Code" {...register('address.zipCode')} />
+      <Text fontWeight={"bold"}>Address</Text>
+      <Input mt={5} placeholder="Street" {...register("address.street")} />
+      <Input mt={5} placeholder="City" {...register("address.city")} />
+      <Input mt={5} placeholder="Zip Code" {...register("address.zipCode")} />
 
       <Stack direction="row" spacing={4} justify="center" mt={5}>
         <Button onClick={previousStep}>Previous</Button>

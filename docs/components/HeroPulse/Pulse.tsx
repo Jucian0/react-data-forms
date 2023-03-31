@@ -1,10 +1,10 @@
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 const style: any = {
-  width: '240px',
-  height: '240px',
-  borderRadius: '50%',
-  position: 'absolute',
+  width: "240px",
+  height: "240px",
+  borderRadius: "50%",
+  position: "absolute",
 };
 
 export default function HeroPulse() {
@@ -18,7 +18,7 @@ export default function HeroPulse() {
       }}
       transition={{
         duration: 4,
-        ease: 'easeInOut',
+        ease: "easeInOut",
         repeat: Infinity,
       }}
     >
@@ -31,7 +31,7 @@ export default function HeroPulse() {
         }}
         transition={{
           duration: 4,
-          ease: 'easeInOut',
+          ease: "easeInOut",
           repeat: Infinity,
         }}
       >
@@ -44,7 +44,7 @@ export default function HeroPulse() {
           }}
           transition={{
             duration: 4,
-            ease: 'easeInOut',
+            ease: "easeInOut",
             repeat: Infinity,
           }}
         ></motion.div>

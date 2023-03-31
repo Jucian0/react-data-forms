@@ -1,6 +1,6 @@
-import { createForm } from '@createform/react';
-import { Button, Input, Stack, Text } from '@chakra-ui/react';
-import { z } from 'zod';
+import { createForm } from "@createform/react";
+import { Button, Input, Stack, Text } from "@chakra-ui/react";
+import { z } from "zod";
 
 const validationSchema = z.object({
   email: z.string().email(),
@@ -9,10 +9,10 @@ const validationSchema = z.object({
 
 const useLoginForm = createForm({
   initialValues: {
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   },
-  mode: 'onSubmit',
+  mode: "onSubmit",
   validationSchema,
 });
 
@@ -36,9 +36,9 @@ export function FormZodValidation() {
         onReset={handleReset(onReset)}
         noValidate
       >
-        <Input mt={15} type="email" {...register('email')} />
+        <Input mt={15} type="email" {...register("email")} />
         {touched.email && <Text color="red.500">{errors.email}</Text>}
-        <Input mt={15} type="password" {...register('password')} />
+        <Input mt={15} type="password" {...register("password")} />
         {touched.password && <Text color="red.500">{errors.password}</Text>}
         <Stack direction="row" spacing={4} justify="center" mt={5}>
           <Button type="reset">Reset</Button>

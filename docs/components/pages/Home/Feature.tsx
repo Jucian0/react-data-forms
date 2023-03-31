@@ -1,34 +1,34 @@
 const feature = [
   {
-    title: 'Debounced',
+    title: "Debounced",
     description:
-      'The debounce parameter delays the updating of the state until the user has stopped changing inputs for a predetermined amount of time.',
+      "The debounce parameter delays the updating of the state until the user has stopped changing inputs for a predetermined amount of time.",
   },
   {
-    title: 'OnChange',
+    title: "OnChange",
     description:
-      'This form mode, allow to create a form that will update the inputs state whenever the user type something in the fields.',
+      "This form mode, allow to create a form that will update the inputs state whenever the user type something in the fields.",
   },
   {
-    title: 'OnSubmit',
+    title: "OnSubmit",
     description:
       "Fullfil all fields, nad submit it with just one render, it's the most performative way to create a form.",
   },
 
   {
-    title: 'Inline validation',
+    title: "Inline validation",
     description:
-      'Pass a value schema in register function as a param to have a inline validation.',
+      "Pass a value schema in register function as a param to have a inline validation.",
   },
   {
-    title: 'Dot notation',
+    title: "Dot notation",
     description:
-      'Use dot notation to access nested values in form objects, or to register a field.',
+      "Use dot notation to access nested values in form objects, or to register a field.",
   },
   {
-    title: 'More',
+    title: "More",
     description:
-      'you can find more valuable feature reading the complete documentation...',
+      "you can find more valuable feature reading the complete documentation...",
   },
 ];
 

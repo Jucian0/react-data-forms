@@ -1,19 +1,19 @@
-import { createForm } from '@createform/react';
-import { Button, Stack } from '@chakra-ui/react';
+import { createForm } from "@createform/react";
+import { Button, Stack } from "@chakra-ui/react";
 
 const useLoginForm = createForm({
   initialValues: {
     agree: true,
-    gender: 'masc',
+    gender: "masc",
   },
-  mode: 'onSubmit',
+  mode: "onSubmit",
 });
 
 export function RadioAndCheckboxExample() {
   const { state, register, handleReset, handleSubmit, setFieldValue } =
     useLoginForm();
 
-  console.log('state', state.values, 'changed');
+  console.log("state", state.values, "changed");
 
   function onSubmit(e: any) {
     console.log(e);
@@ -28,10 +28,10 @@ export function RadioAndCheckboxExample() {
       <h1>Form</h1>
       <form onSubmit={handleSubmit(onSubmit)} onReset={handleReset(onReset)}>
         <label htmlFor="agree">
-          <input type="checkbox" {...register('agree')} />
+          <input type="checkbox" {...register("agree")} />
           Agree
         </label>
-        <div {...register('gender')}>
+        <div {...register("gender")}>
           <input type="radio" name="gender" id="1" value="masc" />
           Masc
           <input type="radio" name="gender" id="2" value="fem" />
@@ -44,7 +44,7 @@ export function RadioAndCheckboxExample() {
           <Button type="submit">Submit</Button>
           <Button type="reset">Reset</Button>
 
-          <Button onClick={() => setFieldValue('gender', 'masc')}>
+          <Button onClick={() => setFieldValue("gender", "masc")}>
             set gender value
           </Button>
         </Stack>

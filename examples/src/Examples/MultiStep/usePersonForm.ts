@@ -1,4 +1,4 @@
-import { createForm } from '@createform/react';
+import { createForm } from "@createform/react";
 
 export type Person = {
   firstName: string;
@@ -13,14 +13,14 @@ export type Person = {
 
 export const usePersonForm = createForm({
   initialValues: {
-    firstName: '',
-    lastName: '',
+    firstName: "",
+    lastName: "",
     age: null,
     address: {
-      street: '',
-      city: '',
-      zipCode: '',
+      street: "",
+      city: "",
+      zipCode: "",
     },
   },
-  mode: 'debounce',
+  mode: "debounce",
 });

@@ -108,12 +108,12 @@ yarn add @createform/react
 The first step is to create your form with the `createForm` function, this function returns a hook that you can use to manage your form, wherever you want to use.
 
 ```javascript
-import { createForm } from '@createform/react';
+import { createForm } from "@createform/react";
 
 export const useLoginForm = createForm({
   initialValues: {
-    email: 'jucian0@jucian0.com',
-    password: 'yourpassword',
+    email: "jucian0@jucian0.com",
+    password: "yourpassword",
   },
 });
 ```
@@ -123,7 +123,7 @@ export const useLoginForm = createForm({
 The second step is to create a component to render your form, you can use the `useLoginForm` hook to get the form state and manage it.
 
 ```jsx
-import { useLoginForm } from './useLoginForm.js';
+import { useLoginForm } from "./useLoginForm.js";
 
 const LoginForm = () => {
   const { handleSubmit, register } = useLoginForm();
@@ -134,8 +134,8 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <input type="email" {...register('email')} />
-      <input type="password" {...register('password')} />
+      <input type="email" {...register("email")} />
+      <input type="password" {...register("password")} />
       <button type="submit">Submit</button>
     </form>
   );

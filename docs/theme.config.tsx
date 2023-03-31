@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import { useConfig, ThemeSwitch } from 'nextra-theme-docs';
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import { useConfig, ThemeSwitch } from "nextra-theme-docs";
 
-import { Discord, Github } from './components/Social';
-import { Footer } from './components/Footer';
-import HeaderLogo from './components/HeaderLogo';
+import { Discord, Github } from "./components/Social";
+import { Footer } from "./components/Footer";
+import HeaderLogo from "./components/HeaderLogo";
 
-const SITE_ROOT = 'https://useform.org';
+const SITE_ROOT = "https://useform.org";
 
 /**
  * @type {import('nextra-theme-docs').DocsThemeConfig}
@@ -15,11 +15,11 @@ const theme = {
   sidebar: {
     defaultMenuCollapseLevel: Number.POSITIVE_INFINITY,
   },
-  docsRepositoryBase: 'https://github.com/jucian0/createform/blob/main/docs',
+  docsRepositoryBase: "https://github.com/jucian0/createform/blob/main/docs",
   useNextSeoProps: function SEO() {
     const { frontMatter } = useConfig();
 
-    const defaultTitle = frontMatter.overrideTitle || 'Createform';
+    const defaultTitle = frontMatter.overrideTitle || "Createform";
 
     return {
       description: frontMatter.description,
@@ -36,9 +36,9 @@ const theme = {
       try {
         setDateString(
           timestamp.toLocaleDateString(navigator.language, {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric',
+            day: "numeric",
+            month: "long",
+            year: "numeric",
           })
         );
       } catch (e) {
@@ -57,7 +57,7 @@ const theme = {
   },
   font: false,
   feedback: {
-    link: 'Question? Give us feedback →',
+    link: "Question? Give us feedback →",
   },
   logo: HeaderLogo,
   logoLink: false,
@@ -65,7 +65,7 @@ const theme = {
     const router = useRouter();
     const { frontMatter } = useConfig();
     const fullUrl =
-      router.asPath === '/' ? SITE_ROOT : `${SITE_ROOT}${router.asPath}`;
+      router.asPath === "/" ? SITE_ROOT : `${SITE_ROOT}${router.asPath}`;
 
     let ogUrl = frontMatter.ogImage
       ? `${SITE_ROOT}${frontMatter.ogImage}`
@@ -116,7 +116,7 @@ const theme = {
     );
   },
   editLink: {
-    text: 'Edit this page on GitHub',
+    text: "Edit this page on GitHub",
   },
   navbar: {
     extraContent: (
@@ -128,13 +128,13 @@ const theme = {
     ),
   },
   search: {
-    placeholder: 'Search documentation…',
+    placeholder: "Search documentation…",
   },
   footer: {
     component: Footer,
   },
   nextThemes: {
-    defaultTheme: 'dark',
+    defaultTheme: "dark",
   },
 };
 export default theme;

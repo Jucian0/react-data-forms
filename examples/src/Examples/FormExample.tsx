@@ -1,14 +1,14 @@
-import { createForm } from '@createform/react';
-import { Button, Input, Select, Stack } from '@chakra-ui/react';
+import { createForm } from "@createform/react";
+import { Button, Input, Select, Stack } from "@chakra-ui/react";
 
 const useLoginForm = createForm({
   initialValues: {
-    email: '',
-    password: '',
-    options: 'three',
+    email: "",
+    password: "",
+    options: "three",
     range: 10,
   },
-  mode: 'onSubmit',
+  mode: "onSubmit",
 });
 
 export function FormExample() {
@@ -26,10 +26,10 @@ export function FormExample() {
     <Stack p={30}>
       <h1>Form</h1>
       <form onSubmit={handleSubmit(onSubmit)} onReset={handleReset(onReset)}>
-        <Input mt={5} type="text" {...register('email')} />
-        <Input mt={5} type="password" {...register('password')} />
-        <Input type="range" {...register('range')} />
-        <Select {...register('options')}>
+        <Input mt={5} type="text" {...register("email")} />
+        <Input mt={5} type="password" {...register("password")} />
+        <Input type="range" {...register("range")} />
+        <Select {...register("options")}>
           <option value="one">One</option>
           <option value="tow">Two</option>
           <option value="three">Three</option>
@@ -37,7 +37,7 @@ export function FormExample() {
         <Stack direction="row" spacing={4} justify="center" mt={5}>
           <Button type="submit">Submit</Button>
           <Button type="reset">Reset</Button>
-          <Button onClick={() => setFieldValue('email', 'antonio@silva.com')}>
+          <Button onClick={() => setFieldValue("email", "antonio@silva.com")}>
             set email value
           </Button>
         </Stack>

@@ -1,14 +1,15 @@
-import each from 'jest-each';
-import { faker } from '@faker-js/faker';
-import { createForm } from './../src/CreateForm';
-import { CreateFormArgs } from '../src/Types';
-import { changeInput, makeMockedValues } from './Utils';
-import { waitFor, render, fireEvent, renderHook } from '@testing-library/react';
-import * as yup from 'yup';
+import each from "jest-each";
+import { faker } from "@faker-js/faker";
+import { createForm } from "./../src/CreateForm";
+import { CreateFormArgs } from "../src/Types";
+import { changeInput, makeMockedValues } from "./Utils";
+import { waitFor, render, fireEvent, renderHook } from "@testing-library/react";
+import * as yup from "yup";
+import z from "zod";
 
 function makeCreateFormSut(
   args: CreateFormArgs<any> = {},
-  mode = 'onChange' as any
+  mode = "onChange" as any
 ) {
   const state = {};
 
@@ -24,9 +25,9 @@ function makeCreateFormSut(
 
     return (
       <form onSubmit={form.handleSubmit(spy)} onReset={form.handleReset(spy)}>
-        <input data-testid="name" {...form.register('name')} />
-        <input data-testid="email" {...form.register('email')} />
-        <input data-testid="password" {...form.register('password')} />
+        <input data-testid="name" {...form.register("name")} />
+        <input data-testid="email" {...form.register("email")} />
+        <input data-testid="password" {...form.register("password")} />
         <button type="submit" data-testid="submit">
           Submit
         </button>
@@ -46,9 +47,9 @@ function makeCreateFormSut(
   };
 }
 
-describe('CreateForm', () => {
-  each(['onChange', 'debounce']).it(
-    'Should init the hook with the initial properties - [%s] mode',
+describe("CreateForm", () => {
+  each(["onChange", "debounce"]).it(
+    "Should init the hook with the initial properties - [%s] mode",
     (mode) => {
       const initialValues = makeMockedValues();
       const form = makeCreateFormSut({ initialValues }, mode);
@@ -56,13 +57,13 @@ describe('CreateForm', () => {
     }
   );
 
-  each(['onChange', 'debounce']).it(
-    'Should update the hook when run setFieldValue - [%s] mode',
+  each(["onChange", "debounce"]).it(
+    "Should update the hook when run setFieldValue - [%s] mode",
     async (mode) => {
       const initialValues = makeMockedValues();
       const form = makeCreateFormSut({ initialValues }, mode);
       const newValue = faker.name.firstName();
-      form.sut.current.setFieldValue('name', newValue);
+      form.sut.current.setFieldValue("name", newValue);
 
       await waitFor(() => {
         expect(form.sut.current.state.values.name).toEqual(newValue);
@@ -70,13 +71,13 @@ describe('CreateForm', () => {
     }
   );
 
-  each(['onChange', 'debounce']).it(
-    'Should update the hook when run setFieldError - [%s] mode',
+  each(["onChange", "debounce"]).it(
+    "Should update the hook when run setFieldError - [%s] mode",
     async (mode) => {
       const initialValues = makeMockedValues();
       const form = makeCreateFormSut({ initialValues }, mode);
       const newError = faker.name.firstName();
-      form.sut.current.setFieldError('name', newError);
+      form.sut.current.setFieldError("name", newError);
 
       await waitFor(() => {
         expect(form.sut.current.state.errors.name).toEqual(newError);
@@ -84,12 +85,12 @@ describe('CreateForm', () => {
     }
   );
 
-  each(['onChange', 'debounce']).it(
-    'Should update the hook when run setFieldTouched - [%s] mode',
+  each(["onChange", "debounce"]).it(
+    "Should update the hook when run setFieldTouched - [%s] mode",
     async (mode) => {
       const initialValues = makeMockedValues();
       const form = makeCreateFormSut({ initialValues }, mode);
-      form.sut.current.setFieldTouched('name', true);
+      form.sut.current.setFieldTouched("name", true);
 
       await waitFor(() => {
         expect(form.sut.current.state.touched.name).toEqual(true);
@@ -97,8 +98,8 @@ describe('CreateForm', () => {
     }
   );
 
-  each(['onChange', 'debounce']).it(
-    'Should update the hook when run setFieldsValue - [%s] mode',
+  each(["onChange", "debounce"]).it(
+    "Should update the hook when run setFieldsValue - [%s] mode",
     async (mode) => {
       const initialValues = makeMockedValues();
       const newValues = makeMockedValues();
@@ -111,8 +112,8 @@ describe('CreateForm', () => {
     }
   );
 
-  each(['onChange', 'debounce']).it(
-    'Should update the hook when run setFieldsError - [%s] mode',
+  each(["onChange", "debounce"]).it(
+    "Should update the hook when run setFieldsError - [%s] mode",
     async (mode) => {
       const initialValues = makeMockedValues();
       const form = makeCreateFormSut({ initialValues }, mode);
@@ -125,8 +126,8 @@ describe('CreateForm', () => {
     }
   );
 
-  each(['onChange', 'debounce']).it(
-    'Should update the hook when run setFieldsTouched - [%s] mode',
+  each(["onChange", "debounce"]).it(
+    "Should update the hook when run setFieldsTouched - [%s] mode",
     async (mode) => {
       const initialValues = makeMockedValues();
       const form = makeCreateFormSut({ initialValues }, mode);
@@ -143,8 +144,8 @@ describe('CreateForm', () => {
     }
   );
 
-  each(['onChange', 'debounce']).it(
-    'Should update the hook when run resetErrors - [%s] mode',
+  each(["onChange", "debounce"]).it(
+    "Should update the hook when run resetErrors - [%s] mode",
     async (mode) => {
       const initialValues = makeMockedValues();
       const form = makeCreateFormSut({ initialValues }, mode);
@@ -161,8 +162,8 @@ describe('CreateForm', () => {
     }
   );
 
-  each(['onChange', 'debounce']).it(
-    'Should update the hook when run resetValues - [%s] mode',
+  each(["onChange", "debounce"]).it(
+    "Should update the hook when run resetValues - [%s] mode",
     async (mode) => {
       const initialValues = makeMockedValues();
       const form = makeCreateFormSut({ initialValues }, mode);
@@ -179,8 +180,8 @@ describe('CreateForm', () => {
     }
   );
 
-  each(['onChange', 'debounce']).it(
-    'Should update the hook when run resetTouched - [%s] mode',
+  each(["onChange", "debounce"]).it(
+    "Should update the hook when run resetTouched - [%s] mode",
     async (mode) => {
       const initialValues = makeMockedValues();
       const form = makeCreateFormSut({ initialValues }, mode);
@@ -202,12 +203,12 @@ describe('CreateForm', () => {
     }
   );
 
-  each(['onChange', 'debounce']).it(
-    'Should call handleReset function when run onReset - [%s] mode',
+  each(["onChange", "debounce"]).it(
+    "Should call handleReset function when run onReset - [%s] mode",
     async (mode) => {
       const initialValues = makeMockedValues();
       const form = makeCreateFormSut({ initialValues }, mode);
-      const resetButton = form.element.getByTestId('reset');
+      const resetButton = form.element.getByTestId("reset");
 
       fireEvent.click(resetButton);
 
@@ -217,8 +218,8 @@ describe('CreateForm', () => {
     }
   );
 
-  each(['onChange', 'debounce']).it(
-    'Should call handleSubmit function when run onSubmit with errors - [%s] mode',
+  each(["onChange", "debounce"]).it(
+    "Should call handleSubmit function when run onSubmit with errors - [%s] mode",
     async (mode) => {
       const initialValues = makeMockedValues();
       const initialErrors = {
@@ -226,7 +227,7 @@ describe('CreateForm', () => {
       };
 
       const form = makeCreateFormSut({ initialValues, initialErrors }, mode);
-      const submitButton = form.element.getByTestId('submit');
+      const submitButton = form.element.getByTestId("submit");
 
       fireEvent.click(submitButton);
       // since we are passing an error validation we assume the form is invalid
@@ -238,12 +239,12 @@ describe('CreateForm', () => {
     }
   );
 
-  each(['onChange', 'debounce']).it(
-    'Should call onChange function when any change event happens - [%s] mode',
+  each(["onChange", "debounce"]).it(
+    "Should call onChange function when any change event happens - [%s] mode",
     async (mode) => {
       const initialValues = makeMockedValues();
       const form = makeCreateFormSut({ initialValues }, mode);
-      const input = form.element.getByTestId('name');
+      const input = form.element.getByTestId("name");
       const nextValue = faker.name.firstName();
       const nextValues = {
         ...initialValues,
@@ -258,12 +259,12 @@ describe('CreateForm', () => {
     }
   );
 
-  each(['onChange', 'debounce']).it(
-    'Should call onBlur function when any blur event happens - [%s] mode',
+  each(["onChange", "debounce"]).it(
+    "Should call onBlur function when any blur event happens - [%s] mode",
     async (mode) => {
       const initialValues = makeMockedValues();
       const form = makeCreateFormSut({ initialValues }, mode);
-      const input = form.element.getByTestId('name');
+      const input = form.element.getByTestId("name");
       fireEvent.blur(input);
 
       await waitFor(() => {
@@ -272,12 +273,12 @@ describe('CreateForm', () => {
     }
   );
 
-  each(['onChange', 'debounce']).it(
-    'Should update hook state when a change event happens - [%s] mode',
+  each(["onChange", "debounce"]).it(
+    "Should update hook state when a change event happens - [%s] mode",
     async (mode) => {
       const initialValues = makeMockedValues();
       const form = makeCreateFormSut({ initialValues }, mode);
-      const input = form.element.getByTestId('name');
+      const input = form.element.getByTestId("name");
       const nextValue = faker.name.firstName();
       const nextValues = {
         ...initialValues,
@@ -292,12 +293,12 @@ describe('CreateForm', () => {
     }
   );
 
-  each(['onChange', 'debounce']).it(
-    'Should update hook state when a blur event happens - [%s] mode',
+  each(["onChange", "debounce"]).it(
+    "Should update hook state when a blur event happens - [%s] mode",
     async (mode) => {
       const initialValues = makeMockedValues();
       const form = makeCreateFormSut({ initialValues }, mode);
-      const input = form.element.getByTestId('name');
+      const input = form.element.getByTestId("name");
       fireEvent.blur(input);
 
       await waitFor(() => {
@@ -309,7 +310,7 @@ describe('CreateForm', () => {
 
 function makeRegisterByObjectSut(
   args: CreateFormArgs<any> = {},
-  mode = 'onChange' as any,
+  mode = "onChange" as any,
   validate?: any
 ) {
   const state = {};
@@ -328,15 +329,15 @@ function makeRegisterByObjectSut(
       <form onSubmit={form.handleSubmit(spy)} onReset={form.handleReset(spy)}>
         <input
           data-testid="name"
-          {...form.register({ name: 'name', validate })}
+          {...form.register({ name: "name", validate })}
         />
         <input
           data-testid="email"
-          {...form.register({ name: 'email', validate })}
+          {...form.register({ name: "email", validate })}
         />
         <input
           data-testid="password"
-          {...form.register({ name: 'password' })}
+          {...form.register({ name: "password" })}
         />
         <button type="submit" data-testid="submit">
           Submit
@@ -357,9 +358,9 @@ function makeRegisterByObjectSut(
   };
 }
 
-describe('Register by object', () => {
-  each(['onChange', 'debounce']).it(
-    'Should init the hook with the initial properties - [%s] mode',
+describe("Register by object", () => {
+  each(["onChange", "debounce"]).it(
+    "Should init the hook with the initial properties - [%s] mode",
     (mode) => {
       const initialValues = makeMockedValues();
       const form = makeRegisterByObjectSut({ initialValues }, mode);
@@ -367,13 +368,13 @@ describe('Register by object', () => {
     }
   );
 
-  each(['onChange', 'debounce']).it(
-    'Should update the hook when dispatch a change event - [%s] mode',
+  each(["onChange", "debounce"]).it(
+    "Should update the hook when dispatch a change event - [%s] mode",
     async (mode) => {
       const initialValues = makeMockedValues();
       const form = makeRegisterByObjectSut({ initialValues }, mode);
       const newValue = faker.name.firstName();
-      const input = form.element.getByTestId('name');
+      const input = form.element.getByTestId("name");
 
       changeInput(input)(newValue);
 
@@ -384,10 +385,10 @@ describe('Register by object', () => {
   );
 });
 
-describe('Inline validation', () => {
-  each(['onChange', 'debounce']).it(
-    'Should update errors state when dispatch a change event - [%s] mode',
-    async (mode) => {
+describe("Inline validation", () => {
+  each(["onChange", "debounce"]).it(
+    "Should update errors state when dispatch a change event - [%s] mode",
+    async (mode: any) => {
       const initialValues = makeMockedValues();
       const errorMessage = faker.datatype.string();
       const form = makeRegisterByObjectSut(
@@ -396,7 +397,7 @@ describe('Inline validation', () => {
         yup.string().min(10, errorMessage)
       );
       const newValue = faker.datatype.string(5);
-      const input = form.element.getByTestId('name');
+      const input = form.element.getByTestId("name");
 
       changeInput(input)(newValue);
 
@@ -406,22 +407,22 @@ describe('Inline validation', () => {
     }
   );
 
-  it('Should update errors state when run onSubmit with errors - onSubmit mode', async () => {
+  it("Should update errors state when run onSubmit with errors - onSubmit mode", async () => {
     const initialValues = makeMockedValues();
     const errorMessage = faker.datatype.string();
 
     const form = makeRegisterByObjectSut(
       { initialValues },
-      'onSubmit',
+      "onSubmit",
       yup.string().min(10, errorMessage)
     );
 
     const newValue = faker.datatype.string(5);
-    const input = form.element.getByTestId('name');
+    const input = form.element.getByTestId("name");
 
     changeInput(input)(newValue);
 
-    const submitButton = form.element.getByTestId('submit');
+    const submitButton = form.element.getByTestId("submit");
 
     fireEvent.click(submitButton);
 
@@ -430,8 +431,8 @@ describe('Inline validation', () => {
     });
   });
 
-  each(['onChange', 'debounce']).it(
-    'Should update errors state when dispatch a change event - [%s] mode',
+  each(["onChange", "debounce"]).it(
+    "Should update errors state when dispatch a change event - [%s] mode",
     async (mode) => {
       const initialValues = makeMockedValues();
       const form = makeRegisterByObjectSut(
@@ -439,7 +440,7 @@ describe('Inline validation', () => {
         mode
       );
       const newValue = faker.datatype.string(5);
-      const input = form.element.getByTestId('name');
+      const input = form.element.getByTestId("name");
 
       changeInput(input)(newValue);
 
@@ -449,20 +450,20 @@ describe('Inline validation', () => {
     }
   );
 
-  it('Should errors state when run onSubmit with errors - onSubmit mode', async () => {
+  it("Should errors state when run onSubmit with errors - onSubmit mode", async () => {
     const initialValues = makeMockedValues();
 
     const form = makeRegisterByObjectSut(
       { initialValues, validationSchema },
-      'onSubmit'
+      "onSubmit"
     );
 
     const newValue = faker.datatype.string(5);
-    const input = form.element.getByTestId('name');
+    const input = form.element.getByTestId("name");
 
     changeInput(input)(newValue);
 
-    const submitButton = form.element.getByTestId('submit');
+    const submitButton = form.element.getByTestId("submit");
 
     fireEvent.click(submitButton);
 
@@ -479,9 +480,9 @@ const validationSchema = yup.object({
   password: yup.string().min(12, errorMessage),
 });
 
-describe('SchemaValidation', () => {
-  each(['onChange', 'debounce']).it(
-    'Should update errors state when dispatch a change event - [%s] mode',
+describe("SchemaValidation", () => {
+  each(["onChange", "debounce"]).it(
+    "Should update errors state when dispatch a change event - [%s] mode",
     async (mode) => {
       const initialValues = makeMockedValues();
       const form = makeRegisterByObjectSut(
@@ -489,7 +490,7 @@ describe('SchemaValidation', () => {
         mode
       );
       const newValue = faker.datatype.string(5);
-      const input = form.element.getByTestId('name');
+      const input = form.element.getByTestId("name");
 
       changeInput(input)(newValue);
 
@@ -499,20 +500,20 @@ describe('SchemaValidation', () => {
     }
   );
 
-  it('Should errors state when run onSubmit with errors - onSubmit mode', async () => {
+  it("Should errors state when run onSubmit with errors - onSubmit mode", async () => {
     const initialValues = makeMockedValues();
 
     const form = makeRegisterByObjectSut(
       { initialValues, validationSchema },
-      'onSubmit'
+      "onSubmit"
     );
 
     const newValue = faker.datatype.string(5);
-    const input = form.element.getByTestId('name');
+    const input = form.element.getByTestId("name");
 
     changeInput(input)(newValue);
 
-    const submitButton = form.element.getByTestId('submit');
+    const submitButton = form.element.getByTestId("submit");
 
     fireEvent.click(submitButton);
 

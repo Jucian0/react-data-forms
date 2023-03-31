@@ -1,4 +1,4 @@
-import { Field } from './Types';
+import { Field } from "./Types";
 
 /**
  * Returns a boolean indicating whether the passed field is a checkbox.
@@ -7,7 +7,7 @@ import { Field } from './Types';
  * @returns {boolean} True if the field is a checkbox, false otherwise.
  */
 export function isCheckbox(field: Field): boolean {
-  return field.type === 'checkbox';
+  return field.type === "checkbox";
 }
 
 /**

@@ -1,5 +1,5 @@
-import { fireEvent } from '@testing-library/react';
-import { faker } from '@faker-js/faker';
+import { fireEvent } from "@testing-library/react";
+import { faker } from "@faker-js/faker";
 
 export function changeInput(element: HTMLElement) {
   return (value: any) => {

@@ -1,4 +1,4 @@
-import * as Dot from './ObjectUtils';
+import * as Dot from "./ObjectUtils";
 
 /**
  * A function for subscribing to store updates
@@ -59,7 +59,7 @@ export function createStore<T extends {}>(initialState: T = Object.assign({})) {
    */
   function patch(path: string, next: any) {
     const nextState = Dot.set(state, path, next);
-    if (typeof nextState !== 'undefined') {
+    if (typeof nextState !== "undefined") {
       state = nextState;
     } else {
       throw new Error(`The path '${path}' is not defined`);

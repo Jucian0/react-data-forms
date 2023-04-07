@@ -142,13 +142,25 @@ const LoginForm = () => {
 };
 ```
 
-# It's All.
+## It's All.
 
 ## Read the full documentation [here](https://useform.org/quick-start).
 
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/jucian0/createform/issues). You can also take a look at the [contributing guide](https://github.com/Jucian0/createform/blob/main/CONTRIBUTING.md).
+
+### Ways to Contribute
+
+- **Code Contributions:** If you are a developer, you can help us improve the project by contributing code. You can find our project on GitHub [here](https://github.com/jucian0/createform), where you can create issues, fork the project, make changes, and submit pull requests.
+
+- **Documentation:** We are always looking for help with documentation. If you have expertise in the project or have experience writing technical documentation, we would appreciate your contributions.
+
+- **Bug Reports:** If you find a bug, please report it! You can create a new issue on GitHub and provide as much information as possible. This will help us reproduce the issue and fix it quickly.
+
+- **Feature Requests:** If you have a feature request, please let us know by creating a new issue on GitHub. We welcome feedback and ideas for how to improve the project.
+
+- **Spread the Word:** If you like our project, you can help us by sharing it with others. Tell your friends, colleagues, or anyone who might be interested. You can also follow us on social media and share our posts.
 
 ## Show your support
 

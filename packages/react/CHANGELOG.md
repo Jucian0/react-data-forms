@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* **createform:** fixing undefined value displying in the input ([29ec68e](https://github.com/jucian0/createform/commit/29ec68e311330bef17355dff83c94d73de53aef6))
+* **createform:** fixing undefined value displaying in the input ([29ec68e](https://github.com/jucian0/createform/commit/29ec68e311330bef17355dff83c94d73de53aef6))
 * **createform:** merge ([f562a07](https://github.com/jucian0/createform/commit/f562a077bb7e568522869d3e2908ad6ce6989ad3))
 * **createform:** update yup version, and fix Validate to work with yup v1 ([d0873dd](https://github.com/jucian0/createform/commit/d0873ddf257b0c28329240c2c9a46262999a8aa0))
 

@@ -1,7 +1,6 @@
 import { createForm } from "@createform/react";
 import { CodeWindow } from "../Code";
 import { z } from "zod";
-import { DemoBG } from "./DemoBG";
 
 const useForm = createForm({
   initialValues: {

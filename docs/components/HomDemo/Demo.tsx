@@ -52,7 +52,7 @@ export function HomeDemo() {
                 {...register({
                   name: "email",
                   type: "email",
-                  placeholder: "name@flowbite.com",
+                  placeholder: "createform@demo.com",
                   required: true,
                 })}
               />

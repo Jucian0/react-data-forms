@@ -11,7 +11,7 @@ export default function HeroPulse() {
   return (
     <motion.div
       style={style}
-      className="bg-gradient-to-t from-[#2ec4b6] to-transparent white:from-black"
+      className="bg-gradient-to-t from-[#2ec4b6] to-transparent white:from-black border border-brand"
       animate={{
         scale: [1, 1.5, 1.5],
         opacity: [0, 0.5, 0, 0],
@@ -24,7 +24,7 @@ export default function HeroPulse() {
     >
       <motion.div
         style={style}
-        className="bg-gradient-to-t from-[#2ec4b6] to-transparent white:from-black"
+        className="bg-gradient-to-t from-[#2ec4b6] to-transparent white:from-black border border-brand"
         animate={{
           scale: [1, 1.5, 1.5],
           opacity: [0, 0.5, 0, 0],
@@ -37,7 +37,7 @@ export default function HeroPulse() {
       >
         <motion.div
           style={style}
-          className="bg-gradient-to-t from-[#2ec4b6] to-transparent white:from-black"
+          className="bg-gradient-to-t from-[#2ec4b6] to-transparent white:from-black border border-brand"
           animate={{
             scale: [1, 1.5, 1.5],
             opacity: [0, 0.5, 0, 0],

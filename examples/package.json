@@ -9,7 +9,7 @@
     "homepage": "https://useform.org/"
   },
   "scripts": {
-    "dev": "vite"
+    "dev-example": "vite"
   },
   "license": "MIT",
   "dependencies": {

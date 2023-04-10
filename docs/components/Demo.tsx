@@ -1,5 +1,3 @@
-import Iframe from "react-iframe";
-
 const styles = {
   width: "100%",
   padding: "10px 0",

@@ -68,13 +68,13 @@ const yourHookForm = createForm({
 });
 ```
 
-### yourHooForm
+### yourHookForm
 
 This is a hook that should be used inside a functional component, this hook provides resources that you need to manager forms, let all of them:
 
-- **form** - This property is an observable of the form, ti allow you to subscribe and watch every change that happens inside the form, or change the form state.
+- **form** - This property is an observable of the form, it allows you to subscribe and watch every change that happens inside the form, or change the form state.
 
-- **register** - register is a function that is used to register a input into the form. It is used to get the properties required to render a form field, such as the ref, `onBlur`, and `onChange` handlers. The function accepts either an object with properties of the field to be registered, or a string name of the field. The properties for the field can include the name, type, placeholder, and validation function. The function returns an object with the properties for the field that can be used to render the form field component.
+- **register** - register is a function that is used to register an input into the form. It is used to get the properties required to render a form field, such as the ref, `onBlur`, and `onChange` handlers. The function accepts either an object with properties of the field to be registered, or a string name of the field. The properties for the field can include the name, type, placeholder, and validation function. The function returns an object with the properties for the field that can be used to render the form field component.
 
   ```jsx copy
   return (
@@ -181,4 +181,4 @@ This is a hook that should be used inside a functional component, this hook prov
   const { values, errors, touched } = state;
   ```
 
-- **isValid** - it's a variable that determines if the for is valid ot not.
+- **isValid** - it is a variable that determines if the form is valid ot not.

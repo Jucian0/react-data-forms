@@ -1,0 +1,25 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "nelsonuprety1",
+      "name": "Nelson Uprety",
+      "avatar_url": "https://avatars.githubusercontent.com/u/25173636?v=4",
+      "profile": "https://nelsonuprety.netlify.app/",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "skipCi": true,
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "projectName": "createform",
+  "projectOwner": "jucian0"
+}

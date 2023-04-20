@@ -7,7 +7,7 @@ const useForm = createForm({
     password: "",
     terms: false,
   },
-  mode: "onSubmit",
+  mode: "onChange",
   validationSchema: z.object({
     email: z.string().email(),
     password: z.string().min(8),
@@ -17,7 +17,7 @@ const useForm = createForm({
 
 export function FormDemo() {
   const { register, handleSubmit, state } = useForm();
-  const { errors } = state;
+  const { errors, touched } = state;
 
   return (
     <form
@@ -44,7 +44,7 @@ export function FormDemo() {
             required: true,
           })}
         />
-        <span className="text-red-600">{errors.email}</span>
+        <span className="text-red-600">{touched.email && errors.email}</span>
       </div>
       <div className="mb-6">
         <label
@@ -63,7 +63,9 @@ export function FormDemo() {
             required: true,
           })}
         />
-        <span className="text-red-600">{errors.password}</span>
+        <span className="text-red-600">
+          {touched.password && errors.password}
+        </span>
       </div>
 
       <div className="flex items-start mb-6">

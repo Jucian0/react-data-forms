@@ -7,7 +7,7 @@ const useForm = createForm({
     password: "",
     terms: false,
   },
-  mode: "onSubmit",
+  mode: "debounce",
   validationSchema: z.object({
     email: z.string().email(),
     password: z.string().min(8),
@@ -17,7 +17,7 @@ const useForm = createForm({
 
 export function FormDemo() {
   const { register, handleSubmit, state } = useForm();
-  const { errors } = state;
+  const { errors, touched } = state;
 
   return (
     <form
@@ -44,7 +44,7 @@ export function FormDemo() {
             required: true,
           })}
         />
-        <span className="text-red-600">{errors.email}</span>
+        <span className="text-red-600">{touched.email && errors.email}</span>
       </div>
       <div className="mb-6">
         <label
@@ -63,7 +63,9 @@ export function FormDemo() {
             required: true,
           })}
         />
-        <span className="text-red-600">{errors.password}</span>
+        <span className="text-red-600">
+          {touched.password && errors.password}
+        </span>
       </div>
 
       <div className="flex items-start mb-6">
@@ -98,3 +100,83 @@ export function FormDemo() {
     </form>
   );
 }
+
+export const CodeDemo = `
+import { createForm } from "@createform/react";
+import { z } from "zod";
+
+const useForm = createForm({
+  initialValues: {
+    email: "",
+    password: "",
+    terms: false,
+  },
+  mode: "debounced",
+  validationSchema: z.object({
+    email: z.string().email(),
+    password: z.string().min(8),
+    terms: z.boolean(),
+  }),
+});
+
+function FormDemo() {
+const { register, state } = useForm();
+const {errors, touched} = state
+
+function handleSubmit(data){console.log(data)}
+
+return (
+
+<form
+  onSubmit={handleSubmit}
+  noValidate
+  className="border dark:border-gray-800 p-5 rounded"
+>
+  <div className="mb-6">
+    <label>Your email</label>
+    <input
+      id="email"
+      {...register({
+        name: "email",
+        type: "email",
+        placeholder: "createform@demo.com",
+        required: true,
+      })}
+    />
+  </div>
+  <div className="mb-6">
+    <label>Your password</label>
+    <input
+      {...register({
+        name: "password",
+        type: "password",
+        placeholder: "*********",
+        required: true,
+      })}
+    />
+    <span className="text-red-600">{touched.email && errors.email}</span>
+  </div>
+  <div className="flex items-start mb-6">
+    <div className="flex items-center h-5">
+      <input
+        {...register({
+          name: "terms",
+          type: "checkbox",
+          placeholder: "*********",
+          required: true,
+        })}
+      />
+      <span className="text-red-600">
+        {touched.password && errors.password}
+      </span>
+    </div>
+    <label>
+      I agree with the{" "}
+      <a href="#" className="text-brand hover:underline dark:text-brand">
+        terms and conditions
+      </a>
+    </label>
+  </div>
+</form>
+)}
+`;

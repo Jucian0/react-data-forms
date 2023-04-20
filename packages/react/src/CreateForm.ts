@@ -253,7 +253,7 @@ export function createForm<T extends CreateFormArgs<T["initialValues"]>>(
        * @param {React.FormEvent<HTMLFormElement>} event - The form submit event
        * @returns {Promise<void>}
        */
-      return async (event: React.FormEvent<HTMLFormElement>) => {
+      return async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
         event.preventDefault();
         const state = $store.get();
 

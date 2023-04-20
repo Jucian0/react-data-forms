@@ -5,7 +5,6 @@ tags: react, form, useform, use-form, createform, debounce, debounced, hook, ons
 ---
 
 import Callout from "../../components/Callout";
-import Demo from "../../components/Demo";
 import { FormDemo } from "../../components/OnSubmitDemo";
 
 import { Tab, Tabs } from "../../components/Tabs";
@@ -38,10 +37,17 @@ terms: z.boolean(),
 
 function FormDemo() {
 const { register, state } = useForm();
+const {errors, touched} = state
+
+function handleSubmit(data){console.log(data)}
 
 return (
 
-<form noValidate className="border dark:border-gray-800 p-5 rounded">
+<form
+  onSubmit={handleSubmit}
+  noValidate
+  className="border dark:border-gray-800 p-5 rounded"
+>
   <div className="mb-6">
     <label>Your email</label>
     <input
@@ -86,9 +92,7 @@ return (
     </label>
   </div>
 </form>
-) }
-
-````
+)} ```
 
   </Tab>
 </Tabs>
@@ -99,7 +103,7 @@ There are two types of form input in React. We have the uncontrolled input and t
 
 ```html
 <input type="text" />
-````
+```
 
 With uncontrolled input, there is no updating or changing of any states. When we use uncontrolled input is necessary to set a reference in input for manipulating and receives events, but with userForm it isn't necessary because userForm makes this for us.
 Uncontrolled inputs are useful when performance is essential. But if the forms turn very complex debounce forms are the best option.

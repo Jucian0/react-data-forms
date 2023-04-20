@@ -5,6 +5,7 @@ export type Person = {
   lastName: string;
   age: number | null;
   date: string;
+  profession: any;
   address: {
     street: string;
     city: string;
@@ -18,6 +19,7 @@ export const usePersonForm = createForm({
     lastName: "",
     date: "",
     age: null,
+    profession: null,
     address: {
       street: "",
       city: "",

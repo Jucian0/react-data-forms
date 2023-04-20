@@ -16,7 +16,7 @@ const useForm = createForm({
 });
 
 export function FormDemo() {
-  const { register, handleSubmit, state } = useForm();
+  const { register, handleSubmit, state, handleReset } = useForm();
   const { errors, touched } = state;
 
   return (
@@ -25,6 +25,7 @@ export function FormDemo() {
       onSubmit={handleSubmit((e) => {
         console.log(e, state);
       })}
+      onReset={handleReset(() => {})}
       className="border dark:border-gray-800 p-5 rounded"
     >
       <div className="mb-6">
@@ -93,90 +94,16 @@ export function FormDemo() {
       </div>
       <button
         type="submit"
-        className="py-2 px-4 mr-2 mb-2 text-md font-medium text-gray-900 focus:outline-none  rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-gray-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+        className="text-white py-2 px-4 mr-2 mb-2 text-md font-medium focus:outline-none  rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-gray-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-white dark:text-gray-800 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
       >
         Submit <span aria-hidden="true">→</span>
+      </button>
+      <button
+        type="reset"
+        className="py-2 px-4 mr-2 mb-2 text-md font-medium text-gray-900 focus:outline-none  rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-gray-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+      >
+        Reset
       </button>
     </form>
   );
 }
-
-export const CodeDemo = `
-import { createForm } from "@createform/react";
-import { z } from "zod";
-
-const useForm = createForm({
-  initialValues: {
-    email: "",
-    password: "",
-    terms: false,
-  },
-  mode: "debounced",
-  validationSchema: z.object({
-    email: z.string().email(),
-    password: z.string().min(8),
-    terms: z.boolean(),
-  }),
-});
-
-function FormDemo() {
-const { register, state } = useForm();
-const {errors, touched} = state
-
-function handleSubmit(data){console.log(data)}
-
-return (
-
-<form
-  onSubmit={handleSubmit}
-  noValidate
-  className="border dark:border-gray-800 p-5 rounded"
->
-  <div className="mb-6">
-    <label>Your email</label>
-    <input
-      id="email"
-      {...register({
-        name: "email",
-        type: "email",
-        placeholder: "createform@demo.com",
-        required: true,
-      })}
-    />
-  </div>
-  <div className="mb-6">
-    <label>Your password</label>
-    <input
-      {...register({
-        name: "password",
-        type: "password",
-        placeholder: "*********",
-        required: true,
-      })}
-    />
-    <span className="text-red-600">{touched.email && errors.email}</span>
-  </div>
-  <div className="flex items-start mb-6">
-    <div className="flex items-center h-5">
-      <input
-        {...register({
-          name: "terms",
-          type: "checkbox",
-          placeholder: "*********",
-          required: true,
-        })}
-      />
-      <span className="text-red-600">
-        {touched.password && errors.password}
-      </span>
-    </div>
-    <label>
-      I agree with the{" "}
-      <a href="#" className="text-brand hover:underline dark:text-brand">
-        terms and conditions
-      </a>
-    </label>
-  </div>
-</form>
-)}
-`;

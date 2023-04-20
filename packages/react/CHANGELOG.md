@@ -1,3 +1,14 @@
+## [3.3.19](https://github.com/jucian0/createform/compare/v3.3.18...v3.3.19) (2023-04-20)
+
+
+### Bug Fixes
+
+* **createform:** fix a bug in setFieldValue ([52ec24f](https://github.com/jucian0/createform/commit/52ec24f55a0a6e10757e686a06af8fdf13a598d2))
+* **createform:** fix onsubmit mode validation ([fb391d8](https://github.com/jucian0/createform/commit/fb391d8533cc63203e8cf87559679026934a1bfd))
+* **createform:** fix validation on onSubmit mode ([743dc5f](https://github.com/jucian0/createform/commit/743dc5f2e5fabdc94da7a2644b88e25d78737eb8))
+
+
+
 ## [3.3.18](https://github.com/jucian0/createform/compare/v3.3.17...v3.3.18) (2023-04-12)
 
 

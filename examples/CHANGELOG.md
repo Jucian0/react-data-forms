@@ -1,3 +1,12 @@
+## [3.3.19](https://github.com/jucian0/createform/compare/v3.3.18...v3.3.19) (2023-04-20)
+
+
+### Bug Fixes
+
+* **createform:** fix a bug in setFieldValue ([52ec24f](https://github.com/jucian0/createform/commit/52ec24f55a0a6e10757e686a06af8fdf13a598d2))
+
+
+
 ## [3.3.18](https://github.com/jucian0/createform/compare/v3.3.17...v3.3.18) (2023-04-12)
 
 

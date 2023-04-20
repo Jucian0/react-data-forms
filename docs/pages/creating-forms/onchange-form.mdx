@@ -4,10 +4,103 @@ description: When using controlled forms, the input value is set to state values
 tags: react, form, useform, use-form, hook, controlled-form, controlled
 ---
 
-import Callout from '../../components/Callout';
-import Demo from '../../components/Demo';
+import Callout from "../../components/Callout";
+
+import { FormDemo } from "../../components/OnChangeDemo";
+
+import { Tab, Tabs } from "../../components/Tabs";
 
 # OnChange mode
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab>
+    <FormDemo />
+  </Tab>
+  <Tab>
+  
+```jsx
+import { createForm } from "@createform/react";
+import { z } from "zod";
+
+const useForm = createForm({
+initialValues: {
+email: "",
+password: "",
+terms: false,
+},
+mode: "onChange",
+validationSchema: z.object({
+email: z.string().email(),
+password: z.string().min(8),
+terms: z.boolean(),
+}),
+});
+
+function FormDemo() {
+const { register, state } = useForm();
+const {errors, touched} = state
+
+function handleSubmit(data){console.log(data)}
+
+return (
+
+<form
+  onSubmit={handleSubmit}
+  noValidate
+  className="border dark:border-gray-800 p-5 rounded"
+>
+  <div className="mb-6">
+    <label>Your email</label>
+    <input
+      id="email"
+      {...register({
+        name: "email",
+        type: "email",
+        placeholder: "createform@demo.com",
+        required: true,
+      })}
+    />
+  </div>
+  <div className="mb-6">
+    <label>Your password</label>
+    <input
+      {...register({
+        name: "password",
+        type: "password",
+        placeholder: "*********",
+        required: true,
+      })}
+    />
+    <span className="text-red-600">{touched.email && errors.email}</span>
+  </div>
+  <div className="flex items-start mb-6">
+    <div className="flex items-center h-5">
+      <input
+        {...register({
+          name: "terms",
+          type: "checkbox",
+          placeholder: "*********",
+          required: true,
+        })}
+      />
+      <span className="text-red-600">
+        {touched.password && errors.password}
+      </span>
+    </div>
+    <label>
+      I agree with the{" "}
+      <a href="#" className="text-brand hover:underline dark:text-brand">
+        terms and conditions
+      </a>
+    </label>
+  </div>
+</form>
+)}
+
+````
+
+  </Tab>
+</Tabs>
 
 ## Description
 
@@ -22,24 +115,24 @@ Controlled inputs are the most popular in the react ecosystem, are easier to wri
 Createform provides a `register` function, this function returns all properties to manager a field.
 
 ```jsx copy
-import { createForm } from '@createform/react';
+import { createForm } from "@createform/react";
 
 const useForm = createForm({
   initialValues: {
-    name: 'Anna',
+    name: "Anna",
     address: [
       {
-        street: '123 Main St',
-        city: 'Anytown',
+        street: "123 Main St",
+        city: "Anytown",
       },
     ],
   },
-  mode: 'onChange',
+  mode: "onChange",
 });
-```
+````
 
 ```javascript
-const test = '';
+const test = "";
 ```
 
 Use dot notation to create advanced objects or to map object values. Type an entry name and type or an entry property object.
@@ -58,14 +151,10 @@ function Form() {
 
   return (
     <form>
-      <input {...register('name')} />
-      <input {...register('address.street')} />
-      <input {...register('address.city')} />
+      <input {...register("name")} />
+      <input {...register("address.street")} />
+      <input {...register("address.city")} />
     </form>
   );
 }
 ```
-
-## Demo
-
-<Demo url="https://codesandbox.io/embed/useform-quick-start-ypoxu?fontsize=14&hidenavigation=1&theme=dark" />

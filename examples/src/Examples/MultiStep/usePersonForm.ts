@@ -4,6 +4,7 @@ export type Person = {
   firstName: string;
   lastName: string;
   age: number | null;
+  date: string;
   address: {
     street: string;
     city: string;
@@ -15,6 +16,7 @@ export const usePersonForm = createForm({
   initialValues: {
     firstName: "",
     lastName: "",
+    date: "",
     age: null,
     address: {
       street: "",
@@ -22,5 +24,5 @@ export const usePersonForm = createForm({
       zipCode: "",
     },
   },
-  mode: "debounce",
+  mode: "onChange",
 });

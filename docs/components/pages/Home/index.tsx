@@ -1,7 +1,7 @@
 import Highlights from "./Highlights";
 import HeroContent from "./HeroContent";
 import Features from "./Feature";
-import { HomeDemo } from "../../HomDemo/Demo";
+import { HomeDemo } from "../../HomeDemo";
 
 export default function HomeContent() {
   return (

@@ -13,7 +13,6 @@ import * as Dot from "./ObjectUtils";
 import { extractRadioElements, isCheckbox, isRadio } from "./FieldsUtils";
 import { validate } from "./Validate";
 import { StateChange } from ".";
-import { InvalidArgumentException } from "./Exception";
 import { debounce } from "./Debounce";
 
 const defaultValues = {
@@ -124,6 +123,7 @@ export function createForm<T extends CreateFormArgs<T["initialValues"]>>(
 
     function setFieldRefValue(name: string, value: any) {
       const ref = inputsRefs[name];
+
       if (ref && ref.current) {
         if (isCheckbox(ref.current)) {
           ref.current.checked = value;
@@ -131,10 +131,6 @@ export function createForm<T extends CreateFormArgs<T["initialValues"]>>(
           setRadioRefValue(ref, value);
         }
         ref.current.value = value;
-      } else {
-        throw new InvalidArgumentException(
-          `Input with name '${name}' is not registered, verify the input name.`
-        );
       }
     }
 
@@ -253,14 +249,14 @@ export function createForm<T extends CreateFormArgs<T["initialValues"]>>(
        * @param {React.FormEvent<HTMLFormElement>} event - The form submit event
        * @returns {Promise<void>}
        */
-      return async (event: React.FormEvent<HTMLFormElement>) => {
+      return async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
         event.preventDefault();
         const state = $store.get();
 
         $store.patch("touched", setAllFieldsState(true));
         $store.patch("isTouched", true);
 
-        if (!$store.get().isTouched && validationSchema) {
+        if (validationSchema) {
           const validationResult = await handleValidate(validationSchema);
           $store.set({ ...state, ...validationResult }).notify();
           submit(state.values, validationResult.isValid);

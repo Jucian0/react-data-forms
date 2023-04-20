@@ -4,7 +4,55 @@ description: Learn how to use native HTML elements in order to create better for
 tags: react, form, useform, createform, use-form, debounce, debounced, hook, native-forms, html, input, select, radio, checkbox
 ---
 
+import { FormDemo } from "../../components/NativeDemo";
+import { Tab, Tabs } from "../../components/Tabs";
+
 # Native HTML elements
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab>
+    <FormDemo />
+  </Tab>
+  <Tab>
+```jsx
+import { createForm } from "@createform/react";
+import { z } from "zod";
+
+const useForm = createForm({
+  initialValues: {
+    email: "",
+  },
+  mode: "onChange",
+});
+
+function FormDemo() {
+  const { register, state } = useForm();
+  const {errors, touched} = state
+
+  function handleSubmit(data){console.log(data)}
+
+  return (
+    <form onSubmit={handleSubmit} noValidate>
+      <div className="mb-6">
+        <label>Your email</label>
+        <input
+          id="email"
+          {...register({
+            name: "email",
+            type: "email",
+            placeholder: "createform@demo.com",
+            required: true,
+          })}
+        />
+      </div>  
+      <button type="submit">Submit</button>
+      <button type="reset">Reset</button>
+    </form>
+  )
+}
+```
+  </Tab>
+</Tabs>
 
 ## What is a native HTML element?
 
@@ -48,21 +96,20 @@ In order to have a full form example, we need to create a form component and use
 funtion UserForm(){
   const { register, handleSubmit } = useUserForm()
 
-const onSubmit = (data) => {
-console.log(data)
-}
+  const onSubmit = (data) => {
+    console.log(data)
+  }
 
-return (
-<form onSubmit={handleSubmit(onSubmit)}>
-<input {...register("name")} />
-<input {...register("email")} />
-<input {...register("password")} />
-<input {...register("confirmPassword")} />
-<button type="submit">Submit</button>
-</form>
-)
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input {...register("name")} />
+      <input {...register("email")} />
+      <input {...register("password")} />
+      <input {...register("confirmPassword")} />
+      <button type="submit">Submit</button>
+    </form>
+  )
 }
-
 ```
 
 The last thing we need to know is about `handleSubmit`, it's a function that receives another function as a parameter, this function is called when the form is submitted. The function receives the data of the form as a parameter and the second parameter is the answer of the validation (if the form is valid or not, it depends on the validation schema).

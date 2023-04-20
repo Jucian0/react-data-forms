@@ -4,7 +4,70 @@ description: Learn how to use Createform to work with custom components.
 tags: react, form, useform,createform, use-form, debounce, debounced, hook, react-select, select
 ---
 
+import { FormDemo } from "../../components/CustomDemo";
+import { Tab, Tabs } from "../../components/Tabs";
+
 # Custom components
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab>
+    <FormDemo />
+  </Tab>
+  <Tab>
+```jsx
+import { createForm } from "@createform/react";
+import Select from "react-select";
+import ReactDatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
+const useForm = createForm({
+  initialValues: {
+    date: "",
+    profession: null,
+  },
+  mode: "onChange",
+});
+
+export function FormDemo() {
+  const { handleReset, handleSubmit, state, setFieldValue } = useForm();
+  const { values } = state;
+
+  return (
+    <form
+      noValidate
+      onSubmit={handleSubmit((e) => {
+        console.log(e, state);
+      })}
+      onReset={handleReset(() => {})}
+      className="border dark:border-gray-800 p-5 rounded"
+    >
+      <div className="mb-6">
+        <ReactDatePicker
+          placeholder="Select a date..."
+          className="border border-gray-200 dark:border-gray-600 p-1 rounded w-full"
+          onChange={(e) => setFieldValue("date", e)}
+          value={values.date.toString()}
+        />
+      </div>
+      <div className="mb-6">
+        <Select
+          className=""
+          placeholder="Select a profession..."
+          onChange={(e) => setFieldValue("profession", e)}
+          value={values.profession}
+          options={[
+            { label: "Software developer", value: "1" },
+            { label: "Devops", value: "2" },
+          ]}
+        />
+      </div>
+      <button type="submit">Submit</button>
+      <button type="reset">Reset</button>
+    </form>
+  )}
+```
+  </Tab>
+</Tabs>
 
 ## What are custom components?
 
@@ -18,9 +81,9 @@ Also, custom components have an internal state controlled by state management, w
 
 ## Let's see some examples of custom components.
 
-- Datepickers - are  components that allow you to select a date.
-- Timepickers - are  components that allow you to select a time.
-- Sliders - are  components that allow you to select a range of values.
+- Datepickers - are components that allow you to select a date.
+- Timepickers - are components that allow you to select a time.
+- Sliders - are components that allow you to select a range of values.
 - Selects, multi-selects components - are components that allow you to select single or multiple values.
 - Drag and drop components - are components that allow you to drag and drop items.
 
@@ -55,7 +118,8 @@ funtion UserForm(){
 
   return (
   <form onSubmit={handleSubmit(onSubmit)}>
-    <Select onChange={e=>setFieldValue('select',e.value)} />
+    <Select onChange={e=>setFieldValue('select',e)}
+      value={values.select}
       options={[
         { value: "John", label: "John" },
         { value: "Jane", label: "Jane" },

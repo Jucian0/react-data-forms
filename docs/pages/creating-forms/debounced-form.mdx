@@ -6,9 +6,7 @@ tags: react, form, useform,createform, use-form, debounce, debounced, hook, reac
 
 import Callout from "../../components/Callout";
 import Demo from "../../components/Demo";
-
 import { FormDemo } from "../../components/DebouncedDemo";
-
 import { Tab, Tabs } from "../../components/Tabs";
 
 # OnChange mode
@@ -18,85 +16,86 @@ import { Tab, Tabs } from "../../components/Tabs";
     <FormDemo />
   </Tab>
   <Tab>
-  
 ```jsx
 import { createForm } from "@createform/react";
 import { z } from "zod";
 
 const useForm = createForm({
-initialValues: {
-email: "",
-password: "",
-terms: false,
-},
-mode: "debounced",
-validationSchema: z.object({
-email: z.string().email(),
-password: z.string().min(8),
-terms: z.boolean(),
-}),
+  initialValues: {
+    email: "",
+    password: "",
+    terms: false,
+  },
+  mode: "debounced",
+  validationSchema: z.object({
+    email: z.string().email(),
+    password: z.string().min(8),
+    terms: z.boolean(),
+  }),
 });
 
 function FormDemo() {
-const { register, state } = useForm();
-const {errors, touched} = state
+  const { register, state } = useForm();
+  const {errors, touched} = state
 
-function handleSubmit(data){console.log(data)}
+  function handleSubmit(data){console.log(data)}
 
-return (
-
-<form
-  onSubmit={handleSubmit}
-  noValidate
-  className="border dark:border-gray-800 p-5 rounded"
->
-  <div className="mb-6">
-    <label>Your email</label>
-    <input
-      id="email"
-      {...register({
-        name: "email",
-        type: "email",
-        placeholder: "createform@demo.com",
-        required: true,
-      })}
-    />
-  </div>
-  <div className="mb-6">
-    <label>Your password</label>
-    <input
-      {...register({
-        name: "password",
-        type: "password",
-        placeholder: "*********",
-        required: true,
-      })}
-    />
-    <span className="text-red-600">{touched.email && errors.email}</span>
-  </div>
-  <div className="flex items-start mb-6">
-    <div className="flex items-center h-5">
-      <input
-        {...register({
-          name: "terms",
-          type: "checkbox",
-          placeholder: "*********",
-          required: true,
-        })}
-      />
-      <span className="text-red-600">
-        {touched.password && errors.password}
-      </span>
-    </div>
-    <label>
-      I agree with the{" "}
-      <a href="#" className="text-brand hover:underline dark:text-brand">
-        terms and conditions
-      </a>
-    </label>
-  </div>
-</form>
-)}
+  return (
+    <form
+      onSubmit={handleSubmit}
+      noValidate
+      className="border dark:border-gray-800 p-5 rounded"
+    >
+      <div className="mb-6">
+        <label>Your email</label>
+        <input
+          id="email"
+          {...register({
+            name: "email",
+            type: "email",
+            placeholder: "createform@demo.com",
+            required: true,
+          })}
+        />
+      </div>
+      <div className="mb-6">
+        <label>Your password</label>
+        <input
+          {...register({
+            name: "password",
+            type: "password",
+            placeholder: "*********",
+            required: true,
+          })}
+        />
+        <span className="text-red-600">{touched.email && errors.email}</span>
+      </div>
+      <div className="flex items-start mb-6">
+        <div className="flex items-center h-5">
+          <input
+            {...register({
+              name: "terms",
+              type: "checkbox",
+              placeholder: "*********",
+              required: true,
+            })}
+          />
+          <span className="text-red-600">
+            {touched.password && errors.password}
+          </span>
+        </div>
+        <label>
+          I agree with the{" "}
+          <a href="#" className="text-brand hover:underline dark:text-brand">
+            terms and conditions
+          </a>
+        </label>
+      </div>
+      <button type="submit">Submit</button>
+      <button type="reset">Reset</button>
+    </form>
+  )
+}
 ```
   </Tab>
 </Tabs>

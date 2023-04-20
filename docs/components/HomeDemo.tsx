@@ -1,5 +1,5 @@
 import { createForm } from "@createform/react";
-import { CodeWindow } from "../Code";
+import { CodeWindow } from "./Code";
 import { z } from "zod";
 
 const useForm = createForm({

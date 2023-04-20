@@ -260,7 +260,7 @@ export function createForm<T extends CreateFormArgs<T["initialValues"]>>(
         $store.patch("touched", setAllFieldsState(true));
         $store.patch("isTouched", true);
 
-        if (!$store.get().isTouched && validationSchema) {
+        if (validationSchema) {
           const validationResult = await handleValidate(validationSchema);
           $store.set({ ...state, ...validationResult }).notify();
           submit(state.values, validationResult.isValid);

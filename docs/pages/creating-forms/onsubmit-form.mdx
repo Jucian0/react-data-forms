@@ -4,10 +4,94 @@ description: Uncontrolled forms are the most performant way to create react form
 tags: react, form, useform, use-form, createform, debounce, debounced, hook, onsubmit
 ---
 
-import Callout from '../../components/Callout';
-import Demo from '../../components/Demo';
+import Callout from "../../components/Callout";
+import Demo from "../../components/Demo";
+import { FormDemo } from "../../components/OnSubmitDemo";
+
+import { Tab, Tabs } from "../../components/Tabs";
 
 # OnSubmit mode
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab>
+    <FormDemo />
+  </Tab>
+  <Tab>
+  
+```jsx
+import { createForm } from "@createform/react";
+import { z } from "zod";
+
+const useForm = createForm({
+initialValues: {
+email: "",
+password: "",
+terms: false,
+},
+mode: "onSubmit",
+validationSchema: z.object({
+email: z.string().email(),
+password: z.string().min(8),
+terms: z.boolean(),
+}),
+});
+
+function FormDemo() {
+const { register, state } = useForm();
+
+return (
+
+<form noValidate className="border dark:border-gray-800 p-5 rounded">
+  <div className="mb-6">
+    <label>Your email</label>
+    <input
+      id="email"
+      {...register({
+        name: "email",
+        type: "email",
+        placeholder: "createform@demo.com",
+        required: true,
+      })}
+    />
+  </div>
+  <div className="mb-6">
+    <label>Your password</label>
+    <input
+      {...register({
+        name: "password",
+        type: "password",
+        placeholder: "*********",
+        required: true,
+      })}
+    />
+    <span className="text-red-600">{errors.email}</span>
+  </div>
+  <div className="flex items-start mb-6">
+    <div className="flex items-center h-5">
+      <input
+        {...register({
+          name: "terms",
+          type: "checkbox",
+          placeholder: "*********",
+          required: true,
+        })}
+      />
+      <span className="text-red-600">{errors.password}</span>
+    </div>
+    <label>
+      I agree with the{" "}
+      <a href="#" className="text-brand hover:underline dark:text-brand">
+        terms and conditions
+      </a>
+    </label>
+  </div>
+</form>
+) }
+
+````
+
+  </Tab>
+</Tabs>
 
 ## Description
 
@@ -15,7 +99,7 @@ There are two types of form input in React. We have the uncontrolled input and t
 
 ```html
 <input type="text" />
-```
+````
 
 With uncontrolled input, there is no updating or changing of any states. When we use uncontrolled input is necessary to set a reference in input for manipulating and receives events, but with userForm it isn't necessary because userForm makes this for us.
 Uncontrolled inputs are useful when performance is essential. But if the forms turn very complex debounce forms are the best option.
@@ -35,15 +119,15 @@ With this approach, it's possible to complete a form without any extra renders.
 Createform provides a `register` function, this function returns all properties to manager a field.
 
 ```jsx copy
-import { createForm } from '@createform/react';
+import { createForm } from "@createform/react";
 
 const useForm = createForm({
   initialValues: {
-    name: 'Anna',
+    name: "Anna",
     address: [
       {
-        street: '123 Main St',
-        city: 'Anytown',
+        street: "123 Main St",
+        city: "Anytown",
       },
     ],
   },
@@ -84,7 +168,3 @@ funtion UserForm(){
   )
 }
 ```
-
-## Demo
-
-<Demo url="https://codesandbox.io/embed/useform-onsubmit-jvz1z?fontsize=14&hidenavigation=1&theme=dark" />

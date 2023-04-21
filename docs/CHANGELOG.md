@@ -1,3 +1,12 @@
+## [3.3.20](https://github.com/jucian0/createform/compare/v3.3.19...v3.3.20) (2023-04-21)
+
+
+### Bug Fixes
+
+* **createform:** fix onSubmit validation error for onChange forms ([c951324](https://github.com/jucian0/createform/commit/c9513249a4bf1faa10a5e9b73395e5d7dc7bd12e))
+
+
+
 ## [3.3.19](https://github.com/jucian0/createform/compare/v3.3.18...v3.3.19) (2023-04-20)
 
 

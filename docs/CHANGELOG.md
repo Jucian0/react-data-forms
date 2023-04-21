@@ -1,3 +1,12 @@
+## [3.3.21](https://github.com/jucian0/createform/compare/v3.3.20...v3.3.21) (2023-04-21)
+
+
+### Bug Fixes
+
+* fix onChange, and debounced validation ([902f7ab](https://github.com/jucian0/createform/commit/902f7ab2d5f383c8b9746be29dcd9497570b3711))
+
+
+
 ## [3.3.20](https://github.com/jucian0/createform/compare/v3.3.19...v3.3.20) (2023-04-21)
 
 

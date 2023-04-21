@@ -13,6 +13,7 @@ import * as Dot from "./ObjectUtils";
 import { extractRadioElements, isCheckbox, isRadio } from "./FieldsUtils";
 import { validate } from "./Validate";
 import { StateChange } from ".";
+import { InvalidArgumentException } from "./Exception";
 import { debounce } from "./Debounce";
 
 const defaultValues = {
@@ -131,7 +132,7 @@ export function createForm<T extends CreateFormArgs<T["initialValues"]>>(
           setRadioRefValue(ref, value);
         }
         ref.current.value = value;
-      }
+      } 
     }
 
     function setRadioRefValue(ref: any, value: string) {
@@ -251,19 +252,19 @@ export function createForm<T extends CreateFormArgs<T["initialValues"]>>(
        */
       return async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
         event.preventDefault();
-        const state = $store.get();
-
+        
         $store.patch("touched", setAllFieldsState(true));
         $store.patch("isTouched", true);
-
+        
         if (validationSchema) {
           const validationResult = await handleValidate(validationSchema);
+          const state = $store.get();
           $store.set({ ...state, ...validationResult }).notify();
           submit(state.values, validationResult.isValid);
         } else {
-          const updatedState = $store.get();
-          const isValid = Dot.isEmpty(updatedState.errors);
-          $store.set({ ...updatedState, isValid }).notify();
+          const state = $store.get();
+          const isValid = Dot.isEmpty(state.errors);
+          $store.set({ ...state, isValid }).notify();
           submit(state.values, isValid);
         }
       };

@@ -1,0 +1,140 @@
+---
+title: Testing onSubmit forms
+description: Testing a form created with Createform in onSubmit mode is easy and straightforward. Here are some tips for testing your forms.
+tags: react, form, useform, createform, use-form, hook, testing, testing-lirary
+---
+
+# Testing onSubmit forms
+
+Testing is an important aspect of software development that helps to ensure the correctness and reliability of the code. When it comes to forms, testing becomes even more important, as it involves user interaction and input validation.
+
+Createform is a powerful library for creating forms in React. One of the modes that Createform supports is onSubmit, which means that the form will only show error messages when the form is submitted. This mode is useful for validating user input before submitting the form.
+
+Testing a form created with Createform in onSubmit mode is easy and straightforward. Here are some tips for testing your forms:
+
+ - Start with simple tests: Begin by testing the most basic functionality of your form, such as ensuring that the form renders correctly and that the initial values are set properly.
+
+ - Test form submission: Test submitting the form with both valid and invalid input. Ensure that the form submission works as expected, and that the form shows error messages when invalid input is entered.
+
+ - Test error messages: Test that the form displays the correct error messages when invalid input is entered. Make sure that the error messages are specific and clear, and that they appear next to the input field where the error occurred.
+
+ - Test reset button: Test the reset button to ensure that it clears the form and resets it to its initial values.
+
+ - Test form validation: Test that the form validation works as expected, both on the client side and on the server side if applicable.
+
+## Let's remember some steps to write good tests
+
+
+1- Import the necessary libraries:
+
+```jsx
+import { createForm } from "@createform/react";
+import { z } from "zod";
+import { render, screen, fireEvent } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+```
+
+2 - Define the form using `createForm` with the `onSubmit` mode:
+
+```jsx
+const useForm = createForm({
+  initialValues: {
+    email: "",
+  },
+  mode: "onSubmit",
+  validationSchema: z.object({
+    email: z.string().email(),
+  }),
+});
+```
+3 - Render the form component and get its elements:
+
+```jsx
+render(<FormDemo />);
+const emailInput = screen.getByLabelText("Your email");
+const submitButton = screen.getByText("Submit");
+```
+
+4 - Fill in the form with valid data and submit it:
+
+```jsx
+userEvent.type(emailInput, "test@example.com");
+userEvent.click(submitButton);
+```
+
+5 - Assert that there are no error messages displayed:
+
+```jsx
+expect(screen.queryByText("Please enter a valid email address.")).toBeNull();
+```
+
+6 - Fill in the form with invalid data and submit it:
+
+```jsx
+userEvent.clear(emailInput);
+userEvent.type(emailInput, "invalidemail");
+userEvent.click(submitButton);
+```
+
+7 - Assert that the appropriate error messages are displayed:
+
+```jsx
+expect(screen.getByText("Please enter a valid email address.")).toBeInTheDocument();
+```
+
+8 - Reset the form and assert that it has been cleared:
+
+```jsx
+const resetButton = screen.getByText("Reset");
+userEvent.click(resetButton);
+expect(emailInput).toHaveValue("");
+```
+
+## Writing some tests
+
+<Callout type="info">
+  In `onSubmit` mode, validation is triggered after the submit event, which means that we need to simulate this event in order to test if the expected behavior is true.
+</Callout>
+
+```jsx
+import { render, screen, fireEvent } from '@testing-library/react';
+import { Form } from './your-form';
+
+describe('Form', () => {
+  it('displays error message if email is not valid', async () => {
+    render(<Form />);
+    const emailInput = screen.getByLabelText('Your email');
+    const submitButton = screen.getByRole('button', { name: 'Submit →' });
+
+    fireEvent.change(emailInput, { target: { value: 'invalid-email' } });
+    fireEvent.click(submitButton);
+
+    const errorMessage = await screen.findByText('Invalid email address');
+    expect(errorMessage).toBeInTheDocument();
+  });
+
+  it("clears email error messages on submit", async () => {
+    render(<FormDemo />);
+
+    // Fill in invalid email and password
+    const emailInput = screen.getByLabelText(/your email/i);
+    fireEvent.change(emailInput, { target: { value: "invalid-email" } });
+
+    // Submit form
+    const submitButton = screen.getByRole("button", { name: /submit/i });
+    fireEvent.click(submitButton);
+
+    // Expect error messages to be displayed
+    expect(await screen.findByText(/invalid email/i)).toBeInTheDocument();
+
+    // Clear error messages
+    fireEvent.change(emailInput, { target: { value: "valid-email@example.com" } });
+
+    // Submit form again
+    fireEvent.click(submitButton);
+
+    // Expect error messages to be cleared
+    expect(screen.queryByText(/invalid email/i)).not.toBeInTheDocument();
+  });
+});
+```

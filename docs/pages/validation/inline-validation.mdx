@@ -1,12 +1,79 @@
 ---
-title: Iinline validation
+title: Inline validation
 description: Learn how to validate form values using field by field.
 tags: react, form, useform, createform, use-form, debounce, debounced, hook, yup, validation, form-error, error, zod
 ---
 
 import Callout from "../../components/Callout";
+import { FormDemo } from "../../components/OnChangeDemo";
+import { Tab, Tabs } from "../../components/Tabs";
 
 # Inline validation
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab>
+    <FormDemo />
+  </Tab>
+  <Tab>
+```jsx
+import { createForm } from "@createform/react";
+import { z } from "zod";
+
+const useForm = createForm({
+  initialValues: {
+    email: "",
+    password: "",
+    terms: false,
+  },
+  mode: "onChange",
+});
+
+function FormDemo() {
+  const { register, state } = useForm();
+  const {errors, touched} = state;
+
+  function handleSubmit(data){console.log(data)}
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      noValidate
+      className="border dark:border-gray-800 p-5 rounded"
+    >
+      <div className="mb-6">
+        <label>Your email</label>
+        <input
+          id="email"
+          {...register({
+            name: "email",
+            type: "email",
+            placeholder: "createform@demo.com",
+            required: true,
+            validate:z.string().email()
+          })}
+        />
+      </div>
+      <div className="mb-6">
+        <label>Your password</label>
+        <input
+          {...register({
+            name: "password",
+            type: "password",
+            placeholder: "*********",
+            required: true,
+            validate:z.string().min(8)
+          })}
+        />
+        <span className="text-red-600">{touched.email && errors.email}</span>
+      </div>
+      <button type="submit">Submit</button>
+      <button type="reset">Reset</button>
+    </form>
+  )
+}
+```
+  </Tab>
+</Tabs>
 
 ## About HTML5 validations
 

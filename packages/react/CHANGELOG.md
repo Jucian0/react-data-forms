@@ -1,3 +1,12 @@
+## [3.3.24](https://github.com/jucian0/createform/compare/v3.3.23...v3.3.24) (2023-04-22)
+
+
+### Bug Fixes
+
+* fix reset function for checkbox fields ([3d9cd44](https://github.com/jucian0/createform/commit/3d9cd44cc317ae3cb514d99172102b9b041a95f7))
+
+
+
 ## [3.3.23](https://github.com/jucian0/createform/compare/v3.3.22...v3.3.23) (2023-04-21)
 
 

@@ -1,4 +1,5 @@
 import React from "react";
+import { Store } from "./Store";
 
 /**
  * state is one of properties that is returned by useForm hook, this object contains the current state of form when the form is controlled or debounced.
@@ -108,4 +109,25 @@ export type StateOfField = "values" | "touched" | "errors";
 
 export type RegisterArgs = (React.InputHTMLAttributes<Field> | string) & {
   validate?: any;
+};
+
+export type Form<T> = (hookArgs?: HookArgs<T>) => {
+  $form: Store<any>;
+  state: State<T>;
+  register: (args: RegisterArgs) => any;
+  handleReset: (
+    reset: (values: T) => void
+  ) => (event: React.FormEvent<HTMLFormElement>) => void;
+  handleSubmit: (
+    submit: (values: T, isValid: boolean) => void
+  ) => (event: React.FormEvent<HTMLFormElement>) => Promise<void>;
+  setFieldValue: (name: string, value: any) => void;
+  setFieldError: (name: string, message: string) => void;
+  setFieldTouched: (name: string, value?: boolean) => void;
+  setFieldsValue: (next: StateChange<T>) => void;
+  setFieldsError: (next: StateChange<Errors<T>>) => void;
+  setFieldsTouched: (next: StateChange<Touched<T>>) => void;
+  resetErrors: () => void;
+  resetTouched: () => void;
+  resetValues: () => void;
 };

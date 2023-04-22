@@ -8,13 +8,28 @@ import * as Dot from "./ObjectUtils";
  */
 type Subscribe<TValues> = (e: TValues) => void;
 
+export type Store<T> = {
+  get: () => T;
+  set: (nextState: T) => { notify: (is?: boolean) => false | void };
+  patch: (
+    path: string,
+    next: any
+  ) => { notify: (is?: boolean) => false | void };
+  subscribe: (fn: Subscribe<T>) => () => void;
+  getPropertyValue: (path: string) => any;
+  getInitialState: () => T;
+  getInitialPropertyValue: (path: string) => any;
+};
+
 /**
  * Creates a store with the given initial state
  * @template T - The type of the store's state object
  * @param {T} [initialState={}] - The initial state of the store
  * @returns {Object} - The created store object
  */
-export function createStore<T extends {}>(initialState: T = Object.assign({})) {
+export function createStore<T extends {}>(
+  initialState: T = Object.assign({})
+): Store<T> {
   let state = initialState;
   let subscribers: Set<Subscribe<T>> = new Set();
 

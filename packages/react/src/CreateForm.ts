@@ -5,6 +5,7 @@ import {
   Errors,
   EventChange,
   Field,
+  Form,
   HookArgs,
   RegisterArgs,
   Touched,
@@ -13,7 +14,6 @@ import * as Dot from "./ObjectUtils";
 import { extractRadioElements, isCheckbox, isRadio } from "./FieldsUtils";
 import { validate } from "./Validate";
 import { StateChange } from ".";
-import { InvalidArgumentException } from "./Exception";
 import { debounce } from "./Debounce";
 
 const defaultValues = {
@@ -29,7 +29,7 @@ const defaultValues = {
  **/
 export function createForm<T extends CreateFormArgs<T["initialValues"]>>(
   args: T
-) {
+): Form<T["initialValues"]> {
   const { initialValues, initialErrors, initialTouched, validationSchema } = {
     ...defaultValues,
     ...args,
@@ -132,7 +132,7 @@ export function createForm<T extends CreateFormArgs<T["initialValues"]>>(
           setRadioRefValue(ref, value);
         }
         ref.current.value = value;
-      } 
+      }
     }
 
     function setRadioRefValue(ref: any, value: string) {
@@ -252,10 +252,10 @@ export function createForm<T extends CreateFormArgs<T["initialValues"]>>(
        */
       return async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
         event.preventDefault();
-        
+
         $store.patch("touched", setAllFieldsState(true));
         $store.patch("isTouched", true);
-        
+
         if (validationSchema) {
           const validationResult = await handleValidate(validationSchema);
           const state = $store.get();
@@ -299,10 +299,8 @@ export function createForm<T extends CreateFormArgs<T["initialValues"]>>(
           .notify();
 
         for (const key in inputsRefs) {
-          if (inputsRefs[key]?.current?.value) {
-            const value = Dot.get(initialValues, key) || "";
-            setFieldRefValue(key, value);
-          }
+          const value = Dot.get(initialValues, key) || "";
+          setFieldRefValue(key, value);
         }
 
         reset(initialValues);
@@ -333,9 +331,7 @@ export function createForm<T extends CreateFormArgs<T["initialValues"]>>(
       const nextValues = typeof next === "function" ? next(state.values) : next;
       try {
         for (const key in inputsRefs) {
-          if (inputsRefs[key]?.current?.value) {
-            setFieldRefValue(key, next);
-          }
+          setFieldRefValue(key, next);
         }
 
         $store.patch("values", nextValues).notify(shouldNotify);
@@ -376,7 +372,7 @@ export function createForm<T extends CreateFormArgs<T["initialValues"]>>(
      * @param {string} name the name of the field to set
      * @param {string} value the new value of the field, default is true
      **/
-    function setFieldTouched(name: string, value = true) {
+    function setFieldTouched(name: string, value = true): void {
       try {
         $store.patch(`touched.${name}`, value).notify(shouldNotify);
       } catch (e) {

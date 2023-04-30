@@ -177,7 +177,7 @@ export function createForm<T extends CreateFormArgs<T["initialValues"]>>(
      *   />
      * );
      */
-    function register(args: RegisterArgs) {
+    function register(args: RegisterArgs<T["initialValues"]>) {
       let props = {} as any;
 
       if (typeof args === "object") {
@@ -199,14 +199,14 @@ export function createForm<T extends CreateFormArgs<T["initialValues"]>>(
       }, [ref]);
 
       React.useEffect(() => {
-        if (ref.current && args.validate) {
+        if (ref.current && props.validate) {
           handleInlineValidation(defaultValue);
         }
       }, [ref]);
 
       async function handleInlineValidation(value: any) {
         try {
-          await validate(value, args.validate);
+          await validate(value, props.validate);
           $store.patch(`errors.${props.name}`, undefined);
         } catch (error: any) {
           $store.patch(`errors.${props.name}`, error.message);
@@ -215,7 +215,7 @@ export function createForm<T extends CreateFormArgs<T["initialValues"]>>(
 
       function onBlur(e: EventChange) {
         handleBlur(e);
-        if (args.validate) {
+        if (props.validate) {
           handleInlineValidation(e.target.value);
         }
       }

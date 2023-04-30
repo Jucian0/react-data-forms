@@ -107,14 +107,15 @@ export type StateChange<T> = T | ((state: T) => T);
 
 export type StateOfField = "values" | "touched" | "errors";
 
-export type RegisterArgs = (React.InputHTMLAttributes<Field> | string) & {
+export type RegisterArgs<T> = React.InputHTMLAttributes<Field> & {
   validate?: any;
+  name: Paths<T>;
 };
 
 export type Form<T> = (hookArgs?: HookArgs<T>) => {
   $form: Store<any>;
   state: State<T>;
-  register: (args: RegisterArgs) => any;
+  register: (args: RegisterArgs<T>) => any;
   handleReset: (
     reset: (values: T) => void
   ) => (event: React.FormEvent<HTMLFormElement>) => void;
@@ -131,3 +132,45 @@ export type Form<T> = (hookArgs?: HookArgs<T>) => {
   resetTouched: () => void;
   resetValues: () => void;
 };
+
+type Prev = [
+  never,
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20,
+  ...0[]
+];
+
+type Join<K, P> = K extends string | number
+  ? P extends string | number
+    ? `${K}${"" extends P ? "" : "."}${P}`
+    : never
+  : never;
+
+export type Paths<T, D extends number = 10> = [D] extends [never]
+  ? never
+  : T extends object
+  ? {
+      [K in keyof T]-?: K extends string | number
+        ? `${K}` | Join<K, Paths<T[K], Prev[D]>>
+        : never;
+    }[keyof T]
+  : "";

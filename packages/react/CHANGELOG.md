@@ -1,3 +1,12 @@
+## [3.3.26](https://github.com/jucian0/createform/compare/v3.3.25...v3.3.26) (2023-05-01)
+
+
+### Bug Fixes
+
+* **createform:** update createform types, add type safe for field value type ([848c7e6](https://github.com/jucian0/createform/commit/848c7e6d0d6a34a19e764bcc766e6576edca0dcb))
+
+
+
 ## [3.3.25](https://github.com/jucian0/createform/compare/v3.3.24...v3.3.25) (2023-05-01)
 
 

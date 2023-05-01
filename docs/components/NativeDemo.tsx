@@ -6,7 +6,7 @@ const useForm = createForm({
     test: [1, 2, 3, 4, 5, 6, 7, 8, 9],
     address: {
       street: "",
-      number: null,
+      number: 23,
     },
   },
   mode: "onChange",
@@ -22,11 +22,6 @@ export function FormDemo() {
     setFieldValue,
   } = useForm();
   const { errors, touched } = state;
-
-  setFieldValue("email", 23);
-
-  setFieldError("test.4", "Error message");
-  setFieldValue("address.number", 23);
 
   return (
     <form

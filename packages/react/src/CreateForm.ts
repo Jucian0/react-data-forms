@@ -5,9 +5,9 @@ import {
   Errors,
   EventChange,
   Field,
-  Form,
+  FieldPath,
+  FieldPathValue,
   HookArgs,
-  Paths,
   RegisterArgs,
   Touched,
   Values,
@@ -58,7 +58,7 @@ export function createForm<T extends CreateFormArgs<Values<T>>>(args: T) {
    **/
   const inputsRefs = {} as { [k: string]: React.RefObject<any> };
 
-  const hook = (hookArgs?: HookArgs<Values<T>>) => {
+  return (hookArgs?: HookArgs<Values<T>>) => {
     const state = React.useSyncExternalStore(
       (fn) => $store.subscribe(debounce(fn, debouncedTime)),
       $store.get,
@@ -312,7 +312,10 @@ export function createForm<T extends CreateFormArgs<Values<T>>>(args: T) {
      * @param {string} name - Name of the field
      * @param {any} value - Value to set the field to
      */
-    function setFieldValue(name: Paths<Values<T>>, value: any) {
+    function setFieldValue<N extends FieldPath<Values<T>>>(
+      name: N,
+      value: FieldPathValue<Values<T>, N>
+    ): void {
       try {
         setFieldRefValue(name, value);
         $store.patch(`values.${name}`, value).notify(shouldNotify);
@@ -345,7 +348,10 @@ export function createForm<T extends CreateFormArgs<Values<T>>>(args: T) {
      * @param {Paths<Values<T>>} name - Name of the field
      * @param {string} message - Error message to set for the field
      */
-    function setFieldError(name: Paths<Values<T>>, message: string) {
+    function setFieldError<N extends FieldPath<Values<T>>>(
+      name: N,
+      message: string
+    ): void {
       try {
         $store.patch(`errors.${name}`, message).notify(shouldNotify);
       } catch (e) {
@@ -357,7 +363,7 @@ export function createForm<T extends CreateFormArgs<Values<T>>>(args: T) {
      * Set error messages for multiple fields in the form.
      * @param {StateChange<Errors<T['initialValues']>>} next - The updated error messages. Can be * * either an object or a function that returns an object.
      */
-    function setFieldsError(next: StateChange<Errors<Values<T>>>) {
+    function setFieldsError(next: StateChange<Errors<Values<T>>>): void {
       const nextErrors =
         typeof next === "function" ? next($store.get().errors) : next;
       try {
@@ -370,9 +376,12 @@ export function createForm<T extends CreateFormArgs<Values<T>>>(args: T) {
     /**
      * This function will set the touched value of a field.
      * @param {Paths<Values<T>>} name the name of the field to set
-     * @param {string} value the new value of the field, default is true
+     * @param {boolean} value the new value of the field, default is true
      **/
-    function setFieldTouched(name: Paths<Values<T>>, value = true): void {
+    function setFieldTouched<N extends FieldPath<Values<T>>>(
+      name: N,
+      value = true
+    ): void {
       try {
         $store.patch(`touched.${name}`, value).notify(shouldNotify);
       } catch (e) {
@@ -440,6 +449,4 @@ export function createForm<T extends CreateFormArgs<Values<T>>>(args: T) {
       resetValues,
     };
   };
-
-  return hook as Form<Values<T>>;
 }

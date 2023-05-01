@@ -119,27 +119,6 @@ export type RegisterArgs<T> =
 
 export type FieldName<T extends CreateFormArgs<T>> = Values<T>;
 
-export type Form<T> = (hookArgs?: HookArgs<T>) => {
-  $form: Store<any>;
-  state: State<T>;
-  register: (args: RegisterArgs<T>) => any;
-  handleReset: (
-    reset: (values: T) => void
-  ) => (event: React.FormEvent<HTMLFormElement>) => void;
-  handleSubmit: (
-    submit: (values: T, isValid: boolean) => void
-  ) => (event: React.FormEvent<HTMLFormElement>) => Promise<void>;
-  setFieldValue: (name: Paths<T>, value: any) => void;
-  setFieldError: (name: Paths<T>, message: string) => void;
-  setFieldTouched: (name: Paths<T>, value?: boolean) => void;
-  setFieldsValue: (next: StateChange<T>) => void;
-  setFieldsError: (next: StateChange<Errors<T>>) => void;
-  setFieldsTouched: (next: StateChange<Touched<T>>) => void;
-  resetErrors: () => void;
-  resetTouched: () => void;
-  resetValues: () => void;
-};
-
 /**
  * Get the value path, and turn it into a type.
  */
@@ -164,3 +143,57 @@ export type Paths<T> = T extends ReadonlyArray<infer V>
   : {
       [K in keyof T]-?: PathImpl<K & string, T[K]>;
     }[keyof T];
+
+/**
+ * turn the field path into a type, it's used to define the correct type in function that receive the field path.
+ * example : setFieldError(`person.name`, `error message`)
+ */
+export type FieldPath<TFieldValues extends FieldValues> = Paths<TFieldValues>;
+
+export type FieldValues = any;
+
+type ArrayPathImpl<K extends string | number, V> = V extends PrimitiveValue
+  ? never
+  : V extends ReadonlyArray<infer U>
+  ? U extends PrimitiveValue
+    ? never
+    : `${K}` | `${K}.${ArrayPath<V>}`
+  : `${K}.${ArrayPath<V>}`;
+
+export type ArrayPath<T> = T extends ReadonlyArray<infer V>
+  ? IsTuple<T> extends true
+    ? {
+        [K in TupleKey<T>]-?: ArrayPathImpl<K & string, T[K]>;
+      }[TupleKey<T>]
+    : ArrayPathImpl<ArrayKey, V>
+  : {
+      [K in keyof T]-?: ArrayPathImpl<K & string, T[K]>;
+    }[keyof T];
+
+export type PathValue<T, P extends Paths<T> | ArrayPath<T>> = T extends any
+  ? P extends `${infer K}.${infer R}`
+    ? K extends keyof T
+      ? R extends Paths<T[K]>
+        ? PathValue<T[K], R>
+        : never
+      : K extends `${ArrayKey}`
+      ? T extends ReadonlyArray<infer V>
+        ? PathValue<V, R & Paths<V>>
+        : never
+      : never
+    : P extends keyof T
+    ? T[P]
+    : P extends `${ArrayKey}`
+    ? T extends ReadonlyArray<infer V>
+      ? V
+      : never
+    : never
+  : never;
+
+/**
+ * gets the property type form initial form values
+ */
+export type FieldPathValue<
+  TFieldValues extends FieldValues,
+  TFieldPath extends FieldPath<TFieldValues>
+> = PathValue<TFieldValues, TFieldPath>;

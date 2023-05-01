@@ -3,24 +3,12 @@ import { createForm } from "@createform/react";
 const useForm = createForm({
   initialValues: {
     email: "",
-    test: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-    address: {
-      street: "",
-      number: 23,
-    },
   },
   mode: "onChange",
 });
 
 export function FormDemo() {
-  const {
-    register,
-    setFieldError,
-    handleSubmit,
-    state,
-    handleReset,
-    setFieldValue,
-  } = useForm();
+  const { register, handleSubmit, state, handleReset } = useForm();
   const { errors, touched } = state;
 
   return (
@@ -42,18 +30,11 @@ export function FormDemo() {
         <input
           id="email"
           className="shadow-sm bg-transparent border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-          {...register("test.5")}
-        />
-        <input
-          id="email"
-          className="shadow-sm bg-transparent border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-          {...register({ name: "test.0" })}
-        />
-        <input
           {...register({
-            name: "email", // (property) name: "email" | "test" | `test.${number}`
+            name: "email",
             type: "email",
             placeholder: "createform@demo.com",
+            required: true,
           })}
         />
         <span className="text-red-600">{touched.email && errors.email}</span>

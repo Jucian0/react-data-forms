@@ -35,6 +35,9 @@ export type Errors<Values> = {
     : Errors<Values[k]>;
 };
 
+export type Values<T extends CreateFormArgs<T["initialValues"]>> =
+  T["initialValues"];
+
 /**
  * useForm hook needs an object that describe and provide some properties like initial values of form, initial errors of form, initial touched of form,
  * and needs know what kind of form, is Controlled, debounced is about that.
@@ -107,10 +110,24 @@ export type StateChange<T> = T | ((state: T) => T);
 
 export type StateOfField = "values" | "touched" | "errors";
 
-export type RegisterArgs<T> = React.InputHTMLAttributes<Field> & {
-  validate?: any;
-  name: Paths<T>;
-};
+export type RegisterArgs<T> =
+  | (React.InputHTMLAttributes<Field> & {
+      validate?: any;
+      name: Paths<T>;
+    })
+  | Paths<T>;
+
+export type FieldName<T extends CreateFormArgs<T>> = Values<T>;
+
+export type Paths<ObjectType> = {
+  [Key in keyof ObjectType & (string | number)]: ObjectType[Key] extends object
+    ?
+        | `${Key}`
+        | `${Key}.${Paths<ObjectType[Key]> extends infer U extends string
+            ? U
+            : never}`
+    : `${Key}`;
+}[keyof ObjectType & (string | number)];
 
 export type Form<T> = (hookArgs?: HookArgs<T>) => {
   $form: Store<any>;
@@ -122,9 +139,9 @@ export type Form<T> = (hookArgs?: HookArgs<T>) => {
   handleSubmit: (
     submit: (values: T, isValid: boolean) => void
   ) => (event: React.FormEvent<HTMLFormElement>) => Promise<void>;
-  setFieldValue: (name: string, value: any) => void;
-  setFieldError: (name: string, message: string) => void;
-  setFieldTouched: (name: string, value?: boolean) => void;
+  setFieldValue: (name: Paths<T>, value: any) => void;
+  setFieldError: (name: Paths<T>, message: string) => void;
+  setFieldTouched: (name: Paths<T>, value?: boolean) => void;
   setFieldsValue: (next: StateChange<T>) => void;
   setFieldsError: (next: StateChange<Errors<T>>) => void;
   setFieldsTouched: (next: StateChange<Touched<T>>) => void;
@@ -132,45 +149,3 @@ export type Form<T> = (hookArgs?: HookArgs<T>) => {
   resetTouched: () => void;
   resetValues: () => void;
 };
-
-type Prev = [
-  never,
-  0,
-  1,
-  2,
-  3,
-  4,
-  5,
-  6,
-  7,
-  8,
-  9,
-  10,
-  11,
-  12,
-  13,
-  14,
-  15,
-  16,
-  17,
-  18,
-  19,
-  20,
-  ...0[]
-];
-
-type Join<K, P> = K extends string | number
-  ? P extends string | number
-    ? `${K}${"" extends P ? "" : "."}${P}`
-    : never
-  : never;
-
-export type Paths<T, D extends number = 10> = [D] extends [never]
-  ? never
-  : T extends object
-  ? {
-      [K in keyof T]-?: K extends string | number
-        ? `${K}` | Join<K, Paths<T[K], Prev[D]>>
-        : never;
-    }[keyof T]
-  : "";

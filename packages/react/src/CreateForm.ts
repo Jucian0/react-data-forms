@@ -7,8 +7,10 @@ import {
   Field,
   Form,
   HookArgs,
+  Paths,
   RegisterArgs,
   Touched,
+  Values,
 } from "./Types";
 import * as Dot from "./ObjectUtils";
 import { extractRadioElements, isCheckbox, isRadio } from "./FieldsUtils";
@@ -27,9 +29,7 @@ const defaultValues = {
  * @param args CreateFormArgs type that contains the initial values of form, initial errors of form, initial touched of form,
  * @returns {function(*): *} a function that returns a hook that can be used to manage the form state.
  **/
-export function createForm<T extends CreateFormArgs<T["initialValues"]>>(
-  args: T
-): Form<T["initialValues"]> {
+export function createForm<T extends CreateFormArgs<Values<T>>>(args: T) {
   const { initialValues, initialErrors, initialTouched, validationSchema } = {
     ...defaultValues,
     ...args,
@@ -58,7 +58,7 @@ export function createForm<T extends CreateFormArgs<T["initialValues"]>>(
    **/
   const inputsRefs = {} as { [k: string]: React.RefObject<any> };
 
-  return (hookArgs?: HookArgs<T["initialValues"]>) => {
+  const hook = (hookArgs?: HookArgs<Values<T>>) => {
     const state = React.useSyncExternalStore(
       (fn) => $store.subscribe(debounce(fn, debouncedTime)),
       $store.get,
@@ -177,7 +177,7 @@ export function createForm<T extends CreateFormArgs<T["initialValues"]>>(
      *   />
      * );
      */
-    function register(args: RegisterArgs<T["initialValues"]>) {
+    function register(args: RegisterArgs<Values<T>>) {
       let props = {} as any;
 
       if (typeof args === "object") {
@@ -240,7 +240,7 @@ export function createForm<T extends CreateFormArgs<T["initialValues"]>>(
      * @returns {(event: React.FormEvent<HTMLFormElement>) => Promise<void>} An async * function that handles submit event
      */
     function handleSubmit(
-      submit: (values: T["initialValues"], isValid: boolean) => void
+      submit: (values: Values<T>, isValid: boolean) => void
     ): (event: React.FormEvent<HTMLFormElement>) => Promise<void> {
       if (typeof submit !== "function") {
         throw Error("Submit function is required");
@@ -277,7 +277,7 @@ export function createForm<T extends CreateFormArgs<T["initialValues"]>>(
      * @throws {Error} If reset parameter is not a function
      * @returns {(event: React.FormEvent<HTMLFormElement>) => void} A function that handles reset * * event
      */
-    function handleReset(reset: (values: T["initialValues"]) => void) {
+    function handleReset(reset: (values: Values<T>) => void) {
       if (typeof reset !== "function") {
         throw Error("Reset function is required");
       }
@@ -312,7 +312,7 @@ export function createForm<T extends CreateFormArgs<T["initialValues"]>>(
      * @param {string} name - Name of the field
      * @param {any} value - Value to set the field to
      */
-    function setFieldValue(name: string, value: any) {
+    function setFieldValue(name: Paths<Values<T>>, value: any) {
       try {
         setFieldRefValue(name, value);
         $store.patch(`values.${name}`, value).notify(shouldNotify);
@@ -326,7 +326,7 @@ export function createForm<T extends CreateFormArgs<T["initialValues"]>>(
      * @template T
      * @param {StateChange<T['initialValues']>} next - Object containing updated field values or a * function to produce updated field values
      */
-    function setFieldsValue(next: StateChange<T["initialValues"]>) {
+    function setFieldsValue(next: StateChange<Values<T>>) {
       //@ts-ignore
       const nextValues = typeof next === "function" ? next(state.values) : next;
       try {
@@ -342,10 +342,10 @@ export function createForm<T extends CreateFormArgs<T["initialValues"]>>(
 
     /**
      * Set error message for a specific field in the form.
-     * @param {string} name - Name of the field
+     * @param {Paths<Values<T>>} name - Name of the field
      * @param {string} message - Error message to set for the field
      */
-    function setFieldError(name: string, message: string) {
+    function setFieldError(name: Paths<Values<T>>, message: string) {
       try {
         $store.patch(`errors.${name}`, message).notify(shouldNotify);
       } catch (e) {
@@ -357,7 +357,7 @@ export function createForm<T extends CreateFormArgs<T["initialValues"]>>(
      * Set error messages for multiple fields in the form.
      * @param {StateChange<Errors<T['initialValues']>>} next - The updated error messages. Can be * * either an object or a function that returns an object.
      */
-    function setFieldsError(next: StateChange<Errors<T["initialValues"]>>) {
+    function setFieldsError(next: StateChange<Errors<Values<T>>>) {
       const nextErrors =
         typeof next === "function" ? next($store.get().errors) : next;
       try {
@@ -369,10 +369,10 @@ export function createForm<T extends CreateFormArgs<T["initialValues"]>>(
 
     /**
      * This function will set the touched value of a field.
-     * @param {string} name the name of the field to set
+     * @param {Paths<Values<T>>} name the name of the field to set
      * @param {string} value the new value of the field, default is true
      **/
-    function setFieldTouched(name: string, value = true): void {
+    function setFieldTouched(name: Paths<Values<T>>, value = true): void {
       try {
         $store.patch(`touched.${name}`, value).notify(shouldNotify);
       } catch (e) {
@@ -385,7 +385,7 @@ export function createForm<T extends CreateFormArgs<T["initialValues"]>>(
      * @template T
      * @param {StateChange<T['initialValues']>} next - Object containing updated field touched state or a * function to produce updated field touched states
      */
-    function setFieldsTouched(next: StateChange<Touched<T["initialValues"]>>) {
+    function setFieldsTouched(next: StateChange<Touched<Values<T>>>) {
       const nextTouched =
         typeof next === "function" ? next($store.get().touched) : next;
       try {
@@ -400,7 +400,7 @@ export function createForm<T extends CreateFormArgs<T["initialValues"]>>(
      * @function
      */
     function resetValues() {
-      setFieldsValue(initialValues as T["initialValues"]);
+      setFieldsValue(initialValues as Values<T>);
     }
 
     /**
@@ -440,4 +440,6 @@ export function createForm<T extends CreateFormArgs<T["initialValues"]>>(
       resetValues,
     };
   };
+
+  return hook as Form<Values<T>>;
 }

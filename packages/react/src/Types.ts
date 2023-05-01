@@ -35,6 +35,9 @@ export type Errors<Values> = {
     : Errors<Values[k]>;
 };
 
+export type Values<T extends CreateFormArgs<T["initialValues"]>> =
+  T["initialValues"];
+
 /**
  * useForm hook needs an object that describe and provide some properties like initial values of form, initial errors of form, initial touched of form,
  * and needs know what kind of form, is Controlled, debounced is about that.
@@ -107,23 +110,28 @@ export type StateChange<T> = T | ((state: T) => T);
 
 export type StateOfField = "values" | "touched" | "errors";
 
-export type RegisterArgs = (React.InputHTMLAttributes<Field> | string) & {
-  validate?: any;
-};
+export type RegisterArgs<T> =
+  | (React.InputHTMLAttributes<Field> & {
+      validate?: any;
+      name: Paths<T>;
+    })
+  | Paths<T>;
+
+export type FieldName<T extends CreateFormArgs<T>> = Values<T>;
 
 export type Form<T> = (hookArgs?: HookArgs<T>) => {
   $form: Store<any>;
   state: State<T>;
-  register: (args: RegisterArgs) => any;
+  register: (args: RegisterArgs<T>) => any;
   handleReset: (
     reset: (values: T) => void
   ) => (event: React.FormEvent<HTMLFormElement>) => void;
   handleSubmit: (
     submit: (values: T, isValid: boolean) => void
   ) => (event: React.FormEvent<HTMLFormElement>) => Promise<void>;
-  setFieldValue: (name: string, value: any) => void;
-  setFieldError: (name: string, message: string) => void;
-  setFieldTouched: (name: string, value?: boolean) => void;
+  setFieldValue: (name: Paths<T>, value: any) => void;
+  setFieldError: (name: Paths<T>, message: string) => void;
+  setFieldTouched: (name: Paths<T>, value?: boolean) => void;
   setFieldsValue: (next: StateChange<T>) => void;
   setFieldsError: (next: StateChange<Errors<T>>) => void;
   setFieldsTouched: (next: StateChange<Touched<T>>) => void;
@@ -131,3 +139,28 @@ export type Form<T> = (hookArgs?: HookArgs<T>) => {
   resetTouched: () => void;
   resetValues: () => void;
 };
+
+/**
+ * Get the value path, and turn it into a type.
+ */
+type IsTuple<T extends ReadonlyArray<any>> = number extends T["length"]
+  ? false
+  : true;
+
+type TupleKey<T extends ReadonlyArray<any>> = Exclude<keyof T, keyof any[]>;
+
+type ArrayKey = number;
+
+type PathImpl<K extends string | number, V> = V extends PrimitiveValue
+  ? `${K}`
+  : `${K}` | `${K}.${Paths<V>}`;
+
+export type Paths<T> = T extends ReadonlyArray<infer V>
+  ? IsTuple<T> extends true
+    ? {
+        [K in TupleKey<T>]-?: PathImpl<K & string, T[K]>;
+      }[TupleKey<T>]
+    : PathImpl<ArrayKey, V>
+  : {
+      [K in keyof T]-?: PathImpl<K & string, T[K]>;
+    }[keyof T];

@@ -1,3 +1,14 @@
+## [3.3.25](https://github.com/jucian0/createform/compare/v3.3.24...v3.3.25) (2023-05-01)
+
+
+### Bug Fixes
+
+* **createform:** fix register params types ([a4dd3d4](https://github.com/jucian0/createform/commit/a4dd3d4cfb304328a3f94b61d90ffd5d01aa0077))
+* **types:** adding typed field name for register, setField error ,value,touched functions ([6e8d923](https://github.com/jucian0/createform/commit/6e8d9239ad25388bf36ea258922e461c82096553))
+* **types:** adding typed field name for register, setField error ,value,touched functions ([e62fe4f](https://github.com/jucian0/createform/commit/e62fe4f402aa38c21161c4a452a796aa2111b95e))
+
+
+
 ## [3.3.24](https://github.com/jucian0/createform/compare/v3.3.23...v3.3.24) (2023-04-22)
 
 

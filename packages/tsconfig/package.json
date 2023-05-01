@@ -1,6 +1,6 @@
 {
   "name": "@createform/tsconfig",
-  "version": "3.3.24",
+  "version": "3.3.25",
   "license": "MIT",
   "publishConfig": {
     "access": "public"

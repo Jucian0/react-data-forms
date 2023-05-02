@@ -1,6 +1,9 @@
 ![createform-logo](img/logo.svg)
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <h1 align="center">Createform</h1>
@@ -15,7 +18,7 @@
 
 Createform is an open source project that allows you to create forms easily, different from the others options, this package guides you to create custom hooks to manage your forms, you can use the same form in different components without context API.
 
-- As other packages, you can also use yup validation to validate your form.
+- As other packages, you can also use Yup or Zod validation to validate your form.
 - You can also use different approaches to handle your form, like `onSubmit | onChange | debounce`.
 - Less code than other options.
 

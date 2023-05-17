@@ -145,6 +145,26 @@ describe("CreateForm", () => {
   );
 
   each(["onChange", "debounce"]).it(
+    "Should reset the hook state when run resetForm - [%s] mode",
+    async (mode) => {
+      const initialValues = makeMockedValues();
+      const form = makeCreateFormSut({ initialValues }, mode);
+      const newErrors = makeMockedValues();
+      form.sut.current.setFieldsError(newErrors);
+
+      await waitFor(() => {
+        expect(form.sut.current.state.errors).toEqual(newErrors);
+      });
+      form.sut.current.resetForm();
+      await waitFor(() => {
+        expect(form.sut.current.state.errors).toEqual({});
+        expect(form.sut.current.state.touched).toEqual({});
+        expect(form.sut.current.state.values).toEqual(initialValues);
+      });
+    }
+  );
+
+  each(["onChange", "debounce"]).it(
     "Should update the hook when run resetErrors - [%s] mode",
     async (mode) => {
       const initialValues = makeMockedValues();

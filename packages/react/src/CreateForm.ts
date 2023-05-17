@@ -288,23 +288,31 @@ export function createForm<T extends CreateFormArgs<Values<T>>>(args: T) {
       return (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        $store
-          .set({
-            values: initialValues,
-            errors: initialErrors,
-            touched: initialTouched,
-            isValid: Dot.isEmpty(initialErrors),
-            isTouched: Dot.isEmpty(!initialTouched),
-          })
-          .notify();
-
-        for (const key in inputsRefs) {
-          const value = Dot.get(initialValues, key) || "";
-          setFieldRefValue(key, value);
-        }
+        resetForm();
 
         reset(initialValues);
       };
+    }
+
+    /**
+     * Resets the form by setting initial values, errors, touched state, and field values.
+     * Notifies the $store after resetting the form.
+     */
+    function resetForm() {
+      $store
+        .set({
+          values: initialValues,
+          errors: initialErrors,
+          touched: initialTouched,
+          isValid: Dot.isEmpty(initialErrors),
+          isTouched: Dot.isEmpty(!initialTouched),
+        })
+        .notify();
+
+      for (const key in inputsRefs) {
+        const value = Dot.get(initialValues, key) || "";
+        setFieldRefValue(key, value);
+      }
     }
 
     /**
@@ -447,6 +455,7 @@ export function createForm<T extends CreateFormArgs<Values<T>>>(args: T) {
       resetErrors,
       resetTouched,
       resetValues,
+      resetForm,
     };
   };
 }

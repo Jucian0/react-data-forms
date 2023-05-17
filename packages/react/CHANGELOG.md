@@ -1,3 +1,12 @@
+# [3.4.0](https://github.com/jucian0/createform/compare/v3.3.29...v3.4.0) (2023-05-17)
+
+
+### Features
+
+* **createform:** add resetForm function ([d4a0526](https://github.com/jucian0/createform/commit/d4a052615052e1aa57b4360c24e6a422b9714df5))
+
+
+
 ## [3.3.29](https://github.com/jucian0/createform/compare/v3.3.28...v3.3.29) (2023-05-02)
 
 

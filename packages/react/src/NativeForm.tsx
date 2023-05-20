@@ -38,8 +38,10 @@ export function useNativeForm<T extends NativeFormArgs<Values<T>>>(args: T) {
         if (element.tagName === "INPUT") {
           const inputElement = element as HTMLInputElement;
 
-          if (inputElement.type === "checkbox") {
-            console.log(element);
+          if (
+            inputElement.type === "checkbox" ||
+            inputElement.type === "radio"
+          ) {
             inputElement.defaultChecked = D.get(
               initialValues,
               inputElement.name

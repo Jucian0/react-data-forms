@@ -7,6 +7,9 @@ const data = {
   email: "juciano@juciano.com",
   select: "option1",
   checkbox: true,
+  range: 23,
+  radio: "2",
+  color: "",
 };
 
 export function FormDataWay() {
@@ -28,6 +31,21 @@ export function FormDataWay() {
         <Stack p={5}>
           <Input name="lastname" />
         </Stack>
+
+        <Stack p={5}>
+          <Input name="range" type="range" />
+        </Stack>
+
+        <Stack p={5}>
+          <input name="color" type="color" />
+        </Stack>
+
+        <Stack p={5}>
+          <input name="radio" type="radio" value="1" />
+          <input name="radio" type="radio" value="2" />
+          <input name="radio" type="radio" value="3" />
+        </Stack>
+
         <Stack p={5}>
           <Input name="email" type="email" />
         </Stack>

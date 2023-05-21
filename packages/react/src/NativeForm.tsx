@@ -1,7 +1,7 @@
 import React from "react";
 import * as D from "./ObjectUtils";
 import { CreateFormArgs, Values } from "./Types";
-import { validate } from "./Validate";
+import { validate, validateSync } from "./Validate";
 
 const defaultValues = {
   initialValues: {},
@@ -64,7 +64,7 @@ export function useNativeForm<T extends NativeFormArgs<Values<T>>>(args: T) {
     }
   }
 
-  function setElementValue(name: string, value: any) {
+  function setFieldValue(name: string, value: any) {
     const element = formRef.current?.elements?.namedItem(name) as Element;
 
     if (element && element.tagName === "INPUT") {
@@ -105,6 +105,21 @@ export function useNativeForm<T extends NativeFormArgs<Values<T>>>(args: T) {
     ) as Values<T>;
   }
 
+  function getErrors() {
+    return validateSync(
+      D.formDataToJson(new FormData(formRef.current as HTMLFormElement)) as {},
+      validationSchema
+    );
+  }
+
+  function register() {
+    return {
+      ref: formRef,
+      onSubmit: handleOnSubmit,
+      onReset: handleOnReset,
+    };
+  }
+
   React.useEffect(() => {
     if (formRef.current) {
       setAllElementsValue(formRef.current, initialValues);
@@ -112,15 +127,10 @@ export function useNativeForm<T extends NativeFormArgs<Values<T>>>(args: T) {
   }, [formRef]);
 
   return {
-    register: () => ({
-      ref: formRef,
-      onSubmit: handleOnSubmit,
-      onReset: handleOnReset,
-    }),
-    setFieldValue: (name: string, value: any) => {
-      setElementValue(name, value);
-    },
+    register,
+    setFieldValue,
     getValues,
+    getErrors,
     errors,
   };
 }

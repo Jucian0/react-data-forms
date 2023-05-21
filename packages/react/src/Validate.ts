@@ -34,3 +34,27 @@ export async function validate<TValues extends {}>(
       }, {});
     });
 }
+
+export function validateSync<TValues extends {}>(
+  values: TValues,
+  validationSchema: any
+) {
+  if (validationSchema?._def?.typeName) {
+    try {
+      validationSchema.parse(values);
+    } catch (e) {
+      return JSON.parse(e as any).reduce((acc: {}, key: any) => {
+        const path = key.path.length > 0 ? key.path.join(".") : "message";
+        return Dot.set(acc, path, key.message);
+      }, {});
+    }
+  }
+  try {
+    validationSchema?.validateSync(values, { abortEarly: false });
+  } catch (e) {
+    return (e as any).inner.reduce((acc: {}, key: any) => {
+      const path = makeDotNotation(key.path || "message");
+      return Dot.set(acc, path, key.message);
+    }, {});
+  }
+}

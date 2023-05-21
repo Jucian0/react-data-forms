@@ -19,7 +19,7 @@ const data = {
 };
 
 export function FormDataWay() {
-  const { register, errors } = useNativeForm({
+  const { register, errors, setFieldValue, getValues } = useNativeForm({
     initialValues: data,
     onSubmit,
     validationSchema,
@@ -75,6 +75,22 @@ export function FormDataWay() {
           <Button type="submit">Submit</Button>
         </Stack>
       </form>
+
+      <Button onClick={() => setFieldValue("name", "juliano")}>
+        Set name and lastname
+      </Button>
+
+      <Button onClick={() => setFieldValue("email", "juliano@juliano.com")}>
+        Set email
+      </Button>
+
+      <Button
+        onClick={() => {
+          console.log(getValues());
+        }}
+      >
+        Get values
+      </Button>
     </Stack>
   );
 }

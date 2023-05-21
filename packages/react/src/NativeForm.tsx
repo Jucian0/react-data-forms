@@ -13,6 +13,24 @@ type NativeFormArgs<T> = Omit<CreateFormArgs<T>, "initialTouched"> & {
   onReset?: (e: T) => void;
 };
 
+function isRadioOrCheckbox(element: any) {
+  return element.type === "radio" || element.type === "checkbox";
+}
+
+function isSelect(element: any) {
+  return element.type === "select";
+}
+
+function setOptionAsDefault(element: HTMLSelectElement, value: any) {
+  const index = Array.from(element.options).findIndex(
+    (option) => option.value === value
+  );
+
+  if (index !== -1) {
+    element.options[index].defaultSelected = true;
+  }
+}
+
 export function useNativeForm<T extends NativeFormArgs<Values<T>>>(args: T) {
   const formRef = React.useRef<HTMLFormElement>(null);
 
@@ -29,6 +47,7 @@ export function useNativeForm<T extends NativeFormArgs<Values<T>>>(args: T) {
     if (validationSchema) {
       try {
         await validate(D.formDataToJson(formData) as {}, validationSchema);
+        setErrors({});
       } catch (errors: any) {
         setErrors(errors);
       }
@@ -41,40 +60,54 @@ export function useNativeForm<T extends NativeFormArgs<Values<T>>>(args: T) {
     args.onReset?.(formData);
 
     if (validationSchema) {
-      try {
-        await validate(D.formDataToJson(formData) as {}, validationSchema);
-      } catch (errors: any) {
-        setErrors(errors);
+      setErrors(initialErrors);
+    }
+  }
+
+  function setElementValue(name: string, value: any) {
+    const element = formRef.current?.elements?.namedItem(name) as Element;
+
+    if (element && element.tagName === "INPUT") {
+      const inputElement = element as HTMLInputElement;
+      if (isRadioOrCheckbox(inputElement)) {
+        inputElement.checked = value;
+      } else {
+        inputElement.value = value;
+      }
+    } else if (isSelect(element)) {
+      setOptionAsDefault(element as HTMLSelectElement, value);
+    }
+  }
+
+  function setAllElementsValue(formElement: HTMLFormElement, values = {}) {
+    const elements = formElement.elements;
+    const len = elements.length;
+    for (let i = 0; i < len; i++) {
+      const element = elements[i];
+      if (element.tagName === "INPUT") {
+        const inputElement = element as HTMLInputElement;
+
+        if (isRadioOrCheckbox(inputElement)) {
+          inputElement.defaultChecked = D.get(values, inputElement.name);
+        } else {
+          inputElement.defaultValue = D.get(values, inputElement.name);
+        }
+      } else if (isSelect(element)) {
+        const selectElement = element as HTMLSelectElement;
+        setOptionAsDefault(selectElement, D.get(values, selectElement.name));
       }
     }
   }
 
+  function getValues() {
+    return D.formDataToJson(
+      new FormData(formRef.current as HTMLFormElement)
+    ) as Values<T>;
+  }
+
   React.useEffect(() => {
     if (formRef.current) {
-      Array.from(formRef.current.elements).forEach((element) => {
-        if (element.tagName === "INPUT") {
-          const inputElement = element as HTMLInputElement;
-
-          if (
-            inputElement.type === "checkbox" ||
-            inputElement.type === "radio"
-          ) {
-            inputElement.defaultChecked = D.get(
-              initialValues,
-              inputElement.name
-            );
-          } else {
-            inputElement.defaultValue = D.get(initialValues, inputElement.name);
-          }
-        } else if (element.tagName === "SELECT") {
-          const selectElement = element as HTMLSelectElement;
-          Array.from(selectElement.options).findIndex((element) => {
-            if (element.value === D.get(initialValues, selectElement.name)) {
-              element.defaultSelected = true;
-            }
-          });
-        }
-      });
+      setAllElementsValue(formRef.current, initialValues);
     }
   }, [formRef]);
 
@@ -84,6 +117,10 @@ export function useNativeForm<T extends NativeFormArgs<Values<T>>>(args: T) {
       onSubmit: handleOnSubmit,
       onReset: handleOnReset,
     }),
+    setFieldValue: (name: string, value: any) => {
+      setElementValue(name, value);
+    },
+    getValues,
     errors,
   };
 }

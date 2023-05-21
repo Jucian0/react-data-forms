@@ -1,14 +1,14 @@
 import React from "react";
 import * as D from "./ObjectUtils";
 import { CreateFormArgs, Values } from "./Types";
+import { validate } from "./Validate";
 
 const defaultValues = {
   initialValues: {},
   initialErrors: {},
-  initialTouched: {},
 };
 
-type NativeFormArgs<T> = CreateFormArgs<T> & {
+type NativeFormArgs<T> = Omit<CreateFormArgs<T>, "initialTouched"> & {
   onSubmit?: (e: T) => void;
   onReset?: (e: T) => void;
 };
@@ -16,15 +16,24 @@ type NativeFormArgs<T> = CreateFormArgs<T> & {
 export function useNativeForm<T extends NativeFormArgs<Values<T>>>(args: T) {
   const formRef = React.useRef<HTMLFormElement>(null);
 
-  const { initialValues, initialErrors, initialTouched, validationSchema } = {
+  const { initialValues, initialErrors, validationSchema } = {
     ...defaultValues,
     ...args,
   };
+  const [errors, setErrors] = React.useState(initialErrors);
 
-  function handleOnSubmit(e: React.FormEvent) {
+  async function handleOnSubmit(e: React.FormEvent) {
     e.preventDefault();
     const formData = new FormData(e.currentTarget as HTMLFormElement);
-    args.onSubmit?.(formData);
+
+    if (validationSchema) {
+      const errors = await validate(
+        D.formDataToJson(formData) as {},
+        validationSchema
+      );
+      setErrors(errors);
+    }
+    args.onSubmit?.(D.formDataToJson(formData));
   }
 
   function handleOnReset(e: React.FormEvent) {
@@ -67,5 +76,6 @@ export function useNativeForm<T extends NativeFormArgs<Values<T>>>(args: T) {
       onSubmit: handleOnSubmit,
       onReset: handleOnReset,
     }),
+    errors,
   };
 }

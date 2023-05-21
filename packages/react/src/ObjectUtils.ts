@@ -92,3 +92,13 @@ export function isEmpty(obj: any) {
   }
   return true;
 }
+
+export function formDataToJson<T>(formData: FormData) {
+  let obj = {};
+
+  formData.forEach((value, key) => {
+    obj = set(obj, key, value);
+  });
+
+  return obj as T;
+}

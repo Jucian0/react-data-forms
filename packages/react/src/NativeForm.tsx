@@ -27,18 +27,26 @@ export function useNativeForm<T extends NativeFormArgs<Values<T>>>(args: T) {
     const formData = new FormData(e.currentTarget as HTMLFormElement);
 
     if (validationSchema) {
-      const errors = await validate(
-        D.formDataToJson(formData) as {},
-        validationSchema
-      );
-      setErrors(errors);
+      try {
+        await validate(D.formDataToJson(formData) as {}, validationSchema);
+      } catch (errors: any) {
+        setErrors(errors);
+      }
     }
     args.onSubmit?.(D.formDataToJson(formData));
   }
 
-  function handleOnReset(e: React.FormEvent) {
+  async function handleOnReset(e: React.FormEvent) {
     const formData = new FormData(e.currentTarget as HTMLFormElement);
     args.onReset?.(formData);
+
+    if (validationSchema) {
+      try {
+        await validate(D.formDataToJson(formData) as {}, validationSchema);
+      } catch (errors: any) {
+        setErrors(errors);
+      }
+    }
   }
 
   React.useEffect(() => {

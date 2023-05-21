@@ -1,5 +1,11 @@
 import { Button, Checkbox, Input, Select, Stack } from "@chakra-ui/react";
 import { useNativeForm } from "@createform/react";
+import { z } from "zod";
+
+const validationSchema = z.object({
+  name: z.string().min(6),
+  lastname: z.string().min(8),
+});
 
 const data = {
   name: "juciano",
@@ -13,10 +19,12 @@ const data = {
 };
 
 export function FormDataWay() {
-  const { register } = useNativeForm({
+  const { register, errors } = useNativeForm({
     initialValues: data,
     onSubmit,
+    validationSchema,
   });
+  console.log(errors);
 
   function onSubmit(e: typeof data) {
     console.log(e);
@@ -27,6 +35,7 @@ export function FormDataWay() {
       <form {...register()}>
         <Stack p={5}>
           <Input name="name" />
+          <span>{errors.name}</span>
         </Stack>
         <Stack p={5}>
           <Input name="lastname" />

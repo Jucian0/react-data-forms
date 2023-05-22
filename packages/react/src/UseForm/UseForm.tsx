@@ -2,7 +2,7 @@ import React from "react";
 import * as D from "@createform/object-utils";
 import { validateSync } from "@createform/validation";
 import { isRadioOrCheckbox, isSelect, setOptionAsDefault } from "./FieldsUtils";
-import { Errors, UseFormArgs, Values } from "./Types";
+import { Errors, UseForm, UseFormArgs, Values } from "./Types";
 import { FieldPath, FieldPathValue, StateChange } from "../Types";
 
 const defaultValues = {
@@ -10,7 +10,26 @@ const defaultValues = {
   initialErrors: {},
 };
 
-export function useForm<T extends UseFormArgs<Values<T>>>(args: T) {
+/**
+ * Creates a form controller that handles form submission and reset events, and
+ * provides functions to set form field values and errors, and retrieve form values
+ * and errors.
+ *
+ * @template T - The shape of the form values object.
+ * @param {UseFormArgs<Values<T>>} args - The arguments for the useForm function.
+ * @return {Object} An object with the following properties:
+ *   - register: A function that returns the form reference and the functions to handle
+ *     form submission and form reset events.
+ *   - setFieldValue: A function that sets the value of a form field with the given name
+ *     to the provided value.
+ *   - setFieldsValue: A function that sets the values of form fields.
+ *   - setFieldsError: A function that sets errors for form fields.
+ *   - getValues: A function that returns the values from a form as a JSON object.
+ *   - getErrors: A function that returns the errors object after validating the form data
+ *     by using the provided validation schema.
+ *   - errors: The current errors object.
+ */
+export function useForm<T extends UseFormArgs<Values<T>>>(args: T): UseForm<T> {
   const formRef = React.useRef<HTMLFormElement>(null);
 
   const { initialValues, initialErrors, validationSchema } = {

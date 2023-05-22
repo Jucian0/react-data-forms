@@ -1,5 +1,5 @@
 import { Button, Input, Select, Stack } from "@chakra-ui/react";
-import { useForm } from "@createform/nativeform";
+import { useForm } from "@createform/react";
 import { z } from "zod";
 
 const validationSchema = z.object({
@@ -12,10 +12,12 @@ const data = {
   lastname: "barbosa",
   email: "juciano@juciano.com",
   select: "option1",
-  checkbox: true,
-  range: 23,
-  radio: "2",
   color: "",
+  complex: {
+    checkbox: true,
+    range: 23,
+    radio: "2",
+  },
 };
 
 export function FormDataWay() {
@@ -42,7 +44,7 @@ export function FormDataWay() {
         </Stack>
 
         <Stack p={5}>
-          <Input name="range" type="range" />
+          <Input name="complex.range" type="range" />
         </Stack>
 
         <Stack p={5}>
@@ -50,9 +52,9 @@ export function FormDataWay() {
         </Stack>
 
         <Stack p={5}>
-          <input name="radio" type="radio" value="1" />
-          <input name="radio" type="radio" value="2" />
-          <input name="radio" type="radio" value="3" />
+          <input name="complex.radio" type="radio" value="1" />
+          <input name="complex.radio" type="radio" value="2" />
+          <input name="complex.radio" type="radio" value="3" />
         </Stack>
 
         <Stack p={5}>
@@ -60,7 +62,7 @@ export function FormDataWay() {
         </Stack>
 
         <Stack p={5}>
-          <input name="checkbox" type="checkbox" />
+          <input name="complex.checkbox" type="checkbox" />
         </Stack>
 
         <Stack p={5}>

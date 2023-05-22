@@ -1,3 +1,5 @@
+import { FieldPath, FieldPathValue, StateChange } from "../Types";
+
 /**
  * state is one of properties that is returned by useForm hook, this object contains the current state of form when the form is controlled or debounced.
  */
@@ -41,4 +43,21 @@ export type UseFormArgs<T> = {
    * @param e the form values object
    * */
   readonly onReset?: (e: T) => void;
+};
+
+export type UseForm<T extends UseFormArgs<Values<T>>> = {
+  register: () => {
+    ref: React.RefObject<HTMLFormElement>;
+    onSubmit: (e: React.FormEvent) => void;
+    onReset: (e: React.FormEvent) => void;
+  };
+  setFieldValue: <N extends FieldPath<Values<T>>>(
+    name: N,
+    value: FieldPathValue<Values<T>, N>
+  ) => void;
+  setFieldsValue: (next: StateChange<Values<T>>) => void;
+  setFieldsError: (next: StateChange<Errors<Values<T>>>) => void;
+  getValues: () => Values<T>;
+  getErrors: () => Errors<Values<T>>;
+  errors: Errors<Values<T>>;
 };

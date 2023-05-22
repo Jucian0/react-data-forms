@@ -1,5 +1,5 @@
 import { Button, Input, Select, Stack } from "@chakra-ui/react";
-import { useNativeForm } from "@createform/nativeform";
+import { useForm } from "@createform/nativeform";
 import { z } from "zod";
 
 const validationSchema = z.object({
@@ -19,12 +19,11 @@ const data = {
 };
 
 export function FormDataWay() {
-  const { register, errors, getErrors, setFieldValue, getValues } =
-    useNativeForm({
-      initialValues: data,
-      onSubmit,
-      validationSchema,
-    });
+  const { register, errors, getErrors, setFieldValue, getValues } = useForm({
+    initialValues: data,
+    onSubmit,
+    validationSchema,
+  });
   console.log(errors);
 
   function onSubmit(e: typeof data) {

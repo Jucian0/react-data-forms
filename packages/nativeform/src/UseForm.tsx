@@ -1,15 +1,15 @@
 import React from "react";
 import * as D from "@createform/object-utils";
-import { validate, validateSync } from "@createform/validation";
+import { validateSync } from "@createform/validation";
 import { isRadioOrCheckbox, isSelect, setOptionAsDefault } from "./FieldsUtils";
-import { UseFormArgs, Values } from "./Types";
+import { Errors, UseFormArgs, Values } from "./Types";
 
 const defaultValues = {
   initialValues: {},
   initialErrors: {},
 };
 
-export function useNativeForm<T extends UseFormArgs<Values<T>>>(args: T) {
+export function useForm<T extends UseFormArgs<Values<T>>>(args: T) {
   const formRef = React.useRef<HTMLFormElement>(null);
 
   const { initialValues, initialErrors, validationSchema } = {
@@ -18,22 +18,38 @@ export function useNativeForm<T extends UseFormArgs<Values<T>>>(args: T) {
   };
   const [errors, setErrors] = React.useState(initialErrors);
 
-  async function handleOnSubmit(e: React.FormEvent) {
+  /**
+   * Handles form submission by preventing default form submission behavior,
+   * parsing form data, validating it, setting errors if validation fails, and
+   * calling the onSubmit function with the parsed data.
+   *
+   * @param {React.FormEvent} e - The form event that triggered the submission.
+   * @return {void}
+   */
+  function handleOnSubmit(e: React.FormEvent): void {
     e.preventDefault();
     const formData = new FormData(e.currentTarget as HTMLFormElement);
 
     if (validationSchema) {
-      try {
-        await validate(D.formDataToJson(formData) as {}, validationSchema);
-        setErrors({});
-      } catch (errors: any) {
-        setErrors(errors);
-      }
+      const errors = validateSync(
+        D.formDataToJson(formData) as {},
+        validationSchema
+      );
+      setErrors(errors);
     }
     args.onSubmit?.(D.formDataToJson(formData));
   }
 
-  async function handleOnReset(e: React.FormEvent) {
+  /**
+   * Handles the onReset event for a form by constructing a FormData object
+   * from the form element and invoking the onReset callback with the data.
+   * If a validation schema is provided, the component state is also updated
+   * to reset any validation errors.
+   *
+   * @param {React.FormEvent} e - The form event object.
+   * @return {void} Does not return anything.
+   */
+  function handleOnReset(e: React.FormEvent): void {
     const formData = new FormData(e.currentTarget as HTMLFormElement);
     args.onReset?.(formData);
 
@@ -42,6 +58,15 @@ export function useNativeForm<T extends UseFormArgs<Values<T>>>(args: T) {
     }
   }
 
+  /**
+   * Sets the value of a named field in a form. Supports input fields,
+   * select elements, radio buttons, and checkboxes. If the field is a
+   * radio button or checkbox, the `value` parameter sets the `checked`
+   * attribute of the element. Otherwise, it sets the `value` attribute.
+   *
+   * @param {string} name - The name of the field to set.
+   * @param {any} value - The value to set the field to.
+   */
   function setFieldValue(name: string, value: any) {
     const element = formRef.current?.elements?.namedItem(name) as Element;
 
@@ -77,19 +102,38 @@ export function useNativeForm<T extends UseFormArgs<Values<T>>>(args: T) {
     }
   }
 
-  function getValues() {
+  /**
+   * Returns the values from a form as a JSON object.
+   *
+   * @return {Values<T>} The values from the form as a JSON object.
+   */
+  function getValues(): Values<T> {
     return D.formDataToJson(
       new FormData(formRef.current as HTMLFormElement)
     ) as Values<T>;
   }
 
-  function getErrors() {
+  /**
+   * Returns the errors object after validating the form data by using the provided validation schema.
+   *
+   * @return {object} The errors object returned after validating the form data.
+   */
+  function getErrors(): Errors<Values<T>> {
     return validateSync(
       D.formDataToJson(new FormData(formRef.current as HTMLFormElement)) as {},
       validationSchema
     );
   }
 
+  /**
+   * Returns an object containing the form reference and the functions to handle
+   * form submission and form reset events.
+   *
+   * @return {Object} An object with the following properties:
+   *   - ref: A reference to the form
+   *   - onSubmit: A function to handle form submission event
+   *   - onReset: A function to handle form reset event
+   */
   function register() {
     return {
       ref: formRef,

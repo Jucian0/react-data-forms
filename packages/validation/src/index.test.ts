@@ -1,5 +1,5 @@
 import each from "jest-each";
-import { validate } from ".";
+import { validate, validateSync } from ".";
 import { z } from "zod";
 import * as yup from "yup";
 import { faker } from "@faker-js/faker";
@@ -20,6 +20,7 @@ function makeMockedValues() {
   };
 }
 
+// Async validations tests
 describe("Oject validation", () => {
   const validations = {
     zod: z.object({
@@ -77,6 +78,53 @@ describe("Value validation", () => {
       await makeSut(faker.datatype.string(), validations[mode]).catch((err) => {
         expect(err).not.toHaveProperty("message");
       });
+    }
+  );
+});
+
+// Sync validations tests
+
+function makeSutSync(state = {}, validationSchema: any) {
+  const sut = validateSync(state, validationSchema);
+
+  return {
+    sut,
+  };
+}
+
+describe("Object validation", () => {
+  const validations = {
+    zod: z.object({
+      name: z.string(),
+      email: z.string().email(),
+      password: z.string(),
+    }),
+    yup: yup.object({
+      name: yup.string().required(),
+      email: yup.string().email(),
+      password: yup.string().required(),
+    }),
+  };
+
+  each(["zod", "yup"]).it(
+    "Should return an error - [%s] mode",
+    (mode: keyof typeof validations) => {
+      const initialState = {};
+
+      const { sut } = makeSutSync(initialState, validations[mode]);
+      expect(sut).toHaveProperty("name");
+    }
+  );
+
+  each(["zod", "yup"]).it(
+    "Should return an empty object - [%s] mode",
+    (mode: keyof typeof validations) => {
+      const initialState = makeMockedValues();
+
+      const { sut } = makeSutSync(initialState, validations[mode]);
+
+      console.log(sut, `>>>>>>>>>>`);
+      expect(sut).not.toHaveProperty("name");
     }
   );
 });

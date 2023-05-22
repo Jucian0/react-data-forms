@@ -42,6 +42,7 @@ export function validateSync<TValues extends {}>(
   if (validationSchema?._def?.typeName) {
     try {
       validationSchema.parse(values);
+      return {};
     } catch (e) {
       return JSON.parse(e as any).reduce((acc: {}, key: any) => {
         const path = key.path.length > 0 ? key.path.join(".") : "message";
@@ -51,6 +52,7 @@ export function validateSync<TValues extends {}>(
   }
   try {
     validationSchema?.validateSync(values, { abortEarly: false });
+    return {};
   } catch (e) {
     return (e as any).inner.reduce((acc: {}, key: any) => {
       const path = makeDotNotation(key.path || "message");

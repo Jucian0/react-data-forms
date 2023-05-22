@@ -5,8 +5,6 @@ import {
   Errors,
   EventChange,
   Field,
-  FieldPath,
-  FieldPathValue,
   HookArgs,
   RegisterArgs,
   Touched,
@@ -17,6 +15,7 @@ import { extractRadioElements, isCheckbox, isRadio } from "./FieldsUtils";
 import { validate } from "@createform/validation";
 import { StateChange } from ".";
 import { debounce } from "./Debounce";
+import { FieldPath, FieldPathValue } from "../Types";
 
 const defaultValues = {
   initialValues: {},

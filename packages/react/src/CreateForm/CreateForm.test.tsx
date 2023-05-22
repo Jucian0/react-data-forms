@@ -1,7 +1,7 @@
 import each from "jest-each";
 import { faker } from "@faker-js/faker";
-import { createForm } from "./../src/CreateForm";
-import { CreateFormArgs } from "../src/Types";
+import { createForm } from "./CreateForm";
+import { CreateFormArgs } from "./Types";
 import { waitFor, render, fireEvent, renderHook } from "@testing-library/react";
 import * as yup from "yup";
 

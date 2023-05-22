@@ -1,5 +1,5 @@
 import { waitFor } from "@testing-library/react";
-import { createStore } from "../src/Store";
+import { createStore } from "./Store";
 
 function makeSut(state = {}) {
   const spy = jest.fn();

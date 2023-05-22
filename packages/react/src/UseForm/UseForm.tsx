@@ -3,6 +3,7 @@ import * as D from "@createform/object-utils";
 import { validateSync } from "@createform/validation";
 import { isRadioOrCheckbox, isSelect, setOptionAsDefault } from "./FieldsUtils";
 import { Errors, UseFormArgs, Values } from "./Types";
+import { FieldPath, FieldPathValue } from "../Types";
 
 const defaultValues = {
   initialValues: {},
@@ -59,27 +60,58 @@ export function useForm<T extends UseFormArgs<Values<T>>>(args: T) {
   }
 
   /**
-   * Sets the value of a named field in a form. Supports input fields,
-   * select elements, radio buttons, and checkboxes. If the field is a
-   * radio button or checkbox, the `value` parameter sets the `checked`
-   * attribute of the element. Otherwise, it sets the `value` attribute.
+   * Sets the value of a form field with the given name to the provided value.
    *
-   * @param {string} name - The name of the field to set.
-   * @param {any} value - The value to set the field to.
+   * @template N Type of the field name.
+   * @param {N} name - The name of the field.
+   * @param {FieldPathValue<Values<T>, N>} value - The value to set the field to.
+   * @return {void} This function does not return anything.
    */
-  function setFieldValue(name: string, value: any) {
+  function setFieldValue<N extends FieldPath<Values<T>>>(
+    name: N,
+    value: FieldPathValue<Values<T>, N>
+  ): void {
     const element = formRef.current?.elements?.namedItem(name) as Element;
 
     if (element && element.tagName === "INPUT") {
       const inputElement = element as HTMLInputElement;
       if (isRadioOrCheckbox(inputElement)) {
-        inputElement.checked = value;
+        inputElement.checked = value as any;
       } else {
-        inputElement.value = value;
+        inputElement.value = value as any;
       }
     } else if (isSelect(element)) {
       setOptionAsDefault(element as HTMLSelectElement, value);
     }
+  }
+
+  /**
+   * Sets the values of the specified form fields.
+   *
+   * @param {Values<T>} values - An object containing the values to set for the form fields.
+   * @return {void} This function does not return anything.
+   */
+  function setFieldsValue(values: Values<T> = {}): void {
+    if (formRef.current) {
+      setAllElementsValue(formRef.current, values as {});
+    }
+  }
+
+  /**
+   * Set the errors for the form fields.
+   *
+   * @param {Errors<Values<T>>} errors - The errors for the form fields.
+   * @return {void} This function does not return anything.
+   */
+  function setFieldsErrors(errors: Errors<Values<T>> = {}): void {
+    setErrors(errors);
+  }
+
+  function setFieldError<N extends FieldPath<Values<T>>>(
+    name: N,
+    error: string
+  ) {
+    setErrors((errors) => D.set(errors, name, error));
   }
 
   function setAllElementsValue(formElement: HTMLFormElement, values = {}) {
@@ -151,6 +183,8 @@ export function useForm<T extends UseFormArgs<Values<T>>>(args: T) {
   return {
     register,
     setFieldValue,
+    setFieldsValue,
+    setFieldsErrors,
     getValues,
     getErrors,
     errors,

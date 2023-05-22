@@ -1,18 +1,6 @@
-import { Button, Checkbox, Input, Select, Stack } from "@chakra-ui/react";
-import { useNativeForm } from "@createform/react";
+import { Button, Input, Select, Stack } from "@chakra-ui/react";
+import { useNativeForm } from "@createform/nativeform";
 import { z } from "zod";
-
-import * as yup from "yup";
-
-const schema = yup.object({
-  name: yup.string().min(6),
-  lastname: yup.string().min(8),
-});
-
-schema.validateSync(
-  { name: "juciano", lastname: "barbosa" },
-  { abortEarly: false }
-);
 
 const validationSchema = z.object({
   name: z.string().min(6),

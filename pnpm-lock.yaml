@@ -84,6 +84,7 @@ importers:
   examples:
     specifiers:
       '@chakra-ui/react': 2.5.5
+      '@createform/nativeform': workspace:*
       '@createform/react': workspace:*
       '@createform/tsconfig': workspace:*
       '@emotion/react': 11.10.6
@@ -109,6 +110,7 @@ importers:
       zod: ^3.20.2
     dependencies:
       '@chakra-ui/react': 2.5.5_ebyaiwumv7vy7uj7tu2geaubn4
+      '@createform/nativeform': link:../packages/nativeform
       '@createform/react': link:../packages/react
       '@emotion/react': 11.10.6_o2wclmlv6kymw75psj4clbbe6a
       '@emotion/styled': 11.10.6_y3jktkphxddpitstssvkgnnxe4

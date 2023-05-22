@@ -3,7 +3,7 @@ import * as D from "@createform/object-utils";
 import { validateSync } from "@createform/validation";
 import { isRadioOrCheckbox, isSelect, setOptionAsDefault } from "./FieldsUtils";
 import { Errors, UseFormArgs, Values } from "./Types";
-import { FieldPath, FieldPathValue } from "../Types";
+import { FieldPath, FieldPathValue, StateChange } from "../Types";
 
 const defaultValues = {
   initialValues: {},
@@ -84,27 +84,31 @@ export function useForm<T extends UseFormArgs<Values<T>>>(args: T) {
       setOptionAsDefault(element as HTMLSelectElement, value);
     }
   }
-
   /**
-   * Sets the values of the specified form fields.
+   * Sets the values of form fields.
    *
-   * @param {Values<T>} values - An object containing the values to set for the form fields.
-   * @return {void} This function does not return anything.
+   * @param { StateChange<Values<T>>} next -
+   *    The values to set on the form fields, or a function that takes the current values and returns
+   *    the next values.
    */
-  function setFieldsValue(values: Values<T> = {}): void {
+  function setFieldsValue(next: StateChange<Values<T>>) {
+    const currentValues = getValues();
+    //@ts-ignore
+    const nextValues = typeof next === "function" ? next(currentValues) : next;
     if (formRef.current) {
-      setAllElementsValue(formRef.current, values as {});
+      setAllElementsValue(formRef.current, nextValues);
     }
   }
 
   /**
-   * Set the errors for the form fields.
+   * Sets errors for form fields.
    *
-   * @param {Errors<Values<T>>} errors - The errors for the form fields.
+   * @param {StateChange<Errors<Values<T>>>} next - The new errors to set.
    * @return {void} This function does not return anything.
    */
-  function setFieldsErrors(errors: Errors<Values<T>> = {}): void {
-    setErrors(errors);
+  function setFieldsError(next: StateChange<Errors<Values<T>>>): void {
+    const nextErrors = typeof next === "function" ? next(errors) : next;
+    setErrors(nextErrors);
   }
 
   function setFieldError<N extends FieldPath<Values<T>>>(
@@ -184,7 +188,7 @@ export function useForm<T extends UseFormArgs<Values<T>>>(args: T) {
     register,
     setFieldValue,
     setFieldsValue,
-    setFieldsErrors,
+    setFieldsError,
     getValues,
     getErrors,
     errors,

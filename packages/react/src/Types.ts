@@ -1,3 +1,5 @@
+export type StateChange<T> = T | ((state: T) => T);
+
 /**
  * Inputs types
  **/

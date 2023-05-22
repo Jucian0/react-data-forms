@@ -9,7 +9,10 @@ const schema = yup.object({
   lastname: yup.string().min(8),
 });
 
-schema.validateSync({ name: "juciano", lastname: "barbosa" });
+schema.validateSync(
+  { name: "juciano", lastname: "barbosa" },
+  { abortEarly: false }
+);
 
 const validationSchema = z.object({
   name: z.string().min(6),

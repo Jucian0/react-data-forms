@@ -1,8 +1,7 @@
 import each from "jest-each";
-import { validate } from "../src/Validate";
+import { validate } from ".";
 import { z } from "zod";
 import * as yup from "yup";
-import { makeMockedValues } from "./Utils";
 import { faker } from "@faker-js/faker";
 
 async function makeSut(state = {}, validationSchema: any) {
@@ -10,6 +9,14 @@ async function makeSut(state = {}, validationSchema: any) {
 
   return {
     sut,
+  };
+}
+
+function makeMockedValues() {
+  return {
+    name: faker.name.firstName(),
+    email: faker.internet.email(),
+    password: faker.internet.password(),
   };
 }
 

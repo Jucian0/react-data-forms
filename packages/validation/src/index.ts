@@ -1,4 +1,4 @@
-import * as Dot from "./ObjectUtils";
+import * as Dot from "@createform/object-utils";
 
 export function makeDotNotation(str: string) {
   return str.split("[").join(".").split("]").join("");

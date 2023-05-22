@@ -1,37 +1,15 @@
 import React from "react";
-import * as D from "./ObjectUtils";
-import { CreateFormArgs, Values } from "./Types";
-import { validate, validateSync } from "./Validate";
+import * as D from "@createform/object-utils";
+import { validate, validateSync } from "@createform/validation";
+import { isRadioOrCheckbox, isSelect, setOptionAsDefault } from "./FieldsUtils";
+import { UseFormArgs, Values } from "./Types";
 
 const defaultValues = {
   initialValues: {},
   initialErrors: {},
 };
 
-type NativeFormArgs<T> = Omit<CreateFormArgs<T>, "initialTouched"> & {
-  onSubmit?: (e: T) => void;
-  onReset?: (e: T) => void;
-};
-
-function isRadioOrCheckbox(element: any) {
-  return element.type === "radio" || element.type === "checkbox";
-}
-
-function isSelect(element: any) {
-  return element.type === "select";
-}
-
-function setOptionAsDefault(element: HTMLSelectElement, value: any) {
-  const index = Array.from(element.options).findIndex(
-    (option) => option.value === value
-  );
-
-  if (index !== -1) {
-    element.options[index].defaultSelected = true;
-  }
-}
-
-export function useNativeForm<T extends NativeFormArgs<Values<T>>>(args: T) {
+export function useNativeForm<T extends UseFormArgs<Values<T>>>(args: T) {
   const formRef = React.useRef<HTMLFormElement>(null);
 
   const { initialValues, initialErrors, validationSchema } = {

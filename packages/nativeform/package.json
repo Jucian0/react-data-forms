@@ -1,5 +1,5 @@
 {
-  "name": "@createform/react",
+  "name": "@createform/nativeform",
   "version": "3.3.29",
   "description": "The ReactJS form library.",
   "keywords": [
@@ -19,8 +19,8 @@
     "homepage": "https://useform.org/"
   },
   "dependencies": {
-    "@createform/validation": "workspace:*",
-    "@createform/object-utils": "workspace:*"
+    "@createform/object-utils": "workspace:*",
+    "@createform/validation": "workspace:*"
   },
   "devDependencies": {
     "tsup": "^6.7.0",
@@ -39,8 +39,8 @@
     "@types/jest": "29.5.0",
     "@testing-library/jest-dom": "5.16.5",
     "jest-environment-jsdom": "29.5.0",
-    "react-dom": "18.2.0",
-    "react": "^18.0.0"
+    "react": "^18.0.0",
+    "react-dom": "18.2.0"
   },
   "peerDependencies": {
     "react": ">=18.0.0"

@@ -1,4 +1,4 @@
-import * as Dot from "./ObjectUtils";
+import * as Dot from "@createform/object-utils";
 
 /**
  * A function for subscribing to store updates

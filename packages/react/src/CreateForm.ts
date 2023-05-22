@@ -12,9 +12,9 @@ import {
   Touched,
   Values,
 } from "./Types";
-import * as Dot from "./ObjectUtils";
+import * as Dot from "@createform/object-utils";
 import { extractRadioElements, isCheckbox, isRadio } from "./FieldsUtils";
-import { validate } from "./Validate";
+import { validate } from "@createform/validation";
 import { StateChange } from ".";
 import { debounce } from "./Debounce";
 

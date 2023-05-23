@@ -1,3 +1,24 @@
+# [3.5.0](https://github.com/jucian0/createform/compare/v3.4.0...v3.5.0) (2023-05-23)
+
+
+### Bug Fixes
+
+* **nativeform:** fix import ([5ddf50c](https://github.com/jucian0/createform/commit/5ddf50c2f5e3441d9136bd29ca2f93759c75f3f4))
+* **nativeform:** updating form validations ([0ea8970](https://github.com/jucian0/createform/commit/0ea8970bcecfd377b090d16d6e2cc4b9c2ec10e6))
+* **useform:** update setFieldsError, and setFieldsValue types ([29e7b69](https://github.com/jucian0/createform/commit/29e7b69ebc73221caa802679bfc8c73798e003b9))
+
+
+### Features
+
+* **nativeform:** add getValues, and setFieldValue, and improve some codes performance ([5cfacc7](https://github.com/jucian0/createform/commit/5cfacc7ccc1a302f3c719a2b2cab9ea1ef8e92a1))
+* **nativeform:** adding radio, and color type ([83c93dd](https://github.com/jucian0/createform/commit/83c93dde4c4be7e517e8a71a60f2f252d559d57b))
+* **nativeform:** adding validation for nativeforms ([62a78eb](https://github.com/jucian0/createform/commit/62a78eb54fd424ce2cd522af087e9ac080bcefae))
+* **nativeform:** move from component to hook function to deal with native form, and elements ([d357f36](https://github.com/jucian0/createform/commit/d357f367ee4802147671b350c28e56d3c57098ca))
+* **nativeform:** uodate setFieldValue, and validations ([f37c426](https://github.com/jucian0/createform/commit/f37c4267c06e92eabb921ac2f6f365b9f14fdbfb))
+* **react:** adding useform hook ([0994e4e](https://github.com/jucian0/createform/commit/0994e4e86d1678112893cdda663acad0d99f7098))
+
+
+
 # [3.4.0](https://github.com/jucian0/createform/compare/v3.3.29...v3.4.0) (2023-05-17)
 
 

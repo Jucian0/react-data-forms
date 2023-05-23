@@ -5,18 +5,17 @@ import {
   Errors,
   EventChange,
   Field,
-  FieldPath,
-  FieldPathValue,
   HookArgs,
   RegisterArgs,
   Touched,
   Values,
 } from "./Types";
-import * as Dot from "./ObjectUtils";
+import * as Dot from "@createform/object-utils";
 import { extractRadioElements, isCheckbox, isRadio } from "./FieldsUtils";
-import { validate } from "./Validate";
-import { StateChange } from ".";
+import { validate } from "@createform/validation";
+import { StateChange } from "../Types";
 import { debounce } from "./Debounce";
+import { FieldPath, FieldPathValue } from "../Types";
 
 const defaultValues = {
   initialValues: {},
@@ -352,9 +351,11 @@ export function createForm<T extends CreateFormArgs<Values<T>>>(args: T) {
     }
 
     /**
-     * Set error message for a specific field in the form.
-     * @param {Paths<Values<T>>} name - Name of the field
-     * @param {string} message - Error message to set for the field
+     * Sets an error message for a specific field in a form.
+     *
+     * @param {N} name - the name of the field to set the error for.
+     * @param {string} message - the error message to set.
+     * @return {void} This function does not return anything.
      */
     function setFieldError<N extends FieldPath<Values<T>>>(
       name: N,
@@ -368,8 +369,10 @@ export function createForm<T extends CreateFormArgs<Values<T>>>(args: T) {
     }
 
     /**
-     * Set error messages for multiple fields in the form.
-     * @param {StateChange<Errors<T['initialValues']>>} next - The updated error messages. Can be * * either an object or a function that returns an object.
+     * Sets errors for form fields.
+     *
+     * @param {StateChange<Errors<Values<T>>>} next - The new errors to set.
+     * @return {void} This function does not return anything.
      */
     function setFieldsError(next: StateChange<Errors<Values<T>>>): void {
       const nextErrors =
@@ -398,9 +401,11 @@ export function createForm<T extends CreateFormArgs<Values<T>>>(args: T) {
     }
 
     /**
-     * Set the touched state of multiple fields in the form.
-     * @template T
-     * @param {StateChange<T['initialValues']>} next - Object containing updated field touched state or a * function to produce updated field touched states
+     * Updates the touched fields of the form with the next value provided.
+     *
+     * @param {StateChange<Touched<Values<T>>>}
+     *     next - The next value for the touched fields. Can be a StateChange object or a function that receives the
+     *     previous touched object and returns a StateChange object.
      */
     function setFieldsTouched(next: StateChange<Touched<Values<T>>>) {
       const nextTouched =

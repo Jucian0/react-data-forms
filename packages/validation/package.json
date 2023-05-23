@@ -1,6 +1,6 @@
 {
-  "name": "@createform/react",
-  "version": "3.4.0",
+  "name": "@createform/validation",
+  "version": "3.3.29",
   "description": "The ReactJS form library.",
   "keywords": [
     "react",
@@ -19,7 +19,6 @@
     "homepage": "https://useform.org/"
   },
   "dependencies": {
-    "@createform/validation": "workspace:*",
     "@createform/object-utils": "workspace:*"
   },
   "devDependencies": {
@@ -31,19 +30,10 @@
     "@jest/globals": "29.5.0",
     "yup": "^1.0.2",
     "@types/yup": "^0.29.13",
-    "@types/react": "18.0.31",
     "zod": "^3.21.4",
     "@faker-js/faker": "^7.4.0",
     "typescript": "^4.9.3",
-    "@testing-library/react": "^13.4.0",
-    "@types/jest": "29.5.0",
-    "@testing-library/jest-dom": "5.16.5",
-    "jest-environment-jsdom": "29.5.0",
-    "react-dom": "18.2.0",
-    "react": "^18.0.0"
-  },
-  "peerDependencies": {
-    "react": ">=18.0.0"
+    "@types/jest": "29.5.0"
   },
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

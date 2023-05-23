@@ -1,12 +1,13 @@
 {
-  "name": "@createform/react",
-  "version": "3.4.0",
-  "description": "The ReactJS form library.",
+  "name": "@createform/object-utils",
+  "version": "3.3.29",
+  "description": "Immutable object utilities.",
   "keywords": [
     "react",
     "hooks",
     "form",
-    "forms",
+    "object",
+    "immutable",
     "form-validation",
     "validation",
     "typescript",
@@ -15,35 +16,17 @@
   "author": "Jucian0 <juciano@outlook.com.br>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jucian0/useform",
+    "url": "https://github.com/jucian0/createform",
     "homepage": "https://useform.org/"
-  },
-  "dependencies": {
-    "@createform/validation": "workspace:*",
-    "@createform/object-utils": "workspace:*"
   },
   "devDependencies": {
     "tsup": "^6.7.0",
     "@createform/tsconfig": "workspace:*",
     "jest": "^29.5.0",
     "ts-jest": "^29.0.5",
-    "jest-each": "^29.5.0",
     "@jest/globals": "29.5.0",
-    "yup": "^1.0.2",
-    "@types/yup": "^0.29.13",
-    "@types/react": "18.0.31",
-    "zod": "^3.21.4",
-    "@faker-js/faker": "^7.4.0",
     "typescript": "^4.9.3",
-    "@testing-library/react": "^13.4.0",
-    "@types/jest": "29.5.0",
-    "@testing-library/jest-dom": "5.16.5",
-    "jest-environment-jsdom": "29.5.0",
-    "react-dom": "18.2.0",
-    "react": "^18.0.0"
-  },
-  "peerDependencies": {
-    "react": ">=18.0.0"
+    "@types/jest": "29.5.0"
   },
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

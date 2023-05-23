@@ -1,0 +1,44 @@
+---
+title: Validation
+description: This document explains how to add validation to the form.
+tags: react, form, useform, createform, use-form, hook, validation, zod, yup
+---
+
+import Callout from "../../components/Callout";
+
+# Validation
+
+Let's add some validation to the form. First we need to create a validation schema. As `createForm`, `useForm` allows to use Zod or Yup validation, in this example we are going to use Zod.
+
+```jsx
+import { z } from "zod";
+
+const schema = z.object({
+  name: z.string().min(3),
+});
+```
+
+After that, we just need to add the validation schema to the form.
+
+```jsx
+import { useForm } from "@createform/react";
+
+const schema = z.object({
+  name: z.string().min(3),
+});
+
+function App() {
+  const { register } = useForm({ validationSchema: schema });
+  return (
+    <form {...register()}>
+      <input type="text" name="name" placeholder="Name" />
+      <input type="submit" />
+    </form>
+  );
+}
+```
+
+<Callout type="info">
+  You can use Yup, Zod, or your own validation library, or write your own
+  validation logic.
+</Callout>

@@ -1,11 +1,9 @@
 import each from "jest-each";
 import { faker } from "@faker-js/faker";
-import { createForm } from "./../src/CreateForm";
-import { CreateFormArgs } from "../src/Types";
-import { changeInput, makeMockedValues } from "./Utils";
+import { createForm } from "./CreateForm";
+import { CreateFormArgs } from "./Types";
 import { waitFor, render, fireEvent, renderHook } from "@testing-library/react";
 import * as yup from "yup";
-import z from "zod";
 
 function makeCreateFormSut(
   args: CreateFormArgs<any> = {},
@@ -44,6 +42,21 @@ function makeCreateFormSut(
     element,
     spy,
     sut,
+  };
+}
+
+function changeInput(element: HTMLElement) {
+  return (value: any) => {
+    fireEvent.change(element, { target: { value } });
+    fireEvent.blur(element);
+  };
+}
+
+function makeMockedValues() {
+  return {
+    name: faker.name.firstName(),
+    email: faker.internet.email(),
+    password: faker.internet.password(),
   };
 }
 

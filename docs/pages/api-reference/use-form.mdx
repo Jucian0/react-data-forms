@@ -1,0 +1,114 @@
+---
+title: useForm
+description: This guide describes all steps to create a form using useForm
+tags: react, form, useform, createform, use-form, debounce, debounced, hook, yup, validation, form-error, error
+---
+
+import Callout from "../../components/Callout";
+
+# useForm
+
+`useForm` is hook that allow you to create a form in a more natively way, it means that `useForm` uses native events and web standarts to manage and create a form.
+
+## useForm params
+
+### initialValues
+
+The initial values of the `createForm` function depend on the initial values of the form fields that you want to manage with the hook. For example, if you want to manage a form with three fields - name, email, and password - the initial values of the `useForm` hook would look something like this:
+
+```js copy
+import { useForm } from "@createform/react";
+
+const form = useForm({
+  initialValues: {
+    name: "",
+    email: "",
+    password: "",
+  },
+});
+```
+
+Now, form state will contain the initial values for each of the form fields that you are managing with the `useForm`.
+
+<Callout type="info">
+
+It's important to note that the initial values of the `useForm` function are not required - you can initialize the hook without specifying any initial values. But, we recommend to add initialValues.
+
+</Callout>
+
+### initialErrors
+
+This property represents a errors object that has all properties of a form values.
+
+```jsx copy
+import { useForm } from "@createform/react";
+
+const yourHookForm = useForm({
+  initialErrors: {
+    name: "Invalid name!",
+    email: "Invalid format!",
+    accept: "This field is required!",
+  },
+});
+```
+
+## useForm return object
+
+`useForm` return an object with some properties, we are going to cover them in the next section:
+
+- **`register()`** - Different from `createForm` hook, `register` function from `useForm` should be used just in the `<form/>` element, this function provides all handlers, and properties to manage the form.
+
+  ```jsx
+  export function FormDataWay() {
+    const { register } = useForm({});
+    return (
+      <form {...register()}>
+        <input name="name" />
+      </form>
+    );
+  }
+  ```
+
+- **`setFieldValue()`** - This function is typically used in the context of a form. It allows you to set the value of a specific field in the form. This can be useful for pre-populating form fields with default values, or for programmatically setting the value of a field based on the user's input in other fields. For example, if you have a form with a field for the user's first and last name, example: `setFieldError("name","Jesse")`.
+
+- **`setFieldsValue()`** - function is similar to the setFieldValue function, but it allows you to set the values of multiple fields in a form at once. This can be useful for pre-populating a form with default values, or for programmatically setting the values of multiple fields based on the user's input in other fields. For example, if you have a form with fields for the user's first and last name, you could use setFieldsValue to set the values of both fields at the same time. This would ensure that the form always contains the most up-to-date values based on the user's input.
+
+  ```jsx copy
+  const { setFieldValues } = useForm();
+
+  setFieldsValue({
+    name: "Jesse",
+    lastName: "...",
+  });
+
+  //or
+
+  setFieldsValue((state) => ({
+    ...state,
+    lastName: "...",
+  }));
+  ```
+
+- **`setFieldError()`** - This function is typically used in a form validation context. It allows you to set an error message for a specific field in a form. This is useful for providing feedback to the user about what went wrong with their input. For example, if a user enters an invalid email address, you could use setFieldError to set the error message for the email field to something like `setFieldError("email","Please enter a valid email address.")` This error message would then be displayed to the user so that they know what they need to fix in order to successfully submit the form.
+
+- **`setFieldsError()`** - This function is similar to the setFieldError function, but it allows you to set error messages for multiple fields in a form at once. This can be useful for providing feedback to the user about any errors in their input. For example, if a user submits a form with multiple invalid fields, you could use setFieldsError to set the error messages for all of the invalid fields at the same time. This would allow the user to easily see all of the errors in their input and correct them before resubmitting the form.
+
+  ```jsx copy
+  const { setFieldsError } = yourHookForm();
+
+  setFieldsError({
+    name: "Invalid name!",
+    lastName: "This field is required!",
+  });
+
+  //or
+
+  setFieldsError((state) => ({
+    ...state,
+    lastName: "This field is required!",
+  }));
+  ```
+
+- **`getValues()`** - This function is used to get the values of all fields in a form.
+- **`getErrors()`** - This function is used to get the errors of all fields in a form.
+- **`errors`** - This is an object that contains the errors of all fields in a form.

@@ -1,4 +1,4 @@
-import * as Dot from "./../src/ObjectUtils";
+import * as Dot from ".";
 
 describe("Dot set", () => {
   it("Should set a value", () => {

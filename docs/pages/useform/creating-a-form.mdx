@@ -1,0 +1,54 @@
+---
+title: Creating a form
+description: This document explains how to create a form with useForm.
+tags: react, form, useform, createform, use-form, hook
+---
+
+# Creating a form
+
+Different from `createForm`, `useForm` do not use `register` function to register every input, but only the `<form/>` element. The only property required to register a inoput is the `name` property.
+
+```jsx
+import { useForm } from "@createform/react";
+
+function App() {
+  const { register } = useForm();
+  return (
+    <form {...register()}>
+      <input type="text" name="name" placeholder="Name" />
+      <input type="submit" />
+    </form>
+  );
+}
+```
+
+In the above example, we created a form with two inputs, `name` and `submit`. The submit input triggers the `handleSubmit` function.
+
+Let's add some functions to handle submit, and reset the form.
+
+```jsx
+import { useForm } from "@createform/react";
+
+function App() {
+  const { register } = useForm({
+    onSubmit: handleSubmit
+    onReset: handleReset
+  });
+
+  function handleSubmit(data) {
+    console.log(data);
+  }
+
+    function handlereset() {
+    console.log(data);
+  }
+
+  return (
+    <form {...register()}>
+      <input type="text" name="name" placeholder="Name" />
+      <input type="submit" >Submit</input>
+      <input type="reset" >Reset</input>
+    </form>
+  );
+}
+```

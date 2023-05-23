@@ -207,6 +207,7 @@ export function useForm<T extends UseFormArgs<Values<T>>>(args: T): UseForm<T> {
     register,
     setFieldValue,
     setFieldsValue,
+    setFieldError,
     setFieldsError,
     getValues,
     getErrors,

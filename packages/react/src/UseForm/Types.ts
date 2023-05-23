@@ -56,6 +56,10 @@ export type UseForm<T extends UseFormArgs<Values<T>>> = {
     value: FieldPathValue<Values<T>, N>
   ) => void;
   setFieldsValue: (next: StateChange<Values<T>>) => void;
+  setFieldError: <N extends FieldPath<Values<T>>>(
+    name: N,
+    error: string
+  ) => void;
   setFieldsError: (next: StateChange<Errors<Values<T>>>) => void;
   getValues: () => Values<T>;
   getErrors: () => Errors<Values<T>>;

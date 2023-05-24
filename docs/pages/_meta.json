@@ -8,11 +8,10 @@
     }
   },
   "quick-start": "Quick start",
-  "how-it-works": "How it works",
   "api-reference": "API Reference",
-  "tutorials": "Tutorials",
   "createform": "createForm()",
   "useform": "useForm()",
+  "tutorials": "Tutorials",
   "docs": {
     "title": "Docs",
     "type": "page",

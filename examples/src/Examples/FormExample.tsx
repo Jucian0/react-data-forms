@@ -1,29 +1,26 @@
-import { CreateState, createForm } from "@createform/react";
+import { createForm } from "@createform/react";
 import { Button, Input, Select, Stack } from "@chakra-ui/react";
 import React from "react";
 
-type Form = CreateState<{
-  email: string;
-  password: string;
-  role: string;
-}>;
-
-const useLoginForm = createForm(({ set, get }) => ({
-  values: {
-    email: "mariana@mariana",
+const useLoginForm = createForm({
+  initialValues: {
+    email: "",
     password: "",
-    options: "",
+    options: "three",
   },
-  preload: async () => {
+  mode: "onSubmit",
+  preload: async (): Promise<any> => {
     try {
-      const data = await getFormValues();
-      console.log(data);
-      set({ ...get(), values: data });
+      return await getFormValues();
     } catch (e) {
-      console.log(e);
+      return {};
     }
   },
-}));
+
+  onSubmit: async (values) => {
+    console.log(values);
+  },
+});
 
 function getFormValues() {
   return new Promise((resolve) => {
@@ -31,15 +28,14 @@ function getFormValues() {
       resolve({
         email: "juciano@juciano.com",
         password: "123456",
-        options: "one",
+        options: "three",
       });
     }, 1000);
   });
 }
 
 export function FormExample() {
-  const { register, handleReset, handleSubmit, setFieldValue, ...form } =
-    useLoginForm();
+  const { register, handleReset, handleSubmit, setFieldValue } = useLoginForm();
 
   function onSubmit(e: any) {
     console.log(e);
@@ -48,8 +44,6 @@ export function FormExample() {
   function onReset(e: any) {
     console.log(e);
   }
-
-  const ref = React.useRef(null);
 
   return (
     <Stack p={30}>

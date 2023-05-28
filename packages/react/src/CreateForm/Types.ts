@@ -1,6 +1,5 @@
 import React from "react";
 import { Paths, PrimitiveValue } from "../Types";
-import { Store } from "./Store";
 
 /**
  * state is one of properties that is returned by useForm hook, this object contains the current state of form when the form is controlled or debounced.
@@ -36,62 +35,52 @@ export type Errors<Values> = {
     : Errors<Values[k]>;
 };
 
-export type Values<T extends Record<string, any>> = T["values"];
+export type Values<T extends CreateFormArgs<T["initialValues"]>> =
+  T["initialValues"];
 
 /**
  * useForm hook needs an object that describe and provide some properties like initial values of form, initial errors of form, initial touched of form,
  * and needs know what kind of form, is Controlled, debounced is about that.
  */
-export type CreateState<T> = {
+export type CreateFormArgs<T> = {
   /** represents a initial value of form */
-  readonly values?: T;
+  readonly initialValues?: T;
   /** represents a initial values of inputs errors */
-  readonly errors?: Errors<T>;
+  readonly initialErrors?: Errors<T>;
   /** represents a initial values of visited inputs */
-  readonly touched?: Touched<T>;
+  readonly initialTouched?: Touched<T>;
   /** validation schema provided by yup */
   readonly validationSchema?: any; //YupSchema<T>
 
+  /**
+   * defines the form mode debounce, onChange or onSubmit:
+   * @default "onSubmit"
+   * @type "debounce" | "onChange" | "onSubmit"
+   */
   readonly mode?: "debounce" | "onChange" | "onSubmit";
 
-  preload?: <A>(arg: A) => Promise<any>;
+  /**
+   * It's a function that preloads the form data, it's useful when you want to load data from a server, like editing a form.
+   */
+  readonly preload?: (args?: any) => Promise<T>;
 
-  submit?: (values: T) => Promise<any>;
+  /**
+   * It's a function that will be called when the form is submitted.
+   * @param args any
+   * @returns {Promise<T>}
+   * @example
+   * const onSubmit = async (values) => {
+   *   console.log(values);
+   }
+   */
+  readonly onSubmit?: (values: T) => any;
+
+  /**
+   * It's a function that will be called when the form is reset.
+   * @param args any
+   */
+  readonly onReset?: (args?: any) => void;
 };
-
-export type CreateFormFN<T> = ({
-  set,
-  get,
-}: {
-  set: Store<T>["set"];
-  get: Store<T>["get"];
-}) => CreateState<T>;
-
-// const useForm = createForm(({ set }) => ({
-//   values: {},
-//   errors: {},
-//   touched: {},
-//   mode: "onChange",
-//   preload: async (id) => {
-//     try {
-//       const data = await serviceGet(id); //set({values: {}});
-//       set(data);
-//     } catch (e) {
-//       return await set({ values: {} });
-//     }
-//   },
-//   submit: async (id) => {
-//     try {
-//       if (id) {
-//         await servicePatch(id);
-//       } else {
-//         await servicePost();
-//       }
-//     } catch (e) {
-//       return await set({ errors: e });
-//     }
-//   },
-// }));
 
 /**
  * KeyValue type represents a key value object that has a key and a value.
@@ -140,4 +129,4 @@ export type RegisterArgs<T> =
     })
   | Paths<T>;
 
-export type FieldName<T extends CreateState<T["values"]>> = Values<T>;
+export type FieldName<T extends CreateFormArgs<T>> = Values<T>;

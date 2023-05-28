@@ -1,7 +1,8 @@
 import React from "react";
 import { createStore } from "./Store";
 import {
-  CreateFormArgs,
+  CreateFormFN,
+  CreateState,
   Errors,
   EventChange,
   Field,
@@ -28,15 +29,9 @@ const defaultValues = {
  * @param args CreateFormArgs type that contains the initial values of form, initial errors of form, initial touched of form,
  * @returns {function(*): *} a function that returns a hook that can be used to manage the form state.
  **/
-export function createForm<T extends CreateFormArgs<Values<T>>>(args: T) {
-  const { initialValues, initialErrors, initialTouched, validationSchema } = {
-    ...defaultValues,
-    ...args,
-  };
-
-  const mode = args.mode === "debounce" ? "onChange" : args.mode;
-  const shouldNotify = mode === "onChange";
-  const debouncedTime = args.mode === "debounce" ? 500 : 0;
+export function createForm<T extends CreateFormFN<CreateState<T>["values"]>>(
+  callback: T
+) {
   /**
    * This is the store of the form,
    * it is an object that contains the values of form,
@@ -44,12 +39,36 @@ export function createForm<T extends CreateFormArgs<Values<T>>>(args: T) {
    * touched of form.
    **/
   const $store = createStore({
+    values: {},
+    errors: {},
+    touched: {},
+    isValid: Dot.isEmpty({}),
+    isTouched: !Dot.isEmpty({}),
+  });
+
+  const initial = callback({
+    set: (data: any) => $store.set(data).notify() as any,
+    get: $store.get as any,
+  });
+
+  $store.set({
+    values: initial.values as any,
+    errors: initial.errors as any,
+    touched: initial.touched as any,
+    isValid: false, //initial.isValid as any,
+    isTouched: false, // initial.isTouched as any,
+  });
+
+  const {
     values: initialValues,
     errors: initialErrors,
     touched: initialTouched,
-    isValid: Dot.isEmpty(initialErrors),
-    isTouched: !Dot.isEmpty(initialTouched),
-  });
+    validationSchema,
+  } = initial;
+
+  const mode = initial.mode === "debounce" ? "onChange" : initial.mode;
+  const shouldNotify = mode === "onChange";
+  const debouncedTime = initial.mode === "debounce" ? 500 : 0;
 
   /**
    * This is the reference of all native inputs of the form,
@@ -259,12 +278,12 @@ export function createForm<T extends CreateFormArgs<Values<T>>>(args: T) {
           const validationResult = await handleValidate(validationSchema);
           const state = $store.get();
           $store.set({ ...state, ...validationResult }).notify();
-          submit(state.values, validationResult.isValid);
+          submit(state.values as any, validationResult.isValid);
         } else {
           const state = $store.get();
           const isValid = Dot.isEmpty(state.errors);
           $store.set({ ...state, isValid }).notify();
-          submit(state.values, isValid);
+          submit(state.values as any, isValid);
         }
       };
     }
@@ -289,7 +308,7 @@ export function createForm<T extends CreateFormArgs<Values<T>>>(args: T) {
 
         resetForm();
 
-        reset(initialValues);
+        reset(initialValues as any);
       };
     }
 
@@ -300,16 +319,16 @@ export function createForm<T extends CreateFormArgs<Values<T>>>(args: T) {
     function resetForm() {
       $store
         .set({
-          values: initialValues,
-          errors: initialErrors,
-          touched: initialTouched,
+          values: initialValues as any,
+          errors: initialErrors as any,
+          touched: initialTouched as any,
           isValid: Dot.isEmpty(initialErrors),
           isTouched: Dot.isEmpty(!initialTouched),
         })
         .notify();
 
       for (const key in inputsRefs) {
-        const value = Dot.get(initialValues, key) || "";
+        const value = Dot.get(initialValues as any, key) || "";
         setFieldRefValue(key, value);
       }
     }
@@ -430,9 +449,7 @@ export function createForm<T extends CreateFormArgs<Values<T>>>(args: T) {
      * @function
      */
     function resetErrors() {
-      $store
-        .patch("errors", initialErrors as Errors<T["initialErrors"]>)
-        .notify(shouldNotify);
+      $store.patch("errors", initialErrors as Errors<T>).notify(shouldNotify);
     }
 
     /**
@@ -441,7 +458,7 @@ export function createForm<T extends CreateFormArgs<Values<T>>>(args: T) {
      */
     function resetTouched() {
       $store
-        .patch("touched", initialTouched as Touched<T["initialTouched"]>)
+        .patch("touched", initialTouched as Touched<T>)
         .notify(shouldNotify);
     }
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { Paths, PrimitiveValue } from "../Types";
+import { Store } from "./Store";
 
 /**
  * state is one of properties that is returned by useForm hook, this object contains the current state of form when the form is controlled or debounced.
@@ -35,25 +36,62 @@ export type Errors<Values> = {
     : Errors<Values[k]>;
 };
 
-export type Values<T extends CreateFormArgs<T["initialValues"]>> =
-  T["initialValues"];
+export type Values<T extends Record<string, any>> = T["values"];
 
 /**
  * useForm hook needs an object that describe and provide some properties like initial values of form, initial errors of form, initial touched of form,
  * and needs know what kind of form, is Controlled, debounced is about that.
  */
-export type CreateFormArgs<T> = {
+export type CreateState<T> = {
   /** represents a initial value of form */
-  readonly initialValues?: T;
+  readonly values?: T;
   /** represents a initial values of inputs errors */
-  readonly initialErrors?: Errors<T>;
+  readonly errors?: Errors<T>;
   /** represents a initial values of visited inputs */
-  readonly initialTouched?: Touched<T>;
+  readonly touched?: Touched<T>;
   /** validation schema provided by yup */
   readonly validationSchema?: any; //YupSchema<T>
 
   readonly mode?: "debounce" | "onChange" | "onSubmit";
+
+  preload?: <A>(arg: A) => Promise<any>;
+
+  submit?: (values: T) => Promise<any>;
 };
+
+export type CreateFormFN<T> = ({
+  set,
+  get,
+}: {
+  set: Store<T>["set"];
+  get: Store<T>["get"];
+}) => CreateState<T>;
+
+// const useForm = createForm(({ set }) => ({
+//   values: {},
+//   errors: {},
+//   touched: {},
+//   mode: "onChange",
+//   preload: async (id) => {
+//     try {
+//       const data = await serviceGet(id); //set({values: {}});
+//       set(data);
+//     } catch (e) {
+//       return await set({ values: {} });
+//     }
+//   },
+//   submit: async (id) => {
+//     try {
+//       if (id) {
+//         await servicePatch(id);
+//       } else {
+//         await servicePost();
+//       }
+//     } catch (e) {
+//       return await set({ errors: e });
+//     }
+//   },
+// }));
 
 /**
  * KeyValue type represents a key value object that has a key and a value.
@@ -102,4 +140,4 @@ export type RegisterArgs<T> =
     })
   | Paths<T>;
 
-export type FieldName<T extends CreateFormArgs<T>> = Values<T>;
+export type FieldName<T extends CreateState<T["values"]>> = Values<T>;

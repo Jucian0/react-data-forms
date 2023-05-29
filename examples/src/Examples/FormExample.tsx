@@ -9,13 +9,13 @@ const useLoginForm = createForm({
     options: "three",
   },
   mode: "onSubmit",
-  preload: async (): Promise<any> => {
-    try {
-      return await getFormValues();
-    } catch (e) {
-      return {};
-    }
-  },
+  // preload: async (): Promise<any> => {
+  //   try {
+  //     return await getFormValues();
+  //   } catch (e) {
+  //     return {};
+  //   }
+  // },
 
   onSubmit: async (values) => {
     console.log(values);
@@ -35,7 +35,8 @@ function getFormValues() {
 }
 
 export function FormExample() {
-  const { register, handleReset, handleSubmit, setFieldValue } = useLoginForm();
+  const { register, handleReset, handleSubmit, setFieldValue, ...form } =
+    useLoginForm();
 
   function onSubmit(e: any) {
     console.log(e);
@@ -44,6 +45,12 @@ export function FormExample() {
   function onReset(e: any) {
     console.log(e);
   }
+
+  React.useEffect(() => {
+    getFormValues().then((values) => {
+      form.setFieldsValue(values);
+    });
+  }, []);
 
   return (
     <Stack p={30}>

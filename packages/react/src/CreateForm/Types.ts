@@ -62,7 +62,7 @@ export type CreateFormArgs<T> = {
   /**
    * It's a function that preloads the form data, it's useful when you want to load data from a server, like editing a form.
    */
-  readonly preload?: (args?: any) => Promise<T>;
+  readonly preload?: (args?: any) => any; //Promise<T>;
 
   /**
    * It's a function that will be called when the form is submitted.
@@ -129,4 +129,4 @@ export type RegisterArgs<T> =
     })
   | Paths<T>;
 
-export type FieldName<T extends CreateFormArgs<T>> = Values<T>;
+//export type FieldName<T extends CreateFormArgs<T>> = Values<T>;

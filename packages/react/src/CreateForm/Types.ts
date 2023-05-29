@@ -35,14 +35,14 @@ export type Errors<Values> = {
     : Errors<Values[k]>;
 };
 
-export type Values<T extends CreateFormArgs<T["initialValues"]>> =
+export type Values<T extends CreateForm<T["initialValues"]>> =
   T["initialValues"];
 
 /**
  * useForm hook needs an object that describe and provide some properties like initial values of form, initial errors of form, initial touched of form,
  * and needs know what kind of form, is Controlled, debounced is about that.
  */
-export type CreateFormArgs<T> = {
+export type CreateForm<T> = {
   /** represents a initial value of form */
   readonly initialValues?: T;
   /** represents a initial values of inputs errors */
@@ -66,14 +66,14 @@ export type CreateFormArgs<T> = {
 
   /**
    * It's a function that will be called when the form is submitted.
-   * @param args any
+   * @param args {values}
    * @returns {Promise<T>}
    * @example
    * const onSubmit = async (values) => {
    *   console.log(values);
    }
    */
-  readonly onSubmit?: (values: T) => any;
+  readonly onSubmit?: <V>(values: V) => any;
 
   /**
    * It's a function that will be called when the form is reset.
@@ -129,4 +129,4 @@ export type RegisterArgs<T> =
     })
   | Paths<T>;
 
-//export type FieldName<T extends CreateFormArgs<T>> = Values<T>;
+export type FieldName<T extends CreateForm<T>> = Values<T>;

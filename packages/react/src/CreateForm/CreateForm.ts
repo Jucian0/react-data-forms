@@ -1,7 +1,7 @@
 import React from "react";
 import { createStore } from "./Store";
 import {
-  CreateFormArgs,
+  CreateForm,
   Errors,
   EventChange,
   Field,
@@ -25,10 +25,10 @@ const defaultValues = {
 
 /**
  * createForm function create a form Store and return a hook that can be used to manage the form state.
- * @param args CreateFormArgs type that contains the initial values of form, initial errors of form, initial touched of form,
+ * @param args CreateForm type that contains the initial values of form, initial errors of form, initial touched of form,
  * @returns {function(*): *} a function that returns a hook that can be used to manage the form state.
  **/
-export function createForm<T extends CreateFormArgs<Values<T>>>(args: T) {
+export function createForm<T extends CreateForm<Values<T>>>(args: T) {
   const { initialValues, initialErrors, initialTouched, validationSchema } = {
     ...defaultValues,
     ...args,

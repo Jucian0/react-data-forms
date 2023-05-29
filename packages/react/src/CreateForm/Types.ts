@@ -117,7 +117,7 @@ export type HookArgs<T> = {
   onChange?: (state: T) => T | void;
   onBlur?: (state: T) => T | void;
   onSubmit?: (state: T) => T | void;
-  mode?: Mode;
+  preloadArgs?: any;
 };
 
 export type EventChange = React.ChangeEvent<Field> & CustomEvent<Field> & Event;

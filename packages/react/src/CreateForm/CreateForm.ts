@@ -66,7 +66,7 @@ export function createForm<T extends CreateForm<Values<T>>>(args: T) {
 
     React.useEffect(() => {
       async function load() {
-        const data = await args.preload?.("");
+        const data = await args.preload?.(hookArgs?.preloadArgs);
         setFieldsValue(data);
       }
 

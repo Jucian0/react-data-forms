@@ -341,7 +341,7 @@ export function createForm<T extends CreateFormArgs<Values<T>>>(args: T) {
       const nextValues = typeof next === "function" ? next(state.values) : next;
       try {
         for (const key in inputsRefs) {
-          setFieldRefValue(key, next);
+          setFieldRefValue(key, Dot.get(nextValues, key));
         }
 
         $store.patch("values", nextValues).notify(shouldNotify);

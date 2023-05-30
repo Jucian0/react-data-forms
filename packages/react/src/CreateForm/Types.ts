@@ -42,7 +42,7 @@ export type Values<T extends CreateForm<T["initialValues"]>> =
  * useForm hook needs an object that describe and provide some properties like initial values of form, initial errors of form, initial touched of form,
  * and needs know what kind of form, is Controlled, debounced is about that.
  */
-export type CreateForm<T> = {
+export type CreateForm<T = {}, A = any> = {
   /** represents a initial value of form */
   readonly initialValues?: T;
   /** represents a initial values of inputs errors */
@@ -60,9 +60,9 @@ export type CreateForm<T> = {
   readonly mode?: "debounce" | "onChange" | "onSubmit";
 
   /**
-   * It's a function that preloads the form data, it's useful when you want to load data from a server, like editing a form.
+   * It's a function that loadData the form data, it's useful when you want to load data from a server, like editing a form.
    */
-  readonly preload?: (args?: any) => any; //Promise<T>;
+  readonly loadData?: (arg?: A) => any;
 
   /**
    * It's a function that will be called when the form is submitted.
@@ -73,13 +73,13 @@ export type CreateForm<T> = {
    *   console.log(values);
    }
    */
-  readonly onSubmit?: <V>(values: V) => any;
+  readonly onSubmit?: (values?: T) => any;
 
   /**
    * It's a function that will be called when the form is reset.
    * @param args any
    */
-  readonly onReset?: (args?: any) => void;
+  readonly onReset?: (values?: T) => void;
 };
 
 /**
@@ -117,7 +117,7 @@ export type HookArgs<T> = {
   onChange?: (state: T) => T | void;
   onBlur?: (state: T) => T | void;
   onSubmit?: (state: T) => T | void;
-  preloadArgs?: any;
+  loadDataArgs?: any;
 };
 
 export type EventChange = React.ChangeEvent<Field> & CustomEvent<Field> & Event;
@@ -128,5 +128,3 @@ export type RegisterArgs<T> =
       name: Paths<T>;
     })
   | Paths<T>;
-
-export type FieldName<T extends CreateForm<T>> = Values<T>;

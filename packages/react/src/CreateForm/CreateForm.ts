@@ -66,14 +66,18 @@ export function createForm<T extends CreateForm<Values<T>>>(args: T) {
 
     React.useEffect(() => {
       async function load() {
-        const data = await args.preload?.(hookArgs?.preloadArgs);
+        const data = await args.loadData?.(hookArgs?.loadDataArgs);
         setFieldsValue(data);
       }
 
-      if (args.preload) {
+      if (args.loadData) {
         load();
       }
     }, []);
+
+    const reloadData: T["loadData"] = (arg) => {
+      args.loadData?.(arg);
+    };
 
     /**
      * This function will handle change events of the form,
@@ -250,11 +254,11 @@ export function createForm<T extends CreateForm<Values<T>>>(args: T) {
      * @returns {(event: React.FormEvent<HTMLFormElement>) => Promise<void>} An async * function that handles submit event
      */
     function handleSubmit(
-      submit: (values: Values<T>, isValid: boolean) => void
+      submit?: (values: Values<T>, isValid: boolean) => void
     ): (event: React.FormEvent<HTMLFormElement>) => Promise<void> {
-      if (typeof submit !== "function") {
-        throw Error("Submit function is required");
-      }
+      // if (typeof submit !== "function") {
+      //   throw Error("Submit function is required");
+      // }
       /**
        * Handle form submit event.
        * @param {React.FormEvent<HTMLFormElement>} event - The form submit event
@@ -270,12 +274,15 @@ export function createForm<T extends CreateForm<Values<T>>>(args: T) {
           const validationResult = await handleValidate(validationSchema);
           const state = $store.get();
           $store.set({ ...state, ...validationResult }).notify();
-          submit(state.values, validationResult.isValid);
+          submit?.(state.values, validationResult.isValid);
+
+          args.onSubmit?.(state.values);
         } else {
           const state = $store.get();
           const isValid = Dot.isEmpty(state.errors);
           $store.set({ ...state, isValid }).notify();
-          submit(state.values, isValid);
+          submit?.(state.values, isValid);
+          args.onSubmit?.(state.values);
         }
       };
     }
@@ -472,6 +479,7 @@ export function createForm<T extends CreateForm<Values<T>>>(args: T) {
       resetTouched,
       resetValues,
       resetForm,
+      reloadData,
     };
   };
 }

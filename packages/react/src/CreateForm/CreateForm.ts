@@ -75,6 +75,11 @@ export function createForm<T extends CreateForm<Values<T>>>(args: T) {
       }
     }, []);
 
+    /**
+     * Executes the `loadData` method defined by the generic type `T` with the provided argument `arg`.
+     *
+     * @param {type} arg - The argument to be passed to the `loadData` method.
+     */
     const reloadData: T["loadData"] = (arg) => {
       args.loadData?.(arg);
     };

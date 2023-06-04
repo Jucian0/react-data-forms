@@ -1,0 +1,83 @@
+---
+title: Async Data/Editing Form
+description: This tutorial doc guide contains the concept of `loadData`, and how to use it.
+tags: react, form, useform, createform, hook, loadData
+---
+
+import Callout from "../../components/Callout";
+
+# Concepts
+
+HTML forms can be used to save or update values. When updating, it's necessary to fetch the data from the server and update the client-side form state. With the loadData function, we can fetch the data from the server and update the form state.
+
+## Loading data from server
+
+When editing a form, we load the form data from the server asynchronously. The best way to do that is by using the loadData function. This function can receive parameters. The following example shows how to load data from the server and update the form state.
+
+<Callout type="info">
+For TypeScript users, it's necessary to type the form. This can be done by using the `CreateForm` type definition.
+</Callout>
+
+```tsx
+type Form = CreateForm<
+  {
+    email: string;
+    password: string;
+    options: string;
+  },
+  string
+>;
+```
+
+### Example
+
+```jsx
+import { createForm } from "@createform/react";
+
+const form = createForm({
+    initialValues: {
+        name: "",
+        email: "",
+        phone: "",
+    },
+    loadData: async (id) => {
+        return await fetch(
+            `https://jsonplaceholder.typicode.com/users/${id}`)
+    }
+})
+
+const FormExample = () => {
+
+    const { register, handleSubmit, formState } = form();
+
+    return (...)
+}
+```
+
+
+## Reloading data from server
+
+Usually, when updating data, the application should be redirected to another page. However, in specific cases, you can reload the data to display the new data by using the reloadData function.
+```jsx
+import { createForm } from "@createform/react";
+
+const form = createForm({
+    initialValues: {
+        name: "",
+        email: "",
+        phone: "",
+    },
+    loadData: async (id) => {
+        return await fetch(
+            `https://jsonplaceholder.typicode.com/users/${id}`)
+    },
+})
+
+const FormExample = () => {
+    cont {reloadData} = form();
+}
+```
+
+<Callout>
+You can also use `setFieldsValue`, but we recommend using `loadData` instead.
+</Callout>

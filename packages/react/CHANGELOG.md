@@ -1,3 +1,27 @@
+# [4.0.0](https://github.com/jucian0/createform/compare/v3.5.2...v4.0.0) (2023-06-04)
+
+
+### Bug Fixes
+
+* **types:** fixing types ([dfba463](https://github.com/jucian0/createform/commit/dfba4633458757da85f70ab7d94403343f092cad))
+* **types:** fixing types ([52dafb6](https://github.com/jucian0/createform/commit/52dafb646d2805e5226aac99a3464680284136ab))
+
+
+### Features
+
+* **createform:** add reloadArgs in hookArgs ([0e6d01d](https://github.com/jucian0/createform/commit/0e6d01de7f530e16669f2c7fabfcd7e8cc996a23))
+* **createform:** addung preload feature ([32b9f95](https://github.com/jucian0/createform/commit/32b9f95e10c910ff11f850e0de5426d7b6696bf7))
+* **createform:** change APIs to work with preloaded data ([a732a50](https://github.com/jucian0/createform/commit/a732a5017330f6f7438e1ed7018de01b37477dda))
+* **createform:** rename preload to loadData ([584be8b](https://github.com/jucian0/createform/commit/584be8b69994af570ab655ca64ca2c401d6deca5))
+* **createform:** rename preload to loadData ([4f6d0c6](https://github.com/jucian0/createform/commit/4f6d0c6e178ba16454b251d2bdc34dea653cbd5d))
+
+
+### BREAKING CHANGES
+
+* **createform:** Changes createForm API
+
+
+
 ## [3.5.2](https://github.com/jucian0/createform/compare/v3.5.1...v3.5.2) (2023-05-29)
 
 

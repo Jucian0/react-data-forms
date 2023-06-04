@@ -1,3 +1,23 @@
+# [4.0.0](https://github.com/jucian0/createform/compare/v3.5.2...v4.0.0) (2023-06-04)
+
+
+### Bug Fixes
+
+* **types:** fixing types ([dfba463](https://github.com/jucian0/createform/commit/dfba4633458757da85f70ab7d94403343f092cad))
+* **types:** fixing types ([52dafb6](https://github.com/jucian0/createform/commit/52dafb646d2805e5226aac99a3464680284136ab))
+
+
+### Features
+
+* **createform:** change APIs to work with preloaded data ([a732a50](https://github.com/jucian0/createform/commit/a732a5017330f6f7438e1ed7018de01b37477dda))
+
+
+### BREAKING CHANGES
+
+* **createform:** Changes createForm API
+
+
+
 ## [3.5.2](https://github.com/jucian0/createform/compare/v3.5.1...v3.5.2) (2023-05-29)
 
 

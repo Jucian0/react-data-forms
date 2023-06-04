@@ -1,6 +1,6 @@
 {
   "name": "@createform/docs",
-  "version": "3.5.2",
+  "version": "4.0.0",
   "description": "Createform docs",
   "scripts": {
     "dev": "next dev",

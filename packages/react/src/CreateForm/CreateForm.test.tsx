@@ -1,12 +1,12 @@
 import each from "jest-each";
 import { faker } from "@faker-js/faker";
 import { createForm } from "./CreateForm";
-import { CreateFormArgs } from "./Types";
+import { CreateForm } from "./Types";
 import { waitFor, render, fireEvent, renderHook } from "@testing-library/react";
 import * as yup from "yup";
 
 function makeCreateFormSut(
-  args: CreateFormArgs<any> = {},
+  args: CreateForm<any> = {},
   mode = "onChange" as any
 ) {
   const state = {};
@@ -342,7 +342,7 @@ describe("CreateForm", () => {
 });
 
 function makeRegisterByObjectSut(
-  args: CreateFormArgs<any> = {},
+  args: CreateForm<any> = {},
   mode = "onChange" as any,
   validate?: any
 ) {
@@ -552,6 +552,44 @@ describe("SchemaValidation", () => {
 
     await waitFor(() => {
       expect(form.sut.current.state.errors.name).toEqual(errorMessage);
+    });
+  });
+});
+
+describe("loadData", () => {
+  it("Should load data", async () => {
+    const spy = jest.fn(() => {
+      return Promise.resolve();
+    });
+    const { sut } = makeCreateFormSut({
+      loadData: spy,
+    });
+
+    expect(spy).toHaveBeenCalled();
+    sut.current.reloadData?.();
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it("Should load data and set values", async () => {
+    const spy = jest.fn(() => {
+      return Promise.resolve({
+        name: "name",
+        email: "email",
+        password: "password",
+      });
+    });
+    const { sut } = makeCreateFormSut({
+      loadData: spy,
+    });
+
+    expect(spy).toHaveBeenCalled();
+
+    await waitFor(() => {
+      expect(sut.current.state.values).toEqual({
+        name: "name",
+        email: "email",
+        password: "password",
+      });
     });
   });
 });

@@ -1,0 +1,58 @@
+---
+title: Form submission
+description: This doc helps you how to submit a form using createForm.
+tags: react, form, useform, createform, hook, loadData
+---
+
+import Callout from "../../components/Callout";
+
+# Introduction
+
+Once a user fills out a form, it needs to be submitted to the server. There are multiple ways to achieve this. Let's explore how to make it work.
+
+## Submit form when deffining the form
+
+You can configure the form submission when defining the form by using the onSubmit property of createForm. This property will be called when the form is submitted.
+
+```jsx
+import { createForm } from "@createform/react";
+
+const form = createForm({
+    onSubmit: async (values) => {
+        console.log(values);
+    }
+})
+```
+
+## Submit form when using the hook form
+
+Typically, when updating data, the application should redirect to another page. However, in specific cases, you may want to reload the data to display the new information using the reloadData function.
+
+```jsx
+import { createForm } from "@createform/react";
+
+const form = createForm({
+    initialValues: {
+        name: "",
+        email: "",
+        phone: "",
+    },
+  
+})
+
+const FormExample = () => {
+    cont {handleSubmit} = form();
+
+    return (
+        <form onSubmit={handleSubmit(e=>console.log(e))}>
+            <input {...register("name")} />
+            <input {...register("email")} />
+            <button type="submit">Submit</button>
+        </form>
+    )
+}
+```
+
+## Conclusion
+
+You now have a better understanding of how to submit a form using createForm. The choice of how to submit the form is up to you.

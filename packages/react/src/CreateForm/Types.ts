@@ -35,14 +35,14 @@ export type Errors<Values> = {
     : Errors<Values[k]>;
 };
 
-export type Values<T extends CreateFormArgs<T["initialValues"]>> =
+export type Values<T extends CreateForm<T["initialValues"]>> =
   T["initialValues"];
 
 /**
  * useForm hook needs an object that describe and provide some properties like initial values of form, initial errors of form, initial touched of form,
  * and needs know what kind of form, is Controlled, debounced is about that.
  */
-export type CreateFormArgs<T> = {
+export type CreateForm<T = {}, A = any> = {
   /** represents a initial value of form */
   readonly initialValues?: T;
   /** represents a initial values of inputs errors */
@@ -52,7 +52,34 @@ export type CreateFormArgs<T> = {
   /** validation schema provided by yup */
   readonly validationSchema?: any; //YupSchema<T>
 
+  /**
+   * defines the form mode debounce, onChange or onSubmit:
+   * @default "onSubmit"
+   * @type "debounce" | "onChange" | "onSubmit"
+   */
   readonly mode?: "debounce" | "onChange" | "onSubmit";
+
+  /**
+   * It's a function that loadData the form data, it's useful when you want to load data from a server, like editing a form.
+   */
+  readonly loadData?: (arg?: A) => any;
+
+  /**
+   * It's a function that will be called when the form is submitted.
+   * @param args {values}
+   * @returns {Promise<T>}
+   * @example
+   * const onSubmit = async (values) => {
+   *   console.log(values);
+   }
+   */
+  readonly onSubmit?: (values?: T) => any;
+
+  /**
+   * It's a function that will be called when the form is reset.
+   * @param args any
+   */
+  readonly onReset?: (values?: T) => void;
 };
 
 /**
@@ -90,7 +117,7 @@ export type HookArgs<T> = {
   onChange?: (state: T) => T | void;
   onBlur?: (state: T) => T | void;
   onSubmit?: (state: T) => T | void;
-  mode?: Mode;
+  loadDataArgs?: any;
 };
 
 export type EventChange = React.ChangeEvent<Field> & CustomEvent<Field> & Event;
@@ -101,5 +128,3 @@ export type RegisterArgs<T> =
       name: Paths<T>;
     })
   | Paths<T>;
-
-export type FieldName<T extends CreateFormArgs<T>> = Values<T>;

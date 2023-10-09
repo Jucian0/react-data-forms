@@ -24,7 +24,7 @@
     "vite-tsconfig-paths": "4.0.5",
     "vitest": "0.25.8",
     "yup": "^0.27.0",
-    "zod": "^3.20.2",
+    "zod": "^3.22.3",
     "@chakra-ui/react": "2.5.5",
     "framer-motion": "^10.11.5",
     "@createform/react": "workspace:*",

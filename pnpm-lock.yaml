@@ -53,7 +53,7 @@ importers:
       swr: 2.0.3
       tailwindcss: 3.2.6
       typescript: ^4.9.3
-      zod: 3.21.4
+      zod: 3.22.3
     dependencies:
       '@createform/react': link:../packages/react
       '@heroicons/react': 1.0.6_react@18.2.0
@@ -73,7 +73,7 @@ importers:
       react-select: 5.7.2_biqbaboplfbrettd7655fr4n2y
       swr: 2.0.3_react@18.2.0
       tailwindcss: 3.2.6_postcss@8.4.31
-      zod: 3.21.4
+      zod: 3.22.3
     devDependencies:
       '@createform/tsconfig': link:../packages/tsconfig
       '@types/node': 18.11.10
@@ -106,7 +106,7 @@ importers:
       vite-tsconfig-paths: 4.0.5
       vitest: 0.25.8
       yup: ^0.27.0
-      zod: ^3.20.2
+      zod: ^3.22.3
     dependencies:
       '@chakra-ui/react': 2.5.5_ebyaiwumv7vy7uj7tu2geaubn4
       '@createform/react': link:../packages/react
@@ -124,7 +124,7 @@ importers:
       vite-tsconfig-paths: 4.0.5
       vitest: 0.25.8
       yup: 0.27.0
-      zod: 3.21.4
+      zod: 3.22.3
     devDependencies:
       '@createform/tsconfig': link:../packages/tsconfig
       '@types/react': 18.0.31
@@ -189,7 +189,7 @@ importers:
       tsup: ^6.7.0
       typescript: ^4.9.3
       yup: ^1.0.2
-      zod: ^3.21.4
+      zod: ^3.22.3
     dependencies:
       '@createform/object-utils': link:../object-utils
       '@createform/validation': link:../validation
@@ -211,7 +211,7 @@ importers:
       tsup: 6.7.0_typescript@4.9.5
       typescript: 4.9.5
       yup: 1.1.1
-      zod: 3.21.4
+      zod: 3.22.3
 
   packages/tsconfig:
     specifiers: {}
@@ -230,7 +230,7 @@ importers:
       tsup: ^6.7.0
       typescript: ^4.9.3
       yup: ^1.0.2
-      zod: ^3.21.4
+      zod: ^3.22.3
     dependencies:
       '@createform/object-utils': link:../object-utils
     devDependencies:
@@ -245,7 +245,7 @@ importers:
       tsup: 6.7.0_typescript@4.9.5
       typescript: 4.9.5
       yup: 1.1.1
-      zod: 3.21.4
+      zod: 3.22.3
 
 packages:
 
@@ -8581,7 +8581,7 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       scroll-into-view-if-needed: 3.0.10
-      zod: 3.21.4
+      zod: 3.22.3
     dev: false
 
   /nextra/2.3.0_yucv4tfv7v7nrkw2uguegj6e7e:
@@ -8615,7 +8615,7 @@ packages:
       title: 3.5.3
       unist-util-remove: 3.1.1
       unist-util-visit: 4.1.2
-      zod: 3.21.4
+      zod: 3.22.3
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -11412,8 +11412,8 @@ packages:
       type-fest: 2.19.0
     dev: true
 
-  /zod/3.21.4:
-    resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
+  /zod/3.22.3:
+    resolution: {integrity: sha512-EjIevzuJRiRPbVH4mGc8nApb/lVLKVpmUhAaR5R5doKGfAnGJ6Gr3CViAVjP+4FWSxCsybeWQdcgCtbX+7oZug==}
 
   /zwitch/2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}

@@ -30,7 +30,7 @@
     "@jest/globals": "29.5.0",
     "yup": "^1.0.2",
     "@types/yup": "^0.29.13",
-    "zod": "^3.21.4",
+    "zod": "^3.22.3",
     "@faker-js/faker": "^7.4.0",
     "typescript": "^4.9.3",
     "@types/jest": "29.5.0"

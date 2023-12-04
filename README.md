@@ -142,7 +142,7 @@ export function LoginForm() {
   );
 ```
 
-## Read the full documentation [here](https://useform.org).
+## Read the full documentation [here](https://www.createform.run).
 
 ## 🤝 Contributing
 

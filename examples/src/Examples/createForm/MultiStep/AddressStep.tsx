@@ -2,6 +2,7 @@ import { Box, Input } from "@chakra-ui/react";
 import { Button, Stack, Text } from "@chakra-ui/react";
 import { usePersonForm } from "./usePersonForm";
 import { useWizard } from "react-use-wizard";
+import React from "react";
 
 export function AddressStep() {
   const { previousStep } = useWizard();

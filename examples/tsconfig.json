@@ -1,5 +1,8 @@
 {
-  "extends": "@createform/tsconfig/react-library.json",
+  "compilerOptions": {
+    "jsx": "react"
+  },
+  "extends": "@createform/tsconfig/vite.json",
   "include": ["."],
   "exclude": ["dist", "build", "node_modules"]
 }

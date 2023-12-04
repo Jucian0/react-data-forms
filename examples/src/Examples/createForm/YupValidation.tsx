@@ -1,16 +1,23 @@
 import { createForm } from "@createform/react";
 import { Button, Input, Stack, Text } from "@chakra-ui/react";
 import * as yup from "yup";
+import React from "react";
+
+const validationSchema = yup.object({
+  email: yup.string().email().required(),
+  password: yup.string().min(8).required(),
+});
 
 const useLoginForm = createForm({
   initialValues: {
-    email: "juciano",
-    password: "12d",
+    email: "",
+    password: "",
   },
-  mode: "onChange",
+  mode: "onSubmit",
+  validationSchema,
 });
 
-export function FormZodInlineValidation() {
+export function FormYupValidation() {
   const { register, handleReset, handleSubmit, state } = useLoginForm();
   const { errors, touched } = state;
 
@@ -30,23 +37,9 @@ export function FormZodInlineValidation() {
         onReset={handleReset(onReset)}
         noValidate
       >
-        <Input
-          mt={15}
-          type="email"
-          {...register({
-            name: "email",
-            validate: yup.string().email().required(),
-          })}
-        />
+        <Input mt={15} type="email" {...register("email")} />
         {touched.email && <Text color="red.500">{errors.email}</Text>}
-        <Input
-          mt={15}
-          type="password"
-          {...register({
-            name: "password",
-            validate: yup.string().min(8).required(),
-          })}
-        />
+        <Input mt={15} type="password" {...register("password")} />
         {touched.password && <Text color="red.500">{errors.password}</Text>}
         <Stack direction="row" spacing={4} justify="center" mt={5}>
           <Button type="reset">Reset</Button>

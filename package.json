@@ -7,14 +7,14 @@
     "clean": "turbo run clean && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "prepare": "husky install",
-    "test":"turbo run test",
+    "test": "turbo run test",
     "commit": "git-cz"
   },
   "devDependencies": {
     "eslint": "^8.29.0",
     "eslint-config-createform": "workspace:*",
     "prettier": "^2.8.0",
-    "turbo": "^1.9.0",
+    "turbo": "^1.10.16",
     "@turbo-version/version": "0.2.2",
     "@turbo-version/release": "0.2.2",
     "@commitlint/cli": "^17.0.3",

@@ -16,6 +16,12 @@
 [![npm bundle size](https://img.shields.io/bundlephobia/minzip/@createform/react?color=ff)](https://bundlephobia.com/package/@createform/react@3.3.2)
 [![GitHub Repo stars](https://img.shields.io/github/stars/jucian0/createform?style=social)](https://github.com/jucian0/createform/stargazers)
 
+# Links
+ - Read the full documentation [here](https://createform.run).
+ - View the source code [here](https://github.com/jucian0/createform).
+ - Discord server [here](https://discord.gg/JwYbbrgKgj).
+ - Twitter [here](https://twitter.com/juciano_barbosa).
+
 ## Introduction
 
 Createform is a ReactJS library that makes it easy to create forms. It offers two different approaches for managing forms: creating a custom hook with the `createForm` function and using the `useForm` hook.

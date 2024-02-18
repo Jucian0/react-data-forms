@@ -121,7 +121,7 @@ const LoginForm = () => {
 
 ## `useForm()` usage
 
-More native way to create forms.
+ Native way to create forms.
 
 ```javascript
 import { useForm } from "@createform/react";

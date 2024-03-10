@@ -18,7 +18,7 @@ function Github() {
 function Discord() {
   return (
     <a
-      href="https://discord.gg/g2rR8jPA"
+      href="https://discord.gg/JwYbbrgKgj"
       className="hidden p-2 text-current sm:flex hover:opacity-75"
       title="Createform Discord server"
       target="_blank"

@@ -1,6 +1,6 @@
 {
   "name": "@createform/examples",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Examples of Createform",
   "author": "Jucian0 <juciano@outlook.com.br>",
   "repository": {
@@ -19,12 +19,12 @@
     "react-select": "^5.6.1",
     "react-test-renderer": "18.2.0",
     "react-use-wizard": "2.2.1",
-    "vite": "4.0.4",
+    "vite": "4.5.2",
     "vite-plugin-eslint": "^1.8.1",
     "vite-tsconfig-paths": "4.0.5",
     "vitest": "0.25.8",
     "yup": "^0.27.0",
-    "zod": "^3.20.2",
+    "zod": "^3.22.3",
     "@chakra-ui/react": "2.5.5",
     "framer-motion": "^10.11.5",
     "@createform/react": "workspace:*",

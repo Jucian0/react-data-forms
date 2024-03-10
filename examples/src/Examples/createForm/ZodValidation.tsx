@@ -1,6 +1,7 @@
 import { createForm } from "@createform/react";
 import { Button, Input, Stack, Text } from "@chakra-ui/react";
 import { z } from "zod";
+import React from "react";
 
 const validationSchema = z.object({
   email: z.string().email(),

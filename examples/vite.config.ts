@@ -10,9 +10,9 @@ export default defineConfig({
   },
   plugins: [
     react(),
-    viteTsConfigPaths({
-      root: "../../",
-    }),
+    // viteTsConfigPaths({
+    //   root: "../../",
+    // }),
   ],
 
   test: {

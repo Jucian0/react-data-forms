@@ -1,5 +1,6 @@
 import { Button, Input, Select, Stack } from "@chakra-ui/react";
 import { useForm } from "@createform/react";
+import React from "react";
 import { z } from "zod";
 
 const validationSchema = z.object({
@@ -34,6 +35,7 @@ export function FormDataWay() {
 
   return (
     <Stack p={40}>
+      <h1>Form with useForm hook</h1>
       <form {...register()}>
         <Stack p={5}>
           <Input name="name" />
@@ -78,11 +80,11 @@ export function FormDataWay() {
         </Stack>
       </form>
 
-      <Button onClick={() => setFieldValue("name", "juliano")}>
+      <Button onClick={() => setFieldValue("name", "juliano barbosa")}>
         Set name and lastname
       </Button>
 
-      <Button onClick={() => setFieldValue("email", "juliano@juliano.com")}>
+      <Button onClick={() => setFieldValue("email", "juliano@juliano.com.br")}>
         Set email
       </Button>
 

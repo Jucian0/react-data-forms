@@ -4,6 +4,7 @@ import { Button, Stack } from "@chakra-ui/react";
 import { useWizard } from "react-use-wizard";
 import Select from "react-select";
 import ReactDatePicker from "react-datepicker";
+import React from "react";
 
 export function BasicInfoStep() {
   const { nextStep } = useWizard();

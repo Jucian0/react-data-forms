@@ -3,6 +3,7 @@ import { usePersonForm } from "./usePersonForm";
 import { Button, Stack } from "@chakra-ui/react";
 import { useWizard } from "react-use-wizard";
 import * as yup from "yup";
+import React from "react";
 
 export function BasicInfoStep() {
   const { previousStep, nextStep } = useWizard();

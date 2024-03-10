@@ -1,8 +1,7 @@
 {
-    "$schema": "./packages/turbo-version/version.schema.json",
+    "$schema": "./node_modules/@turbo-version/version/turbov.schema.json",
     "tagPrefix": "v",
     "preset": "angular",
-    "baseBranch": "main",
     "synced": true,
     "updateInternalDependencies": "patch"
 }

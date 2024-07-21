@@ -25,11 +25,16 @@ export function FormDataWay() {
   const { register, errors, getErrors, setFieldValue, getValues } = useForm({
     initialValues: data,
     onSubmit,
+    onReset,
     validationSchema,
   });
   console.log(errors);
 
   function onSubmit(e: typeof data) {
+    console.log(e);
+  }
+
+  function onReset(e: typeof data) {
     console.log(e);
   }
 

@@ -22,11 +22,11 @@ export function FormZodValidation() {
   const { errors, touched } = state;
 
   function onSubmit(e: any) {
-    console.log(e);
+    window.location.search = `?email=${e.email}&password=${e.password}`;
   }
 
   function onReset(e: any) {
-    console.log(e);
+    window.location.search = "";
   }
 
   return (

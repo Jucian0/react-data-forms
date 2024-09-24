@@ -19,7 +19,7 @@
     "react-select": "^5.6.1",
     "react-test-renderer": "18.2.0",
     "react-use-wizard": "2.2.1",
-    "vite": "4.5.3",
+    "vite": "4.5.5",
     "vite-plugin-eslint": "^1.8.1",
     "vite-tsconfig-paths": "4.0.5",
     "vitest": "0.25.8",

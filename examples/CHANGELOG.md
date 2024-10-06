@@ -1,3 +1,7 @@
+## [4.0.6](https://github.com/jucian0/createform/compare/v4.0.5...v4.0.6) (2024-10-06)
+
+
+
 ## [4.0.5](https://github.com/jucian0/createform/compare/v4.0.4...v4.0.5) (2024-07-21)
 
 
